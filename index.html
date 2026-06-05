@@ -1770,13 +1770,28 @@ function ativarNotifFC(btn) {
     return arr;
   }
 
+  // Diagnóstico rápido
+  alert('PushManager: ' + ('PushManager' in window) +
+        '\nNotification: ' + (typeof Notification !== 'undefined' ? Notification.permission : 'N/A') +
+        '\nSW: ' + ('serviceWorker' in navigator) +
+        '\niOS PWA: ' + (window.navigator.standalone === true));
+
+  if (!('PushManager' in window)) {
+    alert('PushManager nao disponivel.\nAbra o app PELO ICONE da tela inicial, nao pelo Safari.');
+    if (ico) ico.textContent='🔔'; if(lbl) lbl.textContent='Notifics'; return;
+  }
+
+  var swTimeout = setTimeout(function() {
+    alert('Service Worker travado.\nFeche o app, abra de novo pelo icone e tente novamente.');
+    if (ico) ico.textContent='🔔'; if(lbl) lbl.textContent='Notifics';
+  }, 8000);
+
   navigator.serviceWorker.ready.then(function(reg) {
-    alert('SW pronto. PushManager: ' + ('PushManager' in window));
+    clearTimeout(swTimeout);
+    alert('SW OK. Criando subscription...');
     return reg.pushManager.getSubscription().then(function(sub) {
-      if (sub) { alert('Subscription existente: ' + sub.endpoint.substring(0,40)); return sub; }
-      alert('Pedindo permissao...');
+      if (sub) return sub;
       return Notification.requestPermission().then(function(perm) {
-        alert('Permissao: ' + perm);
         if (perm !== 'granted') { if (ico) ico.textContent='🔔'; if(lbl) lbl.textContent='Notifics'; return null; }
         return reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64url(_PUSH_VAPID) });
       });
@@ -1784,21 +1799,18 @@ function ativarNotifFC(btn) {
   }).then(function(sub) {
     if (!sub) return;
     var json = JSON.stringify(sub.toJSON ? sub.toJSON() : sub);
-    alert('Subscription criada! Salvando...\n' + sub.endpoint.substring(0,50));
-    fetch('https://ntfy.sh/zyntra-sub-fc-zg2026x', {
-      method: 'POST',
-      body: json
-    }).then(function(r) {
-      alert('ntfy status: ' + r.status + (r.ok ? ' OK' : ' ERRO'));
+    alert('Subscription OK! Salvando...');
+    fetch('https://ntfy.sh/zyntra-sub-fc-zg2026x', { method: 'POST', body: json })
+    .then(function(r) {
+      alert('Salvo! Status: ' + r.status);
       if (r.ok) {
         if (ico) ico.textContent = '✅'; if (lbl) lbl.textContent = 'Ativo!';
         setTimeout(function() { var b=document.getElementById('mn-notif'); if(b) b.style.display='none'; }, 5000);
-      } else {
-        if (ico) ico.textContent = '🔔'; if (lbl) lbl.textContent = 'Notifics';
-      }
-    }).catch(function(fe) { alert('Fetch erro: ' + fe.message); });
+      } else { if (ico) ico.textContent='🔔'; if(lbl) lbl.textContent='Notifics'; }
+    }).catch(function(fe) { alert('Erro fetch: ' + fe.message); });
   }).catch(function(e) {
-    alert('Erro catch: ' + e.message);
+    clearTimeout(swTimeout);
+    alert('Erro: ' + e.message);
     if (ico) ico.textContent = '🔔'; if (lbl) lbl.textContent = 'Notifics';
   });
 }
