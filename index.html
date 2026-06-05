@@ -1656,7 +1656,7 @@ if(_isElectron){
     document.getElementById('mn-menu').classList.add('on');
     var sb=document.querySelector('.sb');
     if(!sb)return;
-    sb.style.cssText='display:flex!important;position:fixed;inset:0;z-index:999;width:80%;max-width:280px;';
+    sb.style.cssText='display:flex!important;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch;position:fixed;top:0;left:0;bottom:calc(58px + env(safe-area-inset-bottom));z-index:999;width:80%;max-width:280px;';
     var ov=document.createElement('div');
     ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:998;';
     ov.onclick=function(){sb.style.cssText='display:none!important;';this.remove();document.getElementById('mn-menu').classList.remove('on');};
