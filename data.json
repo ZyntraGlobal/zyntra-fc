@@ -2174,23 +2174,6 @@
       "roi": 50.02028397565923
     },
     {
-      "id": 33,
-      "mes": 5,
-      "dv": "29/05/2026",
-      "de": "01/06/2026",
-      "produto": "MOUSE GAMER REDRAGON M913 IMPACT ELITE - PRETO",
-      "plat": "AMAZON",
-      "pedido": "702-4430037-5136242",
-      "cmv": 157.99,
-      "venda": 359.99,
-      "taxas": 0,
-      "imp": 0,
-      "co": 11.94,
-      "lucro": 190.06,
-      "margem": 52.795910997527706,
-      "roi": 120.29875308563834
-    },
-    {
       "id": 34,
       "mes": 5,
       "dv": "30/05/2026",
@@ -2240,23 +2223,6 @@
       "lucro": 123.21000000000001,
       "margem": 34.22595072085336,
       "roi": 77.98594847775175
-    },
-    {
-      "id": 300,
-      "mes": 5,
-      "dv": "31/05/2026",
-      "de": "",
-      "produto": "MOUSE GAMER REDRAGON M913 IMPACT ELITE - PRETO",
-      "plat": "AMAZON",
-      "pedido": "701-1461930-7041843",
-      "cmv": 0,
-      "venda": 359.99,
-      "taxas": 0,
-      "imp": 0,
-      "co": 11.94,
-      "lucro": 348.05,
-      "margem": 96.68324120114448,
-      "roi": 0
     },
     {
       "id": 301,
@@ -2364,8 +2330,44 @@
       "lucro": 134.24,
       "margem": 61.020955497977184,
       "roi": 181.8723750169354
+    },
+    {
+      "id": 307,
+      "mes": 6,
+      "dv": "02/06/2026",
+      "de": "05/06/2026",
+      "produto": "MOUSE PARA JOGOS REDRAGON K1NG RGB ROSA M724P-1K",
+      "plat": "MERCADO LIVRE",
+      "pedido": "2000013312155919 ",
+      "qtd": 1,
+      "cmv": 65.99,
+      "venda": 209.99,
+      "taxas": 51.95,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 80.11,
+      "margem": 38.149435687413686,
+      "roi": 121.39718139111989
+    },
+    {
+      "id": 308,
+      "mes": 6,
+      "dv": "03/06/2026",
+      "de": "05/06/2026",
+      "produto": "MOUSE SEM FIO REDRAGON KING PRO WIRELESS RGB ROSA M916P-PRO",
+      "plat": "MERCADO LIVRE",
+      "pedido": "2000013319779649",
+      "qtd": 1,
+      "cmv": 202.02,
+      "venda": 499.99,
+      "taxas": 85.95,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 200.08000000000004,
+      "margem": 40.01680033600673,
+      "roi": 99.03969903969906
     }
   ],
   "nfc": 712,
-  "nvnd": 307
+  "nvnd": 309
 }
