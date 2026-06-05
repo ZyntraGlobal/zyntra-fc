@@ -1482,6 +1482,17 @@ function _calcAlertasFC(){
   return alertas;
 }
 
+function _assinarPushFC(){
+  if(!('serviceWorker' in navigator)||!('Notification' in window)||Notification.permission!=='granted')return;
+  navigator.serviceWorker.ready.then(function(reg){
+    reg.pushManager.getSubscription().then(function(sub){
+      var salvar=function(s){fetch('https://ntfy.sh/zyntra-sub-fc-zg2026x',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(s)}).catch(function(){});};
+      if(sub){salvar(sub);return;}
+      reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:_urlB64('BBhENPjxNvUjD-1ug7UJMdfnWJU3AvpBunQKj8dR_JNlr0J3_RFKCpRVEBbrmKIK6J_E9aCSv4y3thL_R0xMONE')}).then(salvar).catch(function(){});
+    });
+  });
+}
+
 function pNotif(){
   var tem=('Notification' in window);
   var perm=tem?Notification.permission:'denied';
@@ -1498,7 +1509,9 @@ function pNotif(){
     } else if(perm==='denied'){
       h+='<div class="sub" style="color:var(--amb);margin-top:8px">Vá em Ajustes → Notificações → Zyntra FC → Permitir notificações</div>';
     } else {
-      h+='<div style="margin-top:10px;display:flex;gap:8px"><button class="btn" onclick="notifTestar()">📤 Enviar teste</button><button class="btn" onclick="notifChecar()">🔍 Verificar alertas</button></div>';
+      // Já ativado — assina push automaticamente em background
+      _assinarPushFC();
+      h+='<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="notifTestar()">📤 Enviar teste</button><button class="btn" onclick="notifChecar()">🔍 Verificar alertas</button><button class="btn" onclick="_assinarPushFC();_mostrarNotif(\'🔄 Push renovado\',\'Assinatura atualizada no relay\',\'grn\')">🔄 Renovar push</button></div>';
     }
     h+='</div>';
   }
