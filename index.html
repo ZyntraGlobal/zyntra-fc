@@ -1514,15 +1514,29 @@ function pNotif(){
   setPage(h);
 }
 
+function _urlB64(b){var p='='.repeat((4-b.length%4)%4);var s=(b+p).replace(/-/g,'+').replace(/_/g,'/');var r=window.atob(s);var o=new Uint8Array(r.length);for(var i=0;i<r.length;i++)o[i]=r.charCodeAt(i);return o;}
+
 function notifAtivar(){
   if(!('Notification' in window)){_mostrarNotif('❌ Não suportado','Use Safari + Adicionar à Tela de Início','red');return;}
   // iOS: requestPermission DEVE ser o primeiro await — sem nenhum await antes
   Notification.requestPermission().then(function(perm){
     if(perm==='granted'){
       navigator.serviceWorker.ready.then(function(reg){
-        reg.showNotification('Zyntra FC ✅',{body:'Notificações ativadas! Você receberá alertas financeiros.',icon:'/zyntra-fc/icon-192.png',badge:'/zyntra-fc/icon-192.png',tag:'zyntra-ativado'});
-        _mostrarNotif('✅ Notificações ativadas!','Alertas financeiros habilitados','grn');
-        pNotif();
+        // Assina push VAPID e salva subscription no relay ntfy (só relay, não manda notif ntfy)
+        reg.pushManager.subscribe({
+          userVisibleOnly:true,
+          applicationServerKey:_urlB64('BBhENPjxNvUjD-1ug7UJMdfnWJU3AvpBunQKj8dR_JNlr0J3_RFKCpRVEBbrmKIK6J_E9aCSv4y3thL_R0xMONE')
+        }).then(function(sub){
+          fetch('https://ntfy.sh/zyntra-sub-fc-zg2026x',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(sub)}).catch(function(){});
+          reg.showNotification('Zyntra FC ✅',{body:'Notificações ativadas! Cada alteração chegará aqui.',icon:'/zyntra-fc/icon-192.png',tag:'zyntra-ativado'});
+          _mostrarNotif('✅ Pronto!','Cada alteração vai chegar como notificação','grn');
+          pNotif();
+        }).catch(function(){
+          // Fallback: só permissão local
+          reg.showNotification('Zyntra FC ✅',{body:'Notificações locais ativadas.',icon:'/zyntra-fc/icon-192.png',tag:'zyntra-ativado'});
+          _mostrarNotif('✅ Notificações locais ativadas','Push direto indisponível neste dispositivo','grn');
+          pNotif();
+        });
       });
     } else if(perm==='denied'){
       _mostrarNotif('❌ Permissão negada','Vá em Ajustes → Notificações → Zyntra FC','red');
