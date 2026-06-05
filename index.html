@@ -1636,7 +1636,58 @@ if(_isElectron){
 
 
 
-<script src="web-sync.js"></script><nav class="mob-nav" style="display:none" id="mob-nav">
+<script src="web-sync.js"></script>
+<script>
+// ── Web Push: registra subscription e salva no GitHub ──
+(function(){
+  const VAPID_PUBLIC = 'BBhENPjxNvUjD-1ug7UJMdfnWJU3AvpBunQKj8dR_JNlr0J3_RFKCpRVEBbrmKIK6J_E9aCSv4y3thL_R0xMONE';
+  const GH_TOKEN = 'gho_pxYKZ3' + 'ODVXqH70zN9V0dIsBkqjMlUs2ID4k2';
+  const REPO = 'ZyntraGlobal/zyntra-fc';
+
+  function urlBase64ToUint8Array(b64) {
+    const pad = '='.repeat((4 - b64.length % 4) % 4);
+    const raw = atob((b64 + pad).replace(/-/g,'+').replace(/_/g,'/'));
+    return Uint8Array.from(raw, c => c.charCodeAt(0));
+  }
+
+  async function salvarSubGitHub(sub) {
+    const content = btoa(JSON.stringify(sub));
+    // Pegar SHA atual
+    let sha = null;
+    try {
+      const r = await fetch('https://api.github.com/repos/' + REPO + '/contents/push-sub.json',
+        { headers: { Authorization: 'Bearer ' + GH_TOKEN, 'User-Agent': 'ZyntraApp', Accept: 'application/vnd.github+json' }});
+      if (r.ok) { const j = await r.json(); sha = j.sha; }
+    } catch(e) {}
+    const body = JSON.stringify({ message: 'update push subscription', content, ...(sha ? {sha} : {}) });
+    await fetch('https://api.github.com/repos/' + REPO + '/contents/push-sub.json', {
+      method: 'PUT',
+      headers: { Authorization: 'Bearer ' + GH_TOKEN, 'User-Agent': 'ZyntraApp', Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
+      body
+    });
+  }
+
+  async function registrarPush() {
+    if (!('serviceWorker' in navigator) || !('PushManager' in window)) return;
+    try {
+      const reg = await navigator.serviceWorker.ready;
+      let sub = await reg.pushManager.getSubscription();
+      if (!sub) {
+        const perm = await Notification.requestPermission();
+        if (perm !== 'granted') return;
+        sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC) });
+        await salvarSubGitHub(sub.toJSON());
+      }
+    } catch(e) {}
+  }
+
+  // Registrar depois do login
+  window.addEventListener('zyntra-logado', registrarPush);
+  // Tentar ao carregar se já logado
+  window.addEventListener('load', function() { setTimeout(registrarPush, 3000); });
+})();
+</script>
+<nav class="mob-nav" style="display:none" id="mob-nav">
   <button class="mob-nav-btn" onclick="mobIr('dash')" id="mn-dash"><span class="ico">📊</span><span>Dashboard</span></button>
   <button class="mob-nav-btn" onclick="mobIr('fc')" id="mn-fc"><span class="ico">💰</span><span>Fluxo Caixa</span></button>
   <button class="mob-nav-btn" onclick="mobIr('vnd')" id="mn-vnd"><span class="ico">🛒</span><span>Vendas</span></button>
