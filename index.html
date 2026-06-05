@@ -1664,5 +1664,26 @@ if(_isElectron){
   };
   window.addEventListener('resize',showNav);
   window.addEventListener('load',showNav);
+
+  // Envolve todas as tabelas sem .tw em .mob-table-wrap para scroll horizontal
+  function wrapTables(){
+    if(window.innerWidth>768) return;
+    document.querySelectorAll('table').forEach(function(t){
+      var p=t.parentElement;
+      if(p && !p.classList.contains('tw') && !p.classList.contains('mob-table-wrap')){
+        var w=document.createElement('div');
+        w.className='mob-table-wrap';
+        p.insertBefore(w,t);
+        w.appendChild(t);
+      }
+    });
+  }
+  // Hook no setPage para rodar após cada render
+  var _origSetPage=window.setPage;
+  window.setPage=function(h){
+    if(_origSetPage) _origSetPage(h);
+    setTimeout(wrapTables,50);
+  };
+  window.addEventListener('load',function(){ setTimeout(wrapTables,200); });
 })();
 </script></body></html>
