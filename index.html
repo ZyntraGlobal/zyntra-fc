@@ -1706,13 +1706,28 @@ if(_isElectron){
   };
 
   // Verificar ao carregar (se já logado)
+  function atualizarBotaoNotif() {
+    const btn = document.getElementById('mn-notif');
+    if (!btn) return;
+    if (!('Notification' in window) || Notification.permission === 'denied') { btn.style.display='none'; return; }
+    if (Notification.permission === 'granted') { btn.style.display='none'; return; }
+    btn.style.display='flex'; // mostra o botão 🔔 no nav
+  }
+
   window.addEventListener('load', function() {
+    // Forçar atualização do service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(regs) {
+        regs.forEach(function(r) { r.update(); });
+      });
+    }
     setTimeout(function() {
       if (!('Notification' in window)) return;
-      if (Notification.permission === 'granted') return; // já ativado
-      if (Notification.permission === 'denied') return;  // usuário bloqueou
-      if (window.innerWidth <= 768) mostrarBannerNotif();
-    }, 2000);
+      if (Notification.permission === 'granted') { esconderBannerNotif(); return; }
+      if (Notification.permission === 'denied') return;
+      atualizarBotaoNotif();
+      mostrarBannerNotif();
+    }, 1500);
   });
 })();
 </script>
@@ -1721,6 +1736,7 @@ if(_isElectron){
   <button class="mob-nav-btn" onclick="mobIr('fc')" id="mn-fc"><span class="ico">💰</span><span>Fluxo Caixa</span></button>
   <button class="mob-nav-btn" onclick="mobIr('vnd')" id="mn-vnd"><span class="ico">🛒</span><span>Vendas</span></button>
   <button class="mob-nav-btn" onclick="mobIr('rel')" id="mn-rel"><span class="ico">📈</span><span>Relatórios</span></button>
+  <button class="mob-nav-btn" onclick="window._ativarNotif&&window._ativarNotif()" id="mn-notif" style="display:none"><span class="ico">🔔</span><span>Notifics</span></button>
   <button class="mob-nav-btn" onclick="mobMenu()" id="mn-menu"><span class="ico">☰</span><span>Menu</span></button>
 </nav>
 <script>
