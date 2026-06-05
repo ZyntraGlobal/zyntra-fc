@@ -214,7 +214,7 @@ tfoot td{font-weight:700;border-top:1px solid var(--bdr2);border-bottom:none!imp
 @keyframes loginDot{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
 @keyframes loginShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
 /* ── BACKUP ALERT ── */
-.backup-banner{position:fixed;bottom:16px;right:16px;background:var(--w);border:1px solid var(--bdr);border-left:4px solid var(--gold);border-radius:10px;padding:14px 16px;max-width:320px;box-shadow:0 8px 32px rgba(0,0,0,.5);z-index:888;animation:slideIn .3s ease;}
+.backup-banner{position:fixed;bottom:calc(72px + env(safe-area-inset-bottom));right:16px;left:16px;max-width:none;width:auto;background:var(--w);border:1px solid var(--bdr);border-left:4px solid var(--gold);border-radius:10px;padding:14px 16px;max-width:320px;box-shadow:0 8px 32px rgba(0,0,0,.5);z-index:888;animation:slideIn .3s ease;}
 @keyframes slideIn{from{transform:translateX(120%);opacity:0;}to{transform:translateX(0);opacity:1;}}
 .backup-banner .bb-title{font-size:12px;font-weight:700;color:var(--t);margin-bottom:3px;}
 .backup-banner .bb-sub{font-size:11px;color:var(--t2);margin-bottom:10px;}
@@ -1525,7 +1525,7 @@ if(_isElectron){
     <!-- PAINEL ESQUERDO: MARCA -->
     <div class="login-brand">
       <div class="login-logo-wrap">
-        <img class="login-logo-img" src="_files/zyntra-logo.jpg"
+        <img class="login-logo-img" src="_files/zyntra-logo.png"
           onerror="this.src='icon-192.png'"
           alt="Zyntra">
         <div class="login-logo-ring"></div>
@@ -1542,7 +1542,7 @@ if(_isElectron){
     </div>
 
     <!-- PAINEL DIREITO: FORMULÁRIO -->
-    <div class="login-form-side"><div class="login-logo-mob" style="display:none"><img src="_files/zyntra-logo.jpg?v=4" alt="Zyntra"><div class="t1">ZYNTRA <em>·</em> FC</div></div>
+    <div class="login-form-side"><div class="login-logo-mob" style="display:none"><img src="_files/zyntra-logo.png" alt="Zyntra"><div class="t1">ZYNTRA <em>·</em> FC</div></div>
       <div class="login-tag">Acesso Seguro</div>
       <div class="login-title">Bem-vindo<br>de volta</div>
       <div class="login-subtitle">Faça login para acessar o sistema</div>
