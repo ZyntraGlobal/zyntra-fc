@@ -1352,6 +1352,7 @@ async function doLogin(){
     var duracao = 4*60*60*1000; // 4 horas fixo
     localStorage.setItem('zyntra_sess', JSON.stringify({user:user, until:Date.now()+duracao}));
     document.getElementById('login-bg').classList.add('hidden');
+    document.body.classList.remove('login-open');
     _iniciarWatchSessao();
     badges(); pDash(); verificarBackup();
   } else {
@@ -1378,6 +1379,7 @@ async function doLogin(){
 function _expirarSessao(){
   localStorage.removeItem('zyntra_sess');
   document.getElementById('login-bg').classList.remove('hidden');
+  document.body.classList.add('login-open');
   document.getElementById('li-pass').value='';
   document.getElementById('li-err').textContent='';
   var el=document.createElement('div');
@@ -1407,6 +1409,7 @@ function checkSessao(){
   // MOSTRA a tela de login (remove o hidden)
   var bg = document.getElementById('login-bg');
   if(bg) bg.classList.remove('hidden');
+  document.body.classList.add('login-open');
   setTimeout(function(){
     var u=document.getElementById('li-user');
     if(u)u.focus();
@@ -1671,11 +1674,20 @@ if(_isElectron){
     (root||document).querySelectorAll('table').forEach(function(t){
       var p=t.parentElement;
       if(!p) return;
-      if(p.dataset.mobWrap) return;
-      p.dataset.mobWrap='1';
-      if(p.classList.contains('tw')) return; // já tem wrapper
+      // Se o pai já é um wrapper nosso ou tem .tw, pula
+      if(p.hasAttribute('data-mob-wrap-div')) return;
+      if(p.classList.contains('tw')) {
+        // .tw já existe — garante que .ts não sobrescreve o scroll
+        if(p.classList.contains('ts')){
+          p.style.overflowX='auto';
+          p.style.webkitOverflowScrolling='touch';
+        }
+        return;
+      }
+      // Cria wrapper com scroll horizontal
       var w=document.createElement('div');
-      w.style.cssText='display:block;overflow-x:scroll;-webkit-overflow-scrolling:touch;width:100%;max-width:100%;';
+      w.setAttribute('data-mob-wrap-div','1');
+      w.style.cssText='display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%;max-width:100%;';
       p.insertBefore(w,t);
       w.appendChild(t);
     });
