@@ -1447,24 +1447,20 @@ function exportarDados(){
 
 async function fazerBackup(){
   var btn=document.getElementById('ni-backup');
+  function resetBtn(){if(btn){btn.querySelector('.lbl').textContent='Backup Completo';btn.style.opacity='';}}
   if(btn){btn.querySelector('.lbl').textContent='Fazendo backup...';btn.style.opacity='.6';}
-
-  if(_isElectron && window.zyntraElectron.backupCompleto){
-    // Electron: backup completo (app + dados)
-    var r = await window.zyntraElectron.backupCompleto();
-    if(btn){btn.querySelector('.lbl').textContent='Backup Completo';btn.style.opacity='';}
-    if(r.ok){
-      _mostrarNotif('✅ Backup completo criado!','Salvo em: Zyntra Global → Backups','grn');
-      localStorage.setItem('zyntra_ultimo_backup',''+Date.now());
+  try{
+    if(_isElectron && window.zyntraElectron && window.zyntraElectron.backupCompleto){
+      var r = await window.zyntraElectron.backupCompleto();
+      resetBtn();
+      if(r.ok){_mostrarNotif('✅ Backup completo!','Salvo em Zyntra Global → Backups','grn');localStorage.setItem('zyntra_ultimo_backup',''+Date.now());}
+      else{_mostrarNotif('❌ Erro no backup',r.error||'Tente novamente','red');}
     } else {
-      _mostrarNotif('❌ Erro no backup',r.error||'Tente novamente','red');
+      exportarDados();
+      resetBtn();
+      _mostrarNotif('✅ Dados exportados!','Arquivo JSON salvo nos Downloads','grn');
     }
-  } else {
-    // Browser: exporta só os dados em JSON
-    exportarDados();
-    if(btn){btn.querySelector('.lbl').textContent='Backup Completo';btn.style.opacity='';}
-    _mostrarNotif('✅ Dados exportados!','Arquivo JSON salvo nos Downloads','grn');
-  }
+  }catch(e){resetBtn();_mostrarNotif('❌ Erro','Tente novamente','red');}
 }
 
 function _mostrarNotif(titulo, msg, tipo){
