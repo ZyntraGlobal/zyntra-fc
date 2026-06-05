@@ -617,7 +617,8 @@ var TITULOS={
   cats:'Resumo por Categoria',
   impostos:'Impostos & Obrigações',imp:'Impostos & Obrigações',
   estoque:'Controle de Estoque',est:'Controle de Estoque',
-  invest:'Investimentos & CAPEX'
+  invest:'Investimentos & CAPEX',
+  notif:'Alertas & Notificações'
 };
 // Mapa de funções: as chaves do sidebar são mapeadas aqui
 var FN_MAP={
@@ -630,7 +631,8 @@ var FN_MAP={
   cats:function(){pCats();},
   impostos:function(){pImpostos();},imp:function(){pImpostos();},
   estoque:function(){pEstoque();},est:function(){pEstoque();},
-  invest:function(){pInvest();}
+  invest:function(){pInvest();},
+  notif:function(){pNotif();}
 };
 var _curMes=0,_curTipo='';
 function ir(tipo,mes,el){
@@ -1355,11 +1357,6 @@ async function doLogin(){
     document.body.classList.remove('login-open');
     _iniciarWatchSessao();
     badges(); pDash(); verificarBackup();
-    // Mostrar opção de notificações após login
-    setTimeout(function(){
-      if(typeof atualizarBotaoNotif==='function') atualizarBotaoNotif();
-      if(typeof mostrarBannerNotif==='function' && 'Notification' in window && Notification.permission==='default') mostrarBannerNotif();
-    }, 1000);
   } else {
     // Falha
     document.getElementById('li-pass').value='';
@@ -1469,6 +1466,95 @@ async function fazerBackup(){
       _mostrarNotif('✅ Dados exportados!','Arquivo JSON salvo nos Downloads','grn');
     }
   }catch(e){resetBtn();_mostrarNotif('❌ Erro','Tente novamente','red');}
+}
+
+// ── ALERTAS & NOTIFICAÇÕES ────────────────────────────
+function _calcAlertasFC(){
+  var alertas=[];
+  var mes=new Date().getMonth()+1;
+  var DM=calcDRE(mes);
+  var DA=calcDRE(0);
+  if(DM.lliq<0) alertas.push({tipo:'danger',titulo:'Resultado Negativo — '+MFULL[mes-1],msg:'Lucro líquido: '+R(DM.lliq)});
+  if(DA.lliq<-500) alertas.push({tipo:'danger',titulo:'Acumulado Negativo no Ano',msg:'Total: '+R(DA.lliq)});
+  var fc_mes=(DB.fc||[]).filter(function(l){return l.mes===mes&&l.tipo==='despesa';});
+  var td=fc_mes.reduce(function(a,l){return a+(l.valor||0);},0);
+  if(td>8000) alertas.push({tipo:'warn',titulo:'Despesas Altas em '+MFULL[mes-1],msg:'Total despesas: '+R(td)});
+  return alertas;
+}
+
+function pNotif(){
+  var tem=('Notification' in window);
+  var perm=tem?Notification.permission:'denied';
+  var sw=('serviceWorker' in navigator);
+  var h='<div class="sec">🔔 Notificações</div>';
+  if(!tem||!sw){
+    h+='<div class="card danger"><div class="lbl">Suporte</div><div class="val red" style="font-size:14px">Não suportado</div><div class="sub" style="margin-top:6px">Instale o app na Tela de Início via Safari e use iOS 16.4+</div></div>';
+  } else {
+    var cor=perm==='granted'?'grn':perm==='denied'?'red':'amb';
+    var txt=perm==='granted'?'✅ Ativadas':perm==='denied'?'❌ Bloqueadas':'⏳ Aguardando permissão';
+    h+='<div class="card"><div class="lbl">Status das Notificações</div><div class="val '+cor+'" style="font-size:16px">'+txt+'</div>';
+    if(perm==='default'){
+      h+='<div style="margin-top:12px"><button class="btn btnp" style="width:100%;justify-content:center;padding:12px" onclick="notifAtivar()">🔔 Ativar Notificações</button></div>';
+    } else if(perm==='denied'){
+      h+='<div class="sub" style="color:var(--amb);margin-top:8px">Vá em Ajustes → Notificações → Zyntra FC → Permitir notificações</div>';
+    } else {
+      h+='<div style="margin-top:10px;display:flex;gap:8px"><button class="btn" onclick="notifTestar()">📤 Enviar teste</button><button class="btn" onclick="notifChecar()">🔍 Verificar alertas</button></div>';
+    }
+    h+='</div>';
+  }
+  var alertas=_calcAlertasFC();
+  h+='<div class="sec" style="margin-top:14px">⚠️ Alertas Ativos</div>';
+  if(alertas.length===0){
+    h+='<div class="card ok"><div class="val grn" style="font-size:14px">✅ Nenhum alerta</div><div class="sub">Financeiro em ordem</div></div>';
+  } else {
+    alertas.forEach(function(a){
+      h+='<div class="card '+(a.tipo==='danger'?'danger':'warn')+'"><div class="lbl">'+a.titulo+'</div><div class="val" style="font-size:14px;margin-top:4px">'+a.msg+'</div></div>';
+    });
+  }
+  setPage(h);
+}
+
+function notifAtivar(){
+  if(!('Notification' in window)){_mostrarNotif('❌ Não suportado','Use Safari + Adicionar à Tela de Início','red');return;}
+  // iOS: requestPermission DEVE ser o primeiro await — sem nenhum await antes
+  Notification.requestPermission().then(function(perm){
+    if(perm==='granted'){
+      navigator.serviceWorker.ready.then(function(reg){
+        reg.showNotification('Zyntra FC ✅',{body:'Notificações ativadas! Você receberá alertas financeiros.',icon:'/zyntra-fc/icon-192.png',badge:'/zyntra-fc/icon-192.png',tag:'zyntra-ativado'});
+        _mostrarNotif('✅ Notificações ativadas!','Alertas financeiros habilitados','grn');
+        pNotif();
+      });
+    } else if(perm==='denied'){
+      _mostrarNotif('❌ Permissão negada','Vá em Ajustes → Notificações → Zyntra FC','red');
+      pNotif();
+    }
+  });
+}
+
+function notifTestar(){
+  if(Notification.permission!=='granted'){_mostrarNotif('❌ Sem permissão','Ative as notificações primeiro','red');return;}
+  navigator.serviceWorker.ready.then(function(reg){
+    var alertas=_calcAlertasFC();
+    if(alertas.length>0){
+      reg.showNotification('Zyntra FC — '+alertas[0].titulo,{body:alertas[0].msg,icon:'/zyntra-fc/icon-192.png',tag:'zyntra-alerta'});
+    } else {
+      reg.showNotification('Zyntra FC ✅',{body:'Nenhum alerta ativo. Tudo certo!',icon:'/zyntra-fc/icon-192.png',tag:'zyntra-ok'});
+    }
+    _mostrarNotif('📤 Notificação enviada!','Veja a central de notificações','grn');
+  });
+}
+
+function notifChecar(){
+  var alertas=_calcAlertasFC();
+  if(alertas.length===0){_mostrarNotif('✅ Tudo certo','Nenhum alerta financeiro','grn');return;}
+  navigator.serviceWorker.ready.then(function(reg){
+    alertas.forEach(function(a,i){
+      setTimeout(function(){
+        reg.showNotification('Zyntra FC — '+a.titulo,{body:a.msg,icon:'/zyntra-fc/icon-192.png',tag:'zyntra-alerta-'+i});
+      },i*500);
+    });
+    _mostrarNotif('⚠️ '+alertas.length+' alerta(s) enviados','Veja a central de notificações','grn');
+  });
 }
 
 function _mostrarNotif(titulo, msg, tipo){
@@ -1641,209 +1727,12 @@ if(_isElectron){
 
 
 
-<script src="web-sync.js"></script>
-<script>
-// ── Web Push FC — funções globais diretas ──
-var _PUSH_VAPID = 'BBhENPjxNvUjD-1ug7UJMdfnWJU3AvpBunQKj8dR_JNlr0J3_RFKCpRVEBbrmKIK6J_E9aCSv4y3thL_R0xMONE';
-var _PUSH_TOKEN = 'gho_pxYKZ3' + 'ODVXqH70zN9V0dIsBkqjMlUs2ID4k2';
-var _PUSH_REPO  = 'ZyntraGlobal/zyntra-fc';
-(function(){
-  const VAPID_PUBLIC = _PUSH_VAPID;
-  const GH_TOKEN = _PUSH_TOKEN;
-  const REPO = _PUSH_REPO;
-
-  function urlBase64ToUint8Array(b64) {
-    const pad = '='.repeat((4 - b64.length % 4) % 4);
-    const raw = atob((b64 + pad).replace(/-/g,'+').replace(/_/g,'/'));
-    return Uint8Array.from(raw, c => c.charCodeAt(0));
-  }
-
-  async function salvarSub(sub) {
-    try {
-      const json = JSON.stringify(sub.toJSON ? sub.toJSON() : sub);
-      const r = await fetch('https://ntfy.sh/zyntra-sub-fc-zg2026x', {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain', 'Title': 'push-sub' },
-        body: json
-      });
-      if (!r.ok) throw new Error('ntfy status ' + r.status);
-      return true;
-    } catch(e) { alert('Erro ao salvar:\n' + e.message); return false; }
-  }
-
-  async function registrarPush() {
-    if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
-      alert('Web Push não suportado. Requer iOS 16.4+ com app na tela inicial.');
-      return false;
-    }
-    if (Notification.permission === 'denied') {
-      alert('Notificações bloqueadas.\nVá em Ajustes → Zyntra FC → Notificações → Ativar.');
-      return false;
-    }
-    try {
-      const reg = await navigator.serviceWorker.ready;
-      let sub = await reg.pushManager.getSubscription();
-      if (!sub) {
-        const perm = await Notification.requestPermission();
-        if (perm !== 'granted') return false;
-        sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC) });
-      }
-      // Sempre salva no GitHub (mesmo que subscription já exista)
-      const ok = await salvarSubGitHub(sub.toJSON());
-      esconderBannerNotif();
-      return ok;
-    } catch(e) { alert('Erro: ' + e.message); return false; }
-  }
-
-  function mostrarBannerNotif() {
-    if (document.getElementById('notif-banner')) return;
-    if (window.innerWidth > 768) return; // só mobile
-    const b = document.createElement('div');
-    b.id = 'notif-banner';
-    b.style.cssText = 'position:fixed;bottom:70px;left:12px;right:12px;background:#1a1a2e;border:1px solid rgba(201,168,76,.4);border-radius:14px;padding:14px 16px;z-index:1200;display:flex;align-items:center;gap:12px;box-shadow:0 8px 32px rgba(0,0,0,.6)';
-    b.innerHTML = '<span style="font-size:22px">🔔</span><div style="flex:1"><div style="font-size:13px;font-weight:700;color:#f5f5f5">Ativar Notificações</div><div style="font-size:11px;color:#999;margin-top:2px">Receba alertas quando dados forem salvos</div></div><button onclick="window._ativarNotif()" style="background:#c9a84c;color:#111;border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap">Ativar</button><button onclick="this.parentElement.remove()" style="background:none;border:none;color:#555;font-size:18px;cursor:pointer;padding:4px">×</button>';
-    document.body.appendChild(b);
-  }
-
-  function esconderBannerNotif() {
-    const b = document.getElementById('notif-banner');
-    if (b) b.remove();
-  }
-
-  window._ativarNotif = async function() {
-    const btn = document.getElementById('mn-notif');
-    if (btn) { btn.querySelector('span:first-child').textContent = '⏳'; btn.querySelector('span:last-child').textContent = 'Salvando'; }
-    esconderBannerNotif();
-    const ok = await registrarPush();
-    if (ok && btn) {
-      btn.querySelector('span:first-child').textContent = '✅';
-      btn.querySelector('span:last-child').textContent = 'Ativo';
-      setTimeout(function(){ btn.style.display='none'; }, 3000);
-    } else if (btn) {
-      btn.querySelector('span:first-child').textContent = '🔔';
-      btn.querySelector('span:last-child').textContent = 'Notifics';
-    }
-  };
-
-  // Verificar ao carregar (se já logado)
-  function atualizarBotaoNotif() {
-    const btn = document.getElementById('mn-notif');
-    if (!btn) return;
-    if (!('Notification' in window) || Notification.permission === 'denied') { btn.style.display='none'; return; }
-    if (Notification.permission === 'granted') { btn.style.display='none'; return; }
-    btn.style.display='flex'; // mostra o botão 🔔 no nav
-  }
-
-  window.addEventListener('load', function() {
-    // Forçar atualização do service worker
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then(function(regs) {
-        regs.forEach(function(r) { r.update(); });
-      });
-    }
-  });
-})();
-
-// Função global — chamada diretamente pelo botão do nav
-function ativarNotifFC(btn) {
-  var ico = btn ? btn.querySelector('span:first-child') : null;
-  var lbl = btn ? btn.querySelector('span:last-child')  : null;
-  if (ico) ico.textContent = '⏳';
-  if (lbl) lbl.textContent = 'Aguarde';
-
-  if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
-    alert('Web Push não suportado.\nRequer iOS 16.4+ com o app instalado na Tela de Início (não pelo Safari).');
-    if (ico) ico.textContent = '🔔'; if (lbl) lbl.textContent = 'Notifics';
-    return;
-  }
-  if (typeof Notification !== 'undefined' && Notification.permission === 'denied') {
-    alert('Notificações bloqueadas.\nVá em: Ajustes → Zyntra FC → Notificações → Ativar');
-    if (ico) ico.textContent = '🔔'; if (lbl) lbl.textContent = 'Notifics';
-    return;
-  }
-
-  function b64url(b64) {
-    var pad = '='.repeat((4 - b64.length % 4) % 4);
-    var raw = atob((b64 + pad).replace(/-/g,'+').replace(/_/g,'/'));
-    var arr = new Uint8Array(raw.length);
-    for (var i=0; i<raw.length; i++) arr[i] = raw.charCodeAt(i);
-    return arr;
-  }
-
-  // Mostrar diagnóstico na tela (sem alert — bloqueado pelo iOS)
-  function msgTela(txt, cor) {
-    var d = document.getElementById('notif-diag');
-    if (!d) { d = document.createElement('div'); d.id='notif-diag';
-      d.style.cssText='position:fixed;top:60px;left:12px;right:12px;background:#111;border:1px solid #333;border-radius:10px;padding:12px;z-index:2000;font-size:12px;font-family:monospace;'; document.body.appendChild(d); }
-    d.style.borderColor = cor||'#555';
-    d.innerHTML = txt + '<br><small style="color:#555">toque aqui para fechar</small>';
-    d.onclick = function(){ d.remove(); };
-  }
-
-  var info = 'PushManager: '+('PushManager' in window)+
-             ' | Notif: '+(typeof Notification!=='undefined'?Notification.permission:'N/A')+
-             ' | SW: '+('serviceWorker' in navigator)+
-             ' | PWA: '+(window.navigator.standalone===true);
-  msgTela(info, '#444');
-
-  if (!('PushManager' in window)) {
-    msgTela('❌ PushManager indisponível.\nAbra PELO ÍCONE da tela inicial, não pelo Safari.','#f87171');
-    if (ico) ico.textContent='🔔'; if(lbl) lbl.textContent='Notifics'; return;
-  }
-
-  // Usar getRegistration (mais rápido que .ready)
-  function getReg() {
-    return navigator.serviceWorker.getRegistration('/zyntra-fc/').then(function(reg) {
-      if (reg && reg.active) return reg;
-      // Tentar registrar
-      return navigator.serviceWorker.register('/zyntra-fc/sw.js', {scope:'/zyntra-fc/'})
-        .then(function(r) { return r; });
-    });
-  }
-
-  var swTimeout = setTimeout(function() {
-    msgTela('⚠️ SW demorou. Tente fechar e abrir o app novamente.','#fbbf24');
-    if (ico) ico.textContent='🔔'; if(lbl) lbl.textContent='Tente de novo';
-  }, 10000);
-
-  getReg().then(function(reg) {
-    clearTimeout(swTimeout);
-    msgTela('✅ SW OK. Criando subscription...','#34d399');
-    return reg.pushManager.getSubscription().then(function(sub) {
-      if (sub) { msgTela('📱 Subscription existente. Salvando...','#60a5fa'); return sub; }
-      return Notification.requestPermission().then(function(perm) {
-        if (perm !== 'granted') { msgTela('❌ Permissão negada.','#f87171'); if (ico) ico.textContent='🔔'; if(lbl) lbl.textContent='Notifics'; return null; }
-        return reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64url(_PUSH_VAPID) });
-      });
-    });
-  }).then(function(sub) {
-    if (!sub) return;
-    var json = JSON.stringify(sub.toJSON ? sub.toJSON() : sub);
-    msgTela('📡 Salvando subscription...','#60a5fa');
-    fetch('https://ntfy.sh/zyntra-sub-fc-zg2026x', { method: 'POST', body: json })
-    .then(function(r) {
-      if (r.ok) {
-        msgTela('✅ Notificações ativadas com sucesso!','#34d399');
-        if (ico) ico.textContent='✅'; if(lbl) lbl.textContent='Ativo!';
-        setTimeout(function(){ var b=document.getElementById('mn-notif'); if(b) b.style.display='none'; var d=document.getElementById('notif-diag'); if(d) d.remove(); }, 5000);
-      } else {
-        msgTela('❌ Erro ao salvar (status '+r.status+')','#f87171');
-        if (ico) ico.textContent='🔔'; if(lbl) lbl.textContent='Notifics';
-      }
-    }).catch(function(fe){ msgTela('❌ Erro rede: '+fe.message,'#f87171'); });
-  }).catch(function(e) {
-    clearTimeout(swTimeout);
-    msgTela('❌ Erro: '+e.message,'#f87171');
-    if (ico) ico.textContent='🔔'; if(lbl) lbl.textContent='Notifics';
-  });
-}
-</script>
-<nav class="mob-nav" style="display:none" id="mob-nav">
+<script src="web-sync.js"></script><nav class="mob-nav" style="display:none" id="mob-nav">
   <button class="mob-nav-btn" onclick="mobIr('dash')" id="mn-dash"><span class="ico">📊</span><span>Dashboard</span></button>
   <button class="mob-nav-btn" onclick="mobIr('fc')" id="mn-fc"><span class="ico">💰</span><span>Fluxo Caixa</span></button>
   <button class="mob-nav-btn" onclick="mobIr('vnd')" id="mn-vnd"><span class="ico">🛒</span><span>Vendas</span></button>
   <button class="mob-nav-btn" onclick="mobIr('rel')" id="mn-rel"><span class="ico">📈</span><span>Relatórios</span></button>
-  <button class="mob-nav-btn" onclick="ativarNotifFC(this)" id="mn-notif"><span class="ico">🔔</span><span>Notifics</span></button>
+  <button class="mob-nav-btn" onclick="mobIr('notif')" id="mn-notif"><span class="ico">🔔</span><span>Alertas</span><span class="mob-bdg" id="mn-bdg-notif" style="display:none"></span></button>
   <button class="mob-nav-btn" onclick="mobMenu()" id="mn-menu"><span class="ico">☰</span><span>Menu</span></button>
 </nav>
 <script>
@@ -1857,6 +1746,7 @@ function ativarNotifFC(btn) {
     else if(sec==='fc'){document.getElementById('mn-fc').classList.add('on');ir('fc',mes);}
     else if(sec==='vnd'){document.getElementById('mn-vnd').classList.add('on');ir('vnd',mes);}
     else if(sec==='rel'){document.getElementById('mn-rel').classList.add('on');ir('resumo_fc');}
+    else if(sec==='notif'){document.getElementById('mn-notif').classList.add('on');ir('notif');}
   };
   window.mobMenu=function(){
     document.getElementById('mn-menu').classList.add('on');
