@@ -35,4 +35,9 @@
   }
 
   setInterval(sincronizar, 120000);
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/zyntra-fc/sw.js', { scope: '/zyntra-fc/' })
+      .catch(function(e) { console.warn('SW:', e); });
+  }
 })();
