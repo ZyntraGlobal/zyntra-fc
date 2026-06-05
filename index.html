@@ -1706,6 +1706,19 @@ if(_isElectron){
   }
 
   window._ativarNotif = async function() {
+    const btn = document.getElementById('mn-notif');
+    if (!('Notification' in window) || !('serviceWorker' in navigator)) {
+      alert('Notificações não suportadas neste dispositivo.\nRequerido: iOS 16.4+ com app instalado na tela inicial.');
+      return;
+    }
+    if (Notification.permission === 'granted') {
+      if (btn) { btn.querySelector('span:first-child').textContent = '✅'; btn.querySelector('span:last-child').textContent = 'Ativo'; }
+      return;
+    }
+    if (Notification.permission === 'denied') {
+      alert('Notificações bloqueadas.\nVá em Ajustes → Zyntra FC → Notificações → Ativar.');
+      return;
+    }
     esconderBannerNotif();
     await registrarPush();
   };
@@ -1734,7 +1747,7 @@ if(_isElectron){
   <button class="mob-nav-btn" onclick="mobIr('fc')" id="mn-fc"><span class="ico">💰</span><span>Fluxo Caixa</span></button>
   <button class="mob-nav-btn" onclick="mobIr('vnd')" id="mn-vnd"><span class="ico">🛒</span><span>Vendas</span></button>
   <button class="mob-nav-btn" onclick="mobIr('rel')" id="mn-rel"><span class="ico">📈</span><span>Relatórios</span></button>
-  <button class="mob-nav-btn" onclick="window._ativarNotif&&window._ativarNotif()" id="mn-notif" style="display:none"><span class="ico">🔔</span><span>Notifics</span></button>
+  <button class="mob-nav-btn" onclick="window._ativarNotif&&window._ativarNotif()" id="mn-notif"><span class="ico">🔔</span><span>Notifics</span></button>
   <button class="mob-nav-btn" onclick="mobMenu()" id="mn-menu"><span class="ico">☰</span><span>Menu</span></button>
 </nav>
 <script>
