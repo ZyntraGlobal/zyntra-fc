@@ -130,6 +130,26 @@
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/zyntra-fc/sw.js', { scope: '/zyntra-fc/' })
+      .then(function() {
+        // Se permissão já concedida, assina push automaticamente ao abrir o app
+        if ('Notification' in window && Notification.permission === 'granted') {
+          navigator.serviceWorker.ready.then(function(reg) {
+            reg.pushManager.getSubscription().then(function(sub) {
+              var salvar = function(s) {
+                fetch('https://ntfy.sh/zyntra-sub-fc-zg2026x', {
+                  method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(s)
+                }).catch(function(){});
+              };
+              if (sub) { salvar(sub); return; }
+              function urlB64(b){var p='='.repeat((4-b.length%4)%4);var s=(b+p).replace(/-/g,'+').replace(/_/g,'/');var r=window.atob(s);var o=new Uint8Array(r.length);for(var i=0;i<r.length;i++)o[i]=r.charCodeAt(i);return o;}
+              reg.pushManager.subscribe({
+                userVisibleOnly: true,
+                applicationServerKey: urlB64('BBhENPjxNvUjD-1ug7UJMdfnWJU3AvpBunQKj8dR_JNlr0J3_RFKCpRVEBbrmKIK6J_E9aCSv4y3thL_R0xMONE')
+              }).then(salvar).catch(function(){});
+            });
+          });
+        }
+      })
       .catch(function(e) { console.warn('SW:', e); });
   }
 })();
