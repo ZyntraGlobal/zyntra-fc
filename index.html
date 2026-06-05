@@ -1355,6 +1355,11 @@ async function doLogin(){
     document.body.classList.remove('login-open');
     _iniciarWatchSessao();
     badges(); pDash(); verificarBackup();
+    // Mostrar opção de notificações após login
+    setTimeout(function(){
+      if(typeof atualizarBotaoNotif==='function') atualizarBotaoNotif();
+      if(typeof mostrarBannerNotif==='function' && 'Notification' in window && Notification.permission==='default') mostrarBannerNotif();
+    }, 1000);
   } else {
     // Falha
     document.getElementById('li-pass').value='';
@@ -1721,13 +1726,6 @@ if(_isElectron){
         regs.forEach(function(r) { r.update(); });
       });
     }
-    setTimeout(function() {
-      if (!('Notification' in window)) return;
-      if (Notification.permission === 'granted') { esconderBannerNotif(); return; }
-      if (Notification.permission === 'denied') return;
-      atualizarBotaoNotif();
-      mostrarBannerNotif();
-    }, 1500);
   });
 })();
 </script>
