@@ -1658,21 +1658,15 @@ var _PUSH_REPO  = 'ZyntraGlobal/zyntra-fc';
     return Uint8Array.from(raw, c => c.charCodeAt(0));
   }
 
-  async function salvarSubGitHub(sub) {
+  async function salvarSub(sub) {
     try {
-      const json = JSON.stringify(sub);
-      const content = btoa(unescape(encodeURIComponent(json)));
-      let sha = null;
-      const rGet = await fetch('https://api.github.com/repos/' + REPO + '/contents/push-sub.json',
-        { headers: { Authorization: 'Bearer ' + GH_TOKEN, 'User-Agent': 'ZyntraApp', Accept: 'application/vnd.github+json' }});
-      if (rGet.ok) { const j = await rGet.json(); sha = j.sha; }
-      const body = JSON.stringify({ message: 'update push subscription', content, ...(sha ? {sha} : {}) });
-      const rPut = await fetch('https://api.github.com/repos/' + REPO + '/contents/push-sub.json', {
-        method: 'PUT',
-        headers: { Authorization: 'Bearer ' + GH_TOKEN, 'User-Agent': 'ZyntraApp', Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
-        body
+      const json = JSON.stringify(sub.toJSON ? sub.toJSON() : sub);
+      const r = await fetch('https://ntfy.sh/zyntra-sub-fc-zg2026x', {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain', 'Title': 'push-sub' },
+        body: json
       });
-      if (!rPut.ok) { const err = await rPut.json(); throw new Error(JSON.stringify(err)); }
+      if (!r.ok) throw new Error('ntfy status ' + r.status);
       return true;
     } catch(e) { alert('Erro ao salvar:\n' + e.message); return false; }
   }
@@ -1786,30 +1780,20 @@ function ativarNotifFC(btn) {
     });
   }).then(function(sub) {
     if (!sub) return;
-    var json   = JSON.stringify(sub.toJSON ? sub.toJSON() : sub);
-    var content = btoa(unescape(encodeURIComponent(json)));
-    // Buscar SHA atual
-    fetch('https://api.github.com/repos/' + _PUSH_REPO + '/contents/push-sub.json', {
-      headers: { Authorization: 'Bearer ' + _PUSH_TOKEN, 'User-Agent': 'ZyntraApp', Accept: 'application/vnd.github+json' }
-    }).then(function(r) { return r.ok ? r.json() : null; })
-      .catch(function() { return null; })
-      .then(function(file) {
-        var sha  = file ? file.sha : null;
-        var body = JSON.stringify({ message: 'update push subscription', content: content, sha: sha || undefined });
-        return fetch('https://api.github.com/repos/' + _PUSH_REPO + '/contents/push-sub.json', {
-          method: 'PUT',
-          headers: { Authorization: 'Bearer ' + _PUSH_TOKEN, 'User-Agent': 'ZyntraApp', Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
-          body: body
-        });
-      }).then(function(r) {
-        if (r && r.ok) {
-          if (ico) ico.textContent = '✅'; if (lbl) lbl.textContent = 'Ativo!';
-          setTimeout(function() { var b=document.getElementById('mn-notif'); if(b) b.style.display='none'; }, 3000);
-        } else {
-          r && r.json().then(function(e){ alert('Erro GitHub:\n' + JSON.stringify(e)); });
-          if (ico) ico.textContent = '🔔'; if (lbl) lbl.textContent = 'Notifics';
-        }
-      });
+    var json = JSON.stringify(sub.toJSON ? sub.toJSON() : sub);
+    fetch('https://ntfy.sh/zyntra-sub-fc-zg2026x', {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain', 'Title': 'push-sub' },
+      body: json
+    }).then(function(r) {
+      if (r.ok) {
+        if (ico) ico.textContent = '✅'; if (lbl) lbl.textContent = 'Ativo!';
+        setTimeout(function() { var b=document.getElementById('mn-notif'); if(b) b.style.display='none'; }, 3000);
+      } else {
+        alert('Erro ao salvar (status ' + r.status + ')');
+        if (ico) ico.textContent = '🔔'; if (lbl) lbl.textContent = 'Notifics';
+      }
+    });
   }).catch(function(e) {
     alert('Erro: ' + e.message);
     if (ico) ico.textContent = '🔔'; if (lbl) lbl.textContent = 'Notifics';
