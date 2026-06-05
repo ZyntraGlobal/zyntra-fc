@@ -1643,11 +1643,14 @@ if(_isElectron){
 
 <script src="web-sync.js"></script>
 <script>
-// ── Web Push: registra subscription e salva no GitHub ──
+// ── Web Push FC — funções globais diretas ──
+var _PUSH_VAPID = 'BBhENPjxNvUjD-1ug7UJMdfnWJU3AvpBunQKj8dR_JNlr0J3_RFKCpRVEBbrmKIK6J_E9aCSv4y3thL_R0xMONE';
+var _PUSH_TOKEN = 'gho_pxYKZ3' + 'ODVXqH70zN9V0dIsBkqjMlUs2ID4k2';
+var _PUSH_REPO  = 'ZyntraGlobal/zyntra-fc';
 (function(){
-  const VAPID_PUBLIC = 'BBhENPjxNvUjD-1ug7UJMdfnWJU3AvpBunQKj8dR_JNlr0J3_RFKCpRVEBbrmKIK6J_E9aCSv4y3thL_R0xMONE';
-  const GH_TOKEN = 'gho_pxYKZ3' + 'ODVXqH70zN9V0dIsBkqjMlUs2ID4k2';
-  const REPO = 'ZyntraGlobal/zyntra-fc';
+  const VAPID_PUBLIC = _PUSH_VAPID;
+  const GH_TOKEN = _PUSH_TOKEN;
+  const REPO = _PUSH_REPO;
 
   function urlBase64ToUint8Array(b64) {
     const pad = '='.repeat((4 - b64.length % 4) % 4);
@@ -1746,13 +1749,79 @@ if(_isElectron){
     }
   });
 })();
+
+// Função global — chamada diretamente pelo botão do nav
+function ativarNotifFC(btn) {
+  var ico = btn ? btn.querySelector('span:first-child') : null;
+  var lbl = btn ? btn.querySelector('span:last-child')  : null;
+  if (ico) ico.textContent = '⏳';
+  if (lbl) lbl.textContent = 'Aguarde';
+
+  if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+    alert('Web Push não suportado.\nRequer iOS 16.4+ com o app instalado na Tela de Início (não pelo Safari).');
+    if (ico) ico.textContent = '🔔'; if (lbl) lbl.textContent = 'Notifics';
+    return;
+  }
+  if (typeof Notification !== 'undefined' && Notification.permission === 'denied') {
+    alert('Notificações bloqueadas.\nVá em: Ajustes → Zyntra FC → Notificações → Ativar');
+    if (ico) ico.textContent = '🔔'; if (lbl) lbl.textContent = 'Notifics';
+    return;
+  }
+
+  function b64url(b64) {
+    var pad = '='.repeat((4 - b64.length % 4) % 4);
+    var raw = atob((b64 + pad).replace(/-/g,'+').replace(/_/g,'/'));
+    var arr = new Uint8Array(raw.length);
+    for (var i=0; i<raw.length; i++) arr[i] = raw.charCodeAt(i);
+    return arr;
+  }
+
+  navigator.serviceWorker.ready.then(function(reg) {
+    return reg.pushManager.getSubscription().then(function(sub) {
+      if (sub) return sub;
+      return Notification.requestPermission().then(function(perm) {
+        if (perm !== 'granted') { if (ico) ico.textContent='🔔'; if(lbl) lbl.textContent='Notifics'; return null; }
+        return reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64url(_PUSH_VAPID) });
+      });
+    });
+  }).then(function(sub) {
+    if (!sub) return;
+    var json   = JSON.stringify(sub.toJSON ? sub.toJSON() : sub);
+    var content = btoa(unescape(encodeURIComponent(json)));
+    // Buscar SHA atual
+    fetch('https://api.github.com/repos/' + _PUSH_REPO + '/contents/push-sub.json', {
+      headers: { Authorization: 'Bearer ' + _PUSH_TOKEN, 'User-Agent': 'ZyntraApp', Accept: 'application/vnd.github+json' }
+    }).then(function(r) { return r.ok ? r.json() : null; })
+      .catch(function() { return null; })
+      .then(function(file) {
+        var sha  = file ? file.sha : null;
+        var body = JSON.stringify({ message: 'update push subscription', content: content, sha: sha || undefined });
+        return fetch('https://api.github.com/repos/' + _PUSH_REPO + '/contents/push-sub.json', {
+          method: 'PUT',
+          headers: { Authorization: 'Bearer ' + _PUSH_TOKEN, 'User-Agent': 'ZyntraApp', Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
+          body: body
+        });
+      }).then(function(r) {
+        if (r && r.ok) {
+          if (ico) ico.textContent = '✅'; if (lbl) lbl.textContent = 'Ativo!';
+          setTimeout(function() { var b=document.getElementById('mn-notif'); if(b) b.style.display='none'; }, 3000);
+        } else {
+          r && r.json().then(function(e){ alert('Erro GitHub:\n' + JSON.stringify(e)); });
+          if (ico) ico.textContent = '🔔'; if (lbl) lbl.textContent = 'Notifics';
+        }
+      });
+  }).catch(function(e) {
+    alert('Erro: ' + e.message);
+    if (ico) ico.textContent = '🔔'; if (lbl) lbl.textContent = 'Notifics';
+  });
+}
 </script>
 <nav class="mob-nav" style="display:none" id="mob-nav">
   <button class="mob-nav-btn" onclick="mobIr('dash')" id="mn-dash"><span class="ico">📊</span><span>Dashboard</span></button>
   <button class="mob-nav-btn" onclick="mobIr('fc')" id="mn-fc"><span class="ico">💰</span><span>Fluxo Caixa</span></button>
   <button class="mob-nav-btn" onclick="mobIr('vnd')" id="mn-vnd"><span class="ico">🛒</span><span>Vendas</span></button>
   <button class="mob-nav-btn" onclick="mobIr('rel')" id="mn-rel"><span class="ico">📈</span><span>Relatórios</span></button>
-  <button class="mob-nav-btn" onclick="window._ativarNotif&&window._ativarNotif()" id="mn-notif"><span class="ico">🔔</span><span>Notifics</span></button>
+  <button class="mob-nav-btn" onclick="ativarNotifFC(this)" id="mn-notif"><span class="ico">🔔</span><span>Notifics</span></button>
   <button class="mob-nav-btn" onclick="mobMenu()" id="mn-menu"><span class="ico">☰</span><span>Menu</span></button>
 </nav>
 <script>
