@@ -1791,12 +1791,22 @@ function ativarNotifFC(btn) {
     if (ico) ico.textContent='🔔'; if(lbl) lbl.textContent='Notifics'; return;
   }
 
-  var swTimeout = setTimeout(function() {
-    msgTela('⚠️ Service Worker demorando muito.\nFeche o app completamente e abra de novo pelo ícone.','#fbbf24');
-    if (ico) ico.textContent='🔔'; if(lbl) lbl.textContent='Tente de novo';
-  }, 20000);
+  // Usar getRegistration (mais rápido que .ready)
+  function getReg() {
+    return navigator.serviceWorker.getRegistration('/zyntra-fc/').then(function(reg) {
+      if (reg && reg.active) return reg;
+      // Tentar registrar
+      return navigator.serviceWorker.register('/zyntra-fc/sw.js', {scope:'/zyntra-fc/'})
+        .then(function(r) { return r; });
+    });
+  }
 
-  navigator.serviceWorker.ready.then(function(reg) {
+  var swTimeout = setTimeout(function() {
+    msgTela('⚠️ SW demorou. Tente fechar e abrir o app novamente.','#fbbf24');
+    if (ico) ico.textContent='🔔'; if(lbl) lbl.textContent='Tente de novo';
+  }, 10000);
+
+  getReg().then(function(reg) {
     clearTimeout(swTimeout);
     msgTela('✅ SW OK. Criando subscription...','#34d399');
     return reg.pushManager.getSubscription().then(function(sub) {
