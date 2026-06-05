@@ -1515,6 +1515,12 @@ function pNotif(){
     }
     h+='</div>';
   }
+  // Status de sync em tempo real
+  h+='<div class="sec" style="margin-top:14px">📡 Status Sync</div>';
+  h+='<div class="card"><div class="lbl">Última verificação</div><div class="val" style="font-size:13px;color:var(--t2)">'+(window._zyntraLastSync||'Ainda não sincronizou')+'</div>';
+  h+='<div class="sub" style="margin-top:4px;font-size:10px;color:var(--t3)">'+(window._zyntraSyncStatus||'—')+'</div>';
+  h+='<div style="margin-top:10px"><button class="btn btnp" style="width:100%;justify-content:center" onclick="notifTestarDireto()">🧪 Disparar notificação agora</button></div></div>';
+
   var alertas=_calcAlertasFC();
   h+='<div class="sec" style="margin-top:14px">⚠️ Alertas Ativos</div>';
   if(alertas.length===0){
@@ -1558,6 +1564,23 @@ function notifAtivar(){
   });
 }
 
+function notifTestarDireto(){
+  if(!('serviceWorker' in navigator)){alert('Service Worker não suportado');return;}
+  navigator.serviceWorker.ready.then(function(reg){
+    reg.showNotification('🧪 Zyntra FC — Teste',{
+      body:'Notificação funcionando! '+new Date().toLocaleTimeString('pt-BR'),
+      icon:'/zyntra-fc/icon-192.png',
+      badge:'/zyntra-fc/icon-192.png',
+      tag:'zyntra-teste-'+Date.now()
+    }).then(function(){
+      _mostrarNotif('✅ Disparado!','Verifique a central de notificações','grn');
+    }).catch(function(e){
+      _mostrarNotif('❌ Erro: '+e.message,'','red');
+    });
+  }).catch(function(e){
+    _mostrarNotif('❌ SW não pronto: '+e.message,'','red');
+  });
+}
 function notifTestar(){
   if(Notification.permission!=='granted'){_mostrarNotif('❌ Sem permissão','Ative as notificações primeiro','red');return;}
   navigator.serviceWorker.ready.then(function(reg){
