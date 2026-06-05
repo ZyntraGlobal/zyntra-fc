@@ -43,11 +43,22 @@
   .card .val { font-size: 16px; }
   .card .lbl { font-size: 10px; }
 
-  /* ── Tabelas: scroll horizontal ── */
-  .tw { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  table { font-size: 12px; min-width: 500px; }
+  /* ── Tabelas: scroll horizontal forçado em todos os containers ── */
+  .tw, .panel, .card { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { font-size: 12px; min-width: 520px; }
   th, td { padding: 7px 8px; white-space: nowrap; }
-  .ts { max-height: calc(100dvh - 220px); }
+  .ts { max-height: calc(100dvh - 220px); overflow-y: auto; }
+
+  /* Wrapper automático para tabelas sem .tw */
+  .pb { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .pg table { min-width: 520px; }
+
+  /* Seções com grid largo — forçar scroll */
+  .g2 table, .g3 table, .g4 table { min-width: unset; width: 100%; }
+
+  /* Containers de relatório */
+  .row2 { overflow-x: visible; }
+  .row2 > * { overflow-x: auto; }
 
   /* ── Botões touch-friendly ── */
   .btn { padding: 9px 13px; font-size: 13px; touch-action: manipulation; cursor: pointer; }
