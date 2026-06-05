@@ -1,4 +1,4 @@
-const CACHE = 'zyntra-fc-v7';
+const CACHE = 'zyntra-fc-v8';
 const ASSETS = [
   '/zyntra-fc/',
   '/zyntra-fc/index.html',
