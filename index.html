@@ -242,7 +242,30 @@ tfoot td{font-weight:700;border-top:1px solid var(--bdr2);border-bottom:none!imp
 .ck-div::after{content:'';flex:1;height:1px;background:var(--bdr)}
 
 </style>
-<style>@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}</style><style>@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}</style><style>@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}</style></head>
+<style>@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}</style><style>@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}</style><style>@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}</style><script>
+// Pré-carrega dados do GitHub ANTES do app inicializar (síncrono)
+(function(){
+  if(typeof process!=='undefined'&&process.versions&&process.versions.electron)return;
+  try{
+    var base=location.href.replace(/\/[^/]*$/,'/');
+    var xhr=new XMLHttpRequest();
+    xhr.open('GET',base+'data.json?t='+Date.now(),false);
+    xhr.send();
+    if(xhr.status===200){
+      var remoto=JSON.parse(xhr.responseText);
+      if(remoto&&remoto.fc&&remoto.fc.length>0){
+        var local=null;
+        try{local=JSON.parse(localStorage.getItem('zyntra_v9'));}catch(e){}
+        var nLocal=(local&&local.fc)?local.fc.length:0;
+        if(remoto.fc.length>=nLocal){
+          localStorage.setItem('zyntra_v9',JSON.stringify(remoto));
+          localStorage.removeItem('zyntra_lock');
+        }
+      }
+    }
+  }catch(e){}
+})();
+</script></head>
 <body>
 
 <nav class="sb">
