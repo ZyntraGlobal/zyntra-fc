@@ -1650,18 +1650,6 @@
       "valor": 10.9,
       "resp": "FELIPE",
       "obs": ""
-    },
-    {
-      "id": 714,
-      "mes": 6,
-      "data": "05/06/2026",
-      "tipo": "ENTRADA",
-      "cat": "VENDAS",
-      "desc": "fd",
-      "conta": "SICOOB",
-      "valor": 55,
-      "resp": "FELIPE",
-      "obs": ""
     }
   ],
   "vnd": [
