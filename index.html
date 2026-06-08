@@ -1371,31 +1371,40 @@ async function doLogin(){
   var user = document.getElementById('li-user').value.trim().toLowerCase();
   var pass = document.getElementById('li-pass').value;
   var err  = document.getElementById('li-err');
+  var btn  = document.getElementById('li-btn');
   err.textContent='';
   if(!user||!pass){err.textContent='Preencha usuário e senha.';return;}
-
-  var btn = document.getElementById('li-btn');
   btn.disabled=true; btn.textContent='Verificando...';
-
-  var hash = await sha256hash(user+':'+pass+':'+_SALT);
-  btn.disabled=false; btn.textContent='ENTRAR';
-
-  if(_USERS[user] && _USERS[user]===hash){
-    // Sucesso
-    var duracao = 4*60*60*1000; // 4 horas fixo
-    localStorage.setItem('zyntra_sess', JSON.stringify({user:user, role:(_ROLES[user]||'dono'), until:Date.now()+duracao}));
-    document.getElementById('login-bg').classList.add('hidden');
-    document.body.classList.remove('login-open');
-    _iniciarWatchSessao();
-    badges();
-    if((_ROLES[user]||'dono')==='funcionario'){ir('fc',new Date().getMonth()+1);}else{pDash();verificarBackup();}
-  } else {
-    // Falha
-    document.getElementById('li-pass').value='';
-    document.getElementById('li-pass').focus();
-    _loginShake();
-    _lockTentFC++;if(_lockTentFC>=_MAX_TENTATIVAS){_lockAteFC=Date.now()+_LOCK_MS;_lockTentFC=0;var err2=document.getElementById('li-err');if(err2)err2.textContent='';_loginLock();}else{var rem=_MAX_TENTATIVAS-_lockTentFC;var err2=document.getElementById('li-err');if(err2)err2.textContent='Incorreto. '+rem+' tentativa'+(rem>1?'s':'')+' restante'+(rem>1?'s':'')+'.';}
-
+  try{
+    var hash = await sha256hash(user+':'+pass+':'+_SALT);
+    if(_USERS[user] && _USERS[user]===hash){
+      btn.textContent='✓ Entrando...';
+      await new Promise(function(r){setTimeout(r,350);});
+      localStorage.setItem('zyntra_sess', JSON.stringify({user:user, role:(_ROLES[user]||'dono'), until:Date.now()+4*60*60*1000}));
+      document.getElementById('login-bg').classList.add('hidden');
+      document.body.classList.remove('login-open');
+      _iniciarWatchSessao();
+      try{badges();}catch(e){}
+      try{
+        if((_ROLES[user]||'dono')==='funcionario'){ir('fc',new Date().getMonth()+1);}
+        else{pDash();verificarBackup();}
+      }catch(e){console.error('pDash error',e);}
+    }else{
+      btn.disabled=false; btn.textContent='ENTRAR NO SISTEMA';
+      document.getElementById('li-pass').value='';
+      document.getElementById('li-pass').focus();
+      _loginShake();
+      _lockTentFC++;
+      if(_lockTentFC>=_MAX_TENTATIVAS){
+        _lockAteFC=Date.now()+_LOCK_MS;_lockTentFC=0;
+        err.textContent='';_loginLock();
+      }else{
+        var rem=_MAX_TENTATIVAS-_lockTentFC;
+        err.textContent='Usuário ou senha incorretos. '+rem+' tentativa'+(rem>1?'s':'')+' restante'+(rem>1?'s':'')+'.';}
+    }
+  }catch(e){
+    btn.disabled=false; btn.textContent='ENTRAR NO SISTEMA';
+    err.textContent='Erro ao processar login. Verifique sua conexão e tente novamente.';
   }
 }
 
