@@ -159,6 +159,11 @@
   .macts .btn { flex: 1 !important; justify-content: center !important; min-width: 120px; }
 
   /* ── LOGIN MOBILE ── */
+  /* Permite scroll quando teclado iOS está aberto e encobre o botão */
+  .login-bg {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
   .login-wrap {
     flex-direction: column !important;
     width: 100% !important;
@@ -166,15 +171,17 @@
     border-radius: 0 !important;
     border: none !important;
     box-shadow: none !important;
+    overflow: visible !important;
   }
   .login-brand { display: none !important; }
   .login-form-side {
     width: 100% !important;
     flex: 1 !important;
-    padding: 40px 28px 32px !important;
+    padding: 40px 28px calc(40px + env(safe-area-inset-bottom)) !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
+    overflow-y: visible !important;
   }
   .login-logo-mob {
     display: flex !important;
