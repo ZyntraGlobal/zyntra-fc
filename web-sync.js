@@ -87,7 +87,6 @@
       // Remoto é mais recente — calcula diff e notifica
       const linhas = _diffFC(local, remoto);
       localStorage.setItem(CHAVE, JSON.stringify(remoto));
-      localStorage.removeItem('zyntra_sess');
 
       if (linhas && linhas.length > 0) {
         _notifSync('Zyntra FC — ' + linhas.length + ' alteração(ões)', linhas);
