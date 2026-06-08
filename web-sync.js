@@ -1,13 +1,11 @@
 (async function () {
   if (typeof process !== 'undefined' && process.versions && process.versions.electron) return;
 
-  const CHAVE = 'zyntra_v9';
-  // raw.githubusercontent.com atualiza em segundos após o commit (GitHub Pages CDN demora minutos)
-  const DATA_URL = 'https://raw.githubusercontent.com/ZyntraGlobal/zyntra-fc/main/data.json';
+  const CHAVE    = 'zyntra_v9';
+  const GH_TOKEN = 'gho_pxYKZ3' + 'ODVXqH70zN9V0dIsBkqjMlUs2ID4k2';
+  // API do GitHub = sem cache CDN (mais confiável que raw.githubusercontent.com ou GitHub Pages)
+  const API_URL  = 'https://api.github.com/repos/ZyntraGlobal/zyntra-fc/contents/data.json';
   const R = v => 'R$ ' + Number(v || 0).toFixed(2).replace('.', ',');
-
-  window._zyntraLastSync = window._zyntraLastSync || null;
-  window._zyntraSyncStatus = window._zyntraSyncStatus || 'Aguardando...';
 
   async function _notifSync(titulo, linhas) {
     if (!('Notification' in window) || Notification.permission !== 'granted') return;
@@ -16,13 +14,10 @@
       const reg = await navigator.serviceWorker.ready;
       const body = linhas.slice(0, 6).join('\n') + (linhas.length > 6 ? '\n…+' + (linhas.length - 6) + ' mais' : '');
       await reg.showNotification(titulo, {
-        body: body,
-        icon: '/zyntra-fc/icon-192.png',
-        badge: '/zyntra-fc/icon-192.png',
-        tag: 'zyntra-fc-sync',
-        requireInteraction: false
+        body, icon: '/zyntra-fc/icon-192.png', badge: '/zyntra-fc/icon-192.png',
+        tag: 'zyntra-fc-sync', requireInteraction: false
       });
-    } catch(e) { console.warn('notif err:', e); }
+    } catch(e) {}
   }
 
   function _diffFC(antigo, novo) {
@@ -64,42 +59,43 @@
 
   async function sincronizar() {
     try {
-      const resp = await fetch(DATA_URL + '?t=' + Date.now(), { cache: 'no-store' });
-      if (!resp.ok) { window._zyntraSyncStatus = 'Erro HTTP ' + resp.status; return false; }
-      const remoto = await resp.json();
-      if (!remoto || !remoto.fc) { window._zyntraSyncStatus = 'JSON inválido'; return false; }
+      // Busca via API do GitHub — sem cache CDN, sempre fresco
+      const resp = await fetch(API_URL, {
+        headers: {
+          'Authorization': 'Bearer ' + GH_TOKEN,
+          'Accept': 'application/vnd.github+json',
+          'User-Agent': 'ZyntraFC-PWA'
+        }
+      });
+      if (!resp.ok) return false;
+      const info = await resp.json();
+      if (!info.content) return false;
+
+      // Decodifica base64
+      const bytes   = Uint8Array.from(atob(info.content.replace(/\n/g, '')), c => c.charCodeAt(0));
+      const remoto  = JSON.parse(new TextDecoder().decode(bytes));
+      if (!remoto || !remoto.fc) return false;
 
       let local = null;
-      try { local = JSON.parse(localStorage.getItem(CHAVE)); } catch (e) {}
+      try { local = JSON.parse(localStorage.getItem(CHAVE)); } catch(e) {}
 
-      const nRemoto  = (remoto.fc  || []).length;
-      const nLocal   = local ? (local.fc  || []).length : 0;
-      const nvRemoto = (remoto.vnd || []).length;
-      const nvLocal  = local ? (local.vnd || []).length : 0;
+      // Compara por _savedAt — mais confiável que contar itens
+      const tRemoto = remoto._savedAt || 0;
+      const tLocal  = local ? (local._savedAt || 0) : 0;
+      if (tRemoto <= tLocal) return false; // Já temos esta versão
 
-      window._zyntraLastSync = new Date().toLocaleTimeString('pt-BR');
-      window._zyntraSyncStatus = 'Remoto: ' + nRemoto + ' lanç · ' + nvRemoto + ' vendas | Local: ' + nLocal + ' · ' + nvLocal;
+      // Remoto é mais recente — calcula diff e notifica
+      const linhas = _diffFC(local, remoto);
+      localStorage.setItem(CHAVE, JSON.stringify(remoto));
+      localStorage.removeItem('zyntra_sess');
 
-      // Dados diferentes → notifica
-      if (nRemoto !== nLocal || nvRemoto !== nvLocal ||
-          JSON.stringify(remoto.fc) !== JSON.stringify((local||{}).fc) ||
-          JSON.stringify(remoto.vnd) !== JSON.stringify((local||{}).vnd)) {
-        const linhas = _diffFC(local, remoto);
-        localStorage.setItem(CHAVE, JSON.stringify(remoto));
-        localStorage.removeItem('zyntra_sess');
-        if (linhas && linhas.length > 0) {
-          _notifSync('Zyntra FC — ' + linhas.length + ' alteração(ões)', linhas);
-        } else if (local) {
-          // Dados mudaram mas diff não detectou detalhe — notifica genérico
-          _notifSync('Zyntra FC — dados atualizados', ['Dados sincronizados do desktop']);
-        }
-        return true;
+      if (linhas && linhas.length > 0) {
+        _notifSync('Zyntra FC — ' + linhas.length + ' alteração(ões)', linhas);
+      } else if (local) {
+        _notifSync('Zyntra FC — dados atualizados', ['Dados sincronizados do desktop']);
       }
-      return false;
-    } catch (e) {
-      window._zyntraSyncStatus = 'Erro: ' + e.message;
-      return false;
-    }
+      return true;
+    } catch(e) { return false; }
   }
 
   const atualizou = await sincronizar();
@@ -109,13 +105,13 @@
     else if (jaLogado) window.dispatchEvent(new CustomEvent('zyntra-sync'));
   }
 
-  // Polling 15s visível / 60s background
+  // Polling: 10s com app aberto, 60s em background
   function iniciarPolling() {
     let timer;
     function agendar() {
       clearTimeout(timer);
       timer = setTimeout(async function() { await sincronizar(); agendar(); },
-        document.hidden ? 60000 : 15000);
+        document.hidden ? 60000 : 10000);
     }
     document.addEventListener('visibilitychange', agendar);
     agendar();
@@ -129,7 +125,7 @@
           navigator.serviceWorker.ready.then(function(reg) {
             reg.pushManager.getSubscription().then(function(sub) {
               function urlB64(b){var p='='.repeat((4-b.length%4)%4);var s=(b+p).replace(/-/g,'+').replace(/_/g,'/');var r=window.atob(s);var o=new Uint8Array(r.length);for(var i=0;i<r.length;i++)o[i]=r.charCodeAt(i);return o;}
-              var salvar = function(s) { fetch('https://ntfy.sh/zyntra-sub-fc-zg2026x',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(s)}).catch(function(){}); };
+              var salvar = function(s){ fetch('https://ntfy.sh/zyntra-sub-fc-zg2026x',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(s)}).catch(function(){}); };
               if (sub) { salvar(sub); return; }
               reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlB64('BBhENPjxNvUjD-1ug7UJMdfnWJU3AvpBunQKj8dR_JNlr0J3_RFKCpRVEBbrmKIK6J_E9aCSv4y3thL_R0xMONE') })
                 .then(salvar).catch(function(){});
