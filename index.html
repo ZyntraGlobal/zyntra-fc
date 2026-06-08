@@ -1528,6 +1528,8 @@ function importarDados(){
   inp.click();
 }
 
+// Limpa lockout ao abrir o app (evita usuário ficar travado)
+try{localStorage.removeItem('zyntra_lock');}catch(e){}
 document.getElementById('tdate').textContent=new Date().toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
 initFrases();
 if(checkSessao()){
