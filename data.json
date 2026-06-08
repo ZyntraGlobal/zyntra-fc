@@ -2438,9 +2438,27 @@
       "lucro": 83.05000000000001,
       "margem": 46.14145230290572,
       "roi": 97.70588235294119
+    },
+    {
+      "id": 311,
+      "mes": 6,
+      "dv": "07/06/2026",
+      "de": "08/06/2026",
+      "produto": "MOUSE GAMER REDRAGON GRIFFIN M607W - BRANCO",
+      "plat": "SHOPEE",
+      "pedido": "260606D13XN3CX",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 219.99,
+      "taxas": 36.8,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 171.25,
+      "margem": 77.84444747488521,
+      "roi": 0
     }
   ],
   "nfc": 716,
-  "nvnd": 311,
-  "_savedAt": 1780929622047
+  "nvnd": 312,
+  "_savedAt": 1780929684722
 }
