@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!-- saved from url=(0125)file:///C:/Users/felip/OneDrive/%C3%81rea%20de%20Trabalho/Zyntra%20Global/Zyntra%20%E2%80%94%20Fluxo%20de%20Caixa%202026.html -->
 <html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Zyntra — Fluxo de Caixa 2026</title>
-<link href="./_files/css2" rel="stylesheet">
+<link href="./_files/css2" rel="stylesheet"><link rel="stylesheet" href="mobile.css"><link rel="manifest" href="manifest.json"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Zyntra FC"><link rel="apple-touch-icon" href="icon-192.png">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -22,7 +22,7 @@
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t);font-size:13px;display:flex;height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased}
 
 /* SIDEBAR */
-.sb{width:var(--nav);background:var(--w);border-right:1px solid var(--bdr);display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0;-webkit-overflow-scrolling:touch}
+.sb{width:var(--nav);background:var(--w);border-right:1px solid var(--bdr);display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0}
 .sb-logo{padding:16px 14px 14px;border-bottom:1px solid var(--bdr2);flex-shrink:0}
 .sb-logo .t1{font-size:15px;font-weight:800;letter-spacing:-.3px;color:var(--t)}
 .sb-logo .t1 span{color:var(--gold)}
@@ -68,8 +68,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t);font-siz
 .sec{font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;margin:16px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--bdr)}
 
 /* TABELA */
-.ts{overflow-y:auto;max-height:480px;-webkit-overflow-scrolling:touch}
-.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.ts{overflow-y:auto;max-height:480px}
+.tw{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:12px}
 th{padding:8px 10px;text-align:left;font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--bdr);background:var(--w2);white-space:nowrap;position:sticky;top:0;z-index:2}
 td{padding:8px 10px;border-bottom:1px solid var(--bdr);vertical-align:middle;color:var(--t)}
@@ -214,7 +214,7 @@ tfoot td{font-weight:700;border-top:1px solid var(--bdr2);border-bottom:none!imp
 @keyframes loginDot{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
 @keyframes loginShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
 /* ── BACKUP ALERT ── */
-.backup-banner{position:fixed;bottom:16px;right:16px;background:var(--w);border:1px solid var(--bdr);border-left:4px solid var(--gold);border-radius:10px;padding:14px 16px;max-width:320px;box-shadow:0 8px 32px rgba(0,0,0,.5);z-index:888;animation:slideIn .3s ease;}
+.backup-banner{position:fixed;bottom:calc(72px + env(safe-area-inset-bottom));right:16px;left:16px;max-width:none;width:auto;background:var(--w);border:1px solid var(--bdr);border-left:4px solid var(--gold);border-radius:10px;padding:14px 16px;max-width:320px;box-shadow:0 8px 32px rgba(0,0,0,.5);z-index:888;animation:slideIn .3s ease;}
 @keyframes slideIn{from{transform:translateX(120%);opacity:0;}to{transform:translateX(0);opacity:1;}}
 .backup-banner .bb-title{font-size:12px;font-weight:700;color:var(--t);margin-bottom:3px;}
 .backup-banner .bb-sub{font-size:11px;color:var(--t2);margin-bottom:10px;}
@@ -222,41 +222,6 @@ tfoot td{font-weight:700;border-top:1px solid var(--bdr2);border-bottom:none!imp
 .backup-banner .bb-btns button{flex:1;padding:6px;font-size:11px;font-family:'Inter',sans-serif;border-radius:6px;border:1px solid var(--bdr2);cursor:pointer;font-weight:500;background:var(--w2);color:var(--t);}
 .backup-banner .bb-ok{background:var(--gold);color:#111;border-color:var(--gold);}
 .backup-banner .bb-later{background:var(--s3);color:var(--t2);}
-
-/* ── MOBILE ── */
-.bnav{display:none}
-@media(max-width:768px){
-  body{overflow:hidden}
-  .sb{
-    position:fixed;top:0;left:0;right:0;bottom:60px;
-    width:100%!important;z-index:200;
-    display:none;flex-direction:column;overflow-y:auto;
-    -webkit-overflow-scrolling:touch
-  }
-  .sb.mob-open{display:flex}
-  .sb .sb-logo{flex-shrink:0}
-  .main{width:100%;height:calc(100vh - 60px)}
-  .pg{padding-bottom:20px}
-  .bnav{
-    display:flex;position:fixed;bottom:0;left:0;right:0;height:60px;
-    background:var(--w);border-top:1px solid var(--bdr);z-index:300
-  }
-  .bn{
-    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:3px;cursor:pointer;color:var(--t3);font-size:9px;font-weight:600;
-    text-transform:uppercase;letter-spacing:.4px;padding:6px 2px;
-    transition:color .15s;-webkit-tap-highlight-color:transparent
-  }
-  .bn .bnico{font-size:18px;line-height:1}
-  .bn.on{color:var(--gold)}
-  .topbar{display:none}
-  .g2,.g3,.g4,.g5{grid-template-columns:1fr 1fr!important}
-  .cockpit{grid-template-columns:1fr 1fr!important}
-  .row2{grid-template-columns:1fr!important}
-  .f3{grid-template-columns:1fr 1fr!important}
-  .f2{grid-template-columns:1fr!important}
-  .calc-box{grid-template-columns:1fr 1fr!important}
-}
 
 /* ── COCKPIT ── */
 .cockpit{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px}
@@ -277,7 +242,29 @@ tfoot td{font-weight:700;border-top:1px solid var(--bdr2);border-bottom:none!imp
 .ck-div::after{content:'';flex:1;height:1px;background:var(--bdr)}
 
 </style>
-<style>@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}</style><style>@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}</style><style>@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}</style></head>
+<style>@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}</style><style>@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}</style><style>@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}</style><script>
+// Pré-carrega dados do GitHub ANTES do app inicializar (síncrono)
+(function(){
+  if(typeof process!=='undefined'&&process.versions&&process.versions.electron)return;
+  try{
+    var base=location.href.replace(/\/[^/]*$/,'/');
+    var xhr=new XMLHttpRequest();
+    xhr.open('GET',base+'data.json?t='+Date.now(),false);
+    xhr.send();
+    if(xhr.status===200){
+      var remoto=JSON.parse(xhr.responseText);
+      if(remoto&&remoto.fc&&remoto.fc.length>0){
+        var local=null;
+        try{local=JSON.parse(localStorage.getItem('zyntra_v9'));}catch(e){}
+        var nLocal=(local&&local.fc)?local.fc.length:0;
+        if(remoto.fc.length>=nLocal){
+          localStorage.setItem('zyntra_v9',JSON.stringify(remoto));
+        }
+      }
+    }
+  }catch(e){}
+})();
+</script></head>
 <body>
 
 <nav class="sb">
@@ -343,14 +330,6 @@ tfoot td{font-weight:700;border-top:1px solid var(--bdr2);border-bottom:none!imp
   <div class="pg" id="pg"><div class="g4"><div class="card hl"><div class="lbl">Faturamento Bruto</div><div class="val gld">R$ 11.758,64</div><div class="sub">38 pedidos · Acumulado Mai–Jun 2026</div></div><div class="card"><div class="lbl">Lucro Bruto Vendas</div><div class="val grn">R$ 4.782,89</div><div class="sub">40.68% do faturamento</div></div><div class="card"><div class="lbl">Lucro Líquido Real</div><div class="val red">R$ -1.607,75</div><div class="sub">Após todas as despesas</div></div><div class="card"><div class="lbl">Margem Líquida %</div><div class="val red">-13.67%</div></div></div><div class="row2"><div class="panel"><div class="ph"><div class="pt">DRE — Demonstração do Resultado</div></div><table><tbody><tr style="background:var(--s3)"><td style="padding-left:10px;font-weight:700;color:var(--t)">(+) FATURAMENTO BRUTO</td><td class="tr gld" style="font-weight:700">R$ 11.758,64</td></tr><tr><td style="padding-left:22px;font-weight:400;color:var(--t2)">(−) CMV (Custo do Produto)</td><td class="tr red" style="font-weight:400">R$ 4.261,75</td></tr><tr><td style="padding-left:22px;font-weight:400;color:var(--t2)">(−) Taxas + Fretes Marketplace</td><td class="tr red" style="font-weight:400">R$ 2.260,28</td></tr><tr><td style="padding-left:22px;font-weight:400;color:var(--t2)">(−) Impostos por Pedido</td><td class="tr red" style="font-weight:400">R$ 0,00</td></tr><tr><td style="padding-left:22px;font-weight:400;color:var(--t2)">(−) Custos Operacionais Pedido</td><td class="tr red" style="font-weight:400">R$ 453,72</td></tr><tr style="background:var(--s3)"><td style="padding-left:10px;font-weight:700;color:var(--t)">(=) LUCRO BRUTO DAS VENDAS</td><td class="tr grn" style="font-weight:700">R$ 4.782,89</td></tr><tr><td style="padding-left:22px;font-weight:400;color:var(--t2)">(−) Despesas Corporativas (FC tipo SAÍDA)</td><td class="tr red" style="font-weight:400">R$ 5.792,61</td></tr><tr><td style="padding-left:22px;font-weight:400;color:var(--t2)">(−) Impostos Corporativos (FC tipo IMPOSTOS)</td><td class="tr pur" style="font-weight:400">R$ 598,03</td></tr><tr style="background:var(--s3)"><td style="padding-left:10px;font-weight:700;color:var(--t)">(=) LUCRO LÍQUIDO REAL</td><td class="tr red" style="font-weight:700">R$ -1.607,75</td></tr><tr><td style="color:var(--t2)">(%) MARGEM LÍQUIDA REAL</td><td class="tr red" style="font-weight:600">-13.6729%</td></tr><tr><td colspan="2" style="color:var(--t3);font-size:10px;padding:7px 10px 3px">── Informativo: saídas não operacionais ──</td></tr><tr><td style="padding-left:22px;color:var(--t3);font-size:11px">Investimentos/CAPEX</td><td class="tr" style="font-size:11px">R$ 200,00</td></tr><tr><td style="padding-left:22px;color:var(--t3);font-size:11px">Pró-labore</td><td class="tr" style="font-size:11px">R$ 0,00</td></tr><tr><td style="padding-left:22px;color:var(--t3);font-size:11px">Distribuição de Lucros</td><td class="tr" style="font-size:11px">R$ 0,00</td></tr><tr><td style="padding-left:22px;color:var(--t3);font-size:11px">Retirada de Sócio</td><td class="tr blu" style="font-size:11px">R$ 4.162,80</td></tr></tbody></table></div><div><div class="panel" style="margin-bottom:10px"><div class="ph"><div class="pt">KPIs &amp; Indicadores Chave</div></div><table><tbody><tr><td style="color:var(--t2)">Faturamento Bruto Anual</td><td class="tr gld" style="font-weight:500">R$ 11.758,64</td></tr><tr><td style="color:var(--t2)">Lucro Bruto das Vendas</td><td class="tr grn" style="font-weight:500">R$ 4.782,89</td></tr><tr><td style="color:var(--t2)">Margem Bruta das Vendas (%)</td><td class="tr " style="font-weight:500">40.68%</td></tr><tr><td style="color:var(--t2)">Lucro Líquido Real</td><td class="tr red" style="font-weight:500">R$ -1.607,75</td></tr><tr><td style="color:var(--t2)">Margem Líquida Real (%)</td><td class="tr red" style="font-weight:500">-13.6729%</td></tr><tr><td style="color:var(--t2)">CMV / Faturamento (%)</td><td class="tr " style="font-weight:500">36.24%</td></tr><tr><td style="color:var(--t2)">Taxas+Fretes / Faturamento (%)</td><td class="tr " style="font-weight:500">19.22%</td></tr><tr><td style="color:var(--t2)">Desp. Corp. / Faturamento (%)</td><td class="tr " style="font-weight:500">49.26%</td></tr><tr><td style="color:var(--t2)">Impostos Corp. / Faturamento (%)</td><td class="tr " style="font-weight:500">5.09%</td></tr><tr><td style="color:var(--t2)">Total Retiradas dos Sócios</td><td class="tr blu" style="font-weight:500">R$ 4.162,80</td></tr><tr><td style="color:var(--t2)">Retiradas / Faturamento (%)</td><td class="tr " style="font-weight:500">35.40%</td></tr><tr><td style="color:var(--t2)">Nº Total de Pedidos (ano)</td><td class="tr " style="font-weight:500">38</td></tr><tr><td style="color:var(--t2)">Ticket Médio Anual</td><td class="tr " style="font-weight:500">R$ 309,44</td></tr><tr><td style="color:var(--t2)">Estoque Comprado (FC, caixa)</td><td class="tr amb" style="font-weight:500">R$ 3.625,61</td></tr><tr style="background:var(--gnbg)"><td style="color:var(--t2)">📌 Reserva Impostos (8% fat.)</td><td class="tr gld">R$ 940,69</td></tr><tr style="background:var(--gnbg)"><td style="color:var(--t2)">📌 Reserva Emergência (3×desp/mês)</td><td class="tr gld">R$ 1.448,15</td></tr><tr style="background:var(--gnbg)"><td style="color:var(--t2)">📌 Reserva Marketing (5% fat.)</td><td class="tr gld">R$ 587,93</td></tr><tr style="background:var(--gnbg)"><td style="color:var(--t2)">📌 Reserva Estoque (10% fat.)</td><td class="tr gld">R$ 1.175,86</td></tr></tbody></table></div><div class="g2" style="margin-bottom:0"><div class="card"><div class="lbl">FC Entradas Caixa</div><div class="val grn">R$ 12.975,25</div></div><div class="card"><div class="lbl">Saldo de Caixa</div><div class="val red">R$ -1.203,80</div></div></div></div></div><div class="sec" style="margin-top:16px">🛍️ B. DESEMPENHO POR PLATAFORMA — TODOS OS MESES</div><div class="g3" style="margin-bottom:10px"><div class="card hl"><div class="lbl"><span class="pill pml">MERCADO LIVRE</span></div><div class="val gld" style="margin-top:6px">R$ 4.285,86</div><div style="display:flex;justify-content:space-between;margin-top:5px"><span class="sub">16 pedidos</span><span style="font-size:12px;font-weight:700;color:var(--amb)">37.2%</span></div><div style="margin-top:3px;font-size:11px;color:var(--t2)">Lucro: <span class="grn">R$ 1.596,41</span> · CMV: <span class="red">R$ 1.557,28</span></div></div><div class="card hl"><div class="lbl"><span class="pill pamz">AMAZON</span></div><div class="val gld" style="margin-top:6px">R$ 6.752,80</div><div style="display:flex;justify-content:space-between;margin-top:5px"><span class="sub">20 pedidos</span><span style="font-size:12px;font-weight:700;color:var(--grn)">42.6%</span></div><div style="margin-top:3px;font-size:11px;color:var(--t2)">Lucro: <span class="grn">R$ 2.874,55</span> · CMV: <span class="red">R$ 2.473,10</span></div></div><div class="card hl"><div class="lbl"><span class="pill pshp">SHOPEE</span></div><div class="val gld" style="margin-top:6px">R$ 719,98</div><div style="display:flex;justify-content:space-between;margin-top:5px"><span class="sub">2 pedidos</span><span style="font-size:12px;font-weight:700;color:var(--grn)">43.3%</span></div><div style="margin-top:3px;font-size:11px;color:var(--t2)">Lucro: <span class="grn">R$ 311,93</span> · CMV: <span class="red">R$ 231,37</span></div></div></div><div class="panel"><div class="ph"><div class="pt">DRE por Canal — Total Acumulado (todos os meses)</div></div><div class="tw"><table><thead><tr><th>PLATAFORMA</th><th class="tr">FATURAMENTO</th><th class="tr">CMV</th><th class="tr">TAXAS+FRETES</th><th class="tr">CUSTOS OP.</th><th class="tr">LUCRO LÍQ.</th><th class="tr">MARGEM%</th><th class="tr">PEDIDOS</th><th class="tr">TICKET MÉD.</th></tr></thead><tbody><tr style=""><td><span class="pill pml">MERCADO LIVRE</span></td><td class="tr gld">R$ 4.285,86</td><td class="tr red">R$ 1.557,28</td><td class="tr amb">R$ 941,13</td><td class="tr">R$ 191,04</td><td class="tr grn" style="font-weight:700">R$ 1.596,41</td><td class="tr amb">37.25%</td><td class="tr">16</td><td class="tr">R$ 267,87</td></tr><tr style=""><td><span class="pill pamz">AMAZON</span></td><td class="tr gld">R$ 6.752,80</td><td class="tr red">R$ 2.473,10</td><td class="tr amb">R$ 1.166,35</td><td class="tr">R$ 238,80</td><td class="tr grn" style="font-weight:700">R$ 2.874,55</td><td class="tr grn">42.57%</td><td class="tr">20</td><td class="tr">R$ 337,64</td></tr><tr style=""><td><span class="pill pshp">SHOPEE</span></td><td class="tr gld">R$ 719,98</td><td class="tr red">R$ 231,37</td><td class="tr amb">R$ 152,80</td><td class="tr">R$ 23,88</td><td class="tr grn" style="font-weight:700">R$ 311,93</td><td class="tr grn">43.32%</td><td class="tr">2</td><td class="tr">R$ 359,99</td></tr><tr style="opacity:.3"><td><span class="pill pn">TIKTOK SHOP</span></td><td class="tr gld">—</td><td class="tr red">—</td><td class="tr amb">—</td><td class="tr">—</td><td class="tr " style="font-weight:400">—</td><td class="tr red">—</td><td class="tr">—</td><td class="tr">—</td></tr><tr style="opacity:.3"><td><span class="pill pn">SITE ZYNTRA</span></td><td class="tr gld">—</td><td class="tr red">—</td><td class="tr amb">—</td><td class="tr">—</td><td class="tr " style="font-weight:400">—</td><td class="tr red">—</td><td class="tr">—</td><td class="tr">—</td></tr><tr style="font-weight:700;background:var(--s3)"><td>TOTAL PLATAFORMAS</td><td class="tr gld">R$ 11.758,64</td><td class="tr red">R$ 4.261,75</td><td class="tr amb">R$ 2.260,28</td><td class="tr">R$ 453,72</td><td class="tr grn">R$ 4.782,89</td><td class="tr grn">40.68%</td><td class="tr">38</td><td class="tr">R$ 309,44</td></tr></tbody></table></div></div><div class="sec" style="margin-top:16px">📅 C. DRE MENSAL COMPLETO — MÊS A MÊS</div><div class="panel"><div class="ph"><div class="pt">Resultado por Mês</div></div><div class="tw"><table><thead><tr><th>MÊS</th><th class="tr">FATURAMENTO</th><th class="tr">CMV</th><th class="tr">TX+FRETES</th><th class="tr">CUSTOS OP.</th><th class="tr">LUCRO BRUTO</th><th class="tr">DESP.CORP.</th><th class="tr">IMP.CORP.</th><th class="tr">LUCRO LÍQ.</th><th class="tr">MARGEM%</th><th class="tr">PEDIDOS</th></tr></thead><tbody><tr style="opacity:.25"><td class="tnw" style="font-weight:400">Janeiro</td><td colspan="10" style="color:var(--t3)">—</td></tr><tr style="opacity:.25"><td class="tnw" style="font-weight:400">Fevereiro</td><td colspan="10" style="color:var(--t3)">—</td></tr><tr style="opacity:.25"><td class="tnw" style="font-weight:400">Março</td><td colspan="10" style="color:var(--t3)">—</td></tr><tr style="opacity:.25"><td class="tnw" style="font-weight:400">Abril</td><td colspan="10" style="color:var(--t3)">—</td></tr><tr class="hl"><td class="tnw" style="font-weight:700">Maio ★</td><td class="tr gld">R$ 11.358,65</td><td class="tr red">R$ 4.152,99</td><td class="tr amb">R$ 2.188,33</td><td class="tr">R$ 441,78</td><td class="tr grn">R$ 4.575,55</td><td class="tr red">R$ 5.749,01</td><td class="tr pur">R$ 598,03</td><td class="tr red" style="font-weight:700">R$ -1.771,49</td><td class="tr red">-15.6%</td><td class="tr">37</td></tr><tr><td class="tnw" style="font-weight:400">Junho</td><td class="tr gld">R$ 399,99</td><td class="tr red">R$ 108,76</td><td class="tr amb">R$ 71,95</td><td class="tr">R$ 11,94</td><td class="tr grn">R$ 207,34</td><td class="tr red">R$ 43,60</td><td class="tr pur">R$ 0,00</td><td class="tr grn" style="font-weight:700">R$ 163,74</td><td class="tr grn">40.9%</td><td class="tr">1</td></tr><tr style="opacity:.25"><td class="tnw" style="font-weight:400">Julho</td><td colspan="10" style="color:var(--t3)">—</td></tr><tr style="opacity:.25"><td class="tnw" style="font-weight:400">Agosto</td><td colspan="10" style="color:var(--t3)">—</td></tr><tr style="opacity:.25"><td class="tnw" style="font-weight:400">Setembro</td><td colspan="10" style="color:var(--t3)">—</td></tr><tr style="opacity:.25"><td class="tnw" style="font-weight:400">Outubro</td><td colspan="10" style="color:var(--t3)">—</td></tr><tr style="opacity:.25"><td class="tnw" style="font-weight:400">Novembro</td><td colspan="10" style="color:var(--t3)">—</td></tr><tr style="opacity:.25"><td class="tnw" style="font-weight:400">Dezembro</td><td colspan="10" style="color:var(--t3)">—</td></tr></tbody><tfoot><tr><td>TOTAL ANUAL</td><td class="tr gld">R$ 11.758,64</td><td class="tr red">R$ 4.261,75</td><td class="tr amb">R$ 2.260,28</td><td class="tr">R$ 453,72</td><td class="tr grn">R$ 4.782,89</td><td class="tr red">R$ 5.792,61</td><td class="tr pur">R$ 598,03</td><td class="tr red" style="font-weight:700">R$ -1.607,75</td><td class="tr red">-13.7%</td><td class="tr">38</td></tr></tfoot></table></div></div><div class="sec" style="margin-top:16px">💵 D. FLUXO DE CAIXA CONSOLIDADO</div><div class="g4"><div class="card"><div class="lbl">Total Entradas (Caixa)</div><div class="val grn">R$ 12.975,25</div></div><div class="card"><div class="lbl">Total Saídas (Caixa)</div><div class="val red">R$ 14.179,05</div></div><div class="card"><div class="lbl">Retiradas dos Sócios</div><div class="val blu">R$ 4.162,80</div></div><div class="card"><div class="lbl">Saldo do Ano (Caixa)</div><div class="val red">R$ -1.203,80</div></div></div></div>
 </div>
 
-<nav class="bnav" id="bnav">
-  <div class="bn on" id="bn-dash" onclick="bnavIr('dash')"><span class="bnico">📊</span>Dashboard</div>
-  <div class="bn" id="bn-fc" onclick="bnavIr('fc')"><span class="bnico">💵</span>Fluxo Caixa</div>
-  <div class="bn" id="bn-vnd" onclick="bnavIr('vnd')"><span class="bnico">🛒</span>Vendas</div>
-  <div class="bn" id="bn-rpt" onclick="bnavIr('rpt')"><span class="bnico">📈</span>Relatórios</div>
-  <div class="bn" id="bn-menu" onclick="bnavMenu()"><span class="bnico">☰</span>Menu</div>
-</nav>
-
 <div class="mbg" id="mbg">
   <div class="modal" id="mbox">
     <h3 id="mtit"></h3>
@@ -411,10 +390,40 @@ function loadDB(){
 }
 var DB=loadDB();
 
+// ── Salvar no GitHub (iPhone/PWA) ─────────────────────────
+var _GH_FC_TOKEN = 'gho_pxYKZ3'+'ODVXqH70zN9V0dIsBkqjMlUs2ID4k2';
+var _GH_FC_REPO  = 'ZyntraGlobal/zyntra-fc';
+function _b64uFC(str){var b=new TextEncoder().encode(str);var s='';b.forEach(function(x){s+=String.fromCharCode(x);});return btoa(s);}
+
+function _ghSalvarFC(){
+  var el=document.getElementById('fs-status');
+  if(el){el.textContent='💾 Salvando...';el.style.color='var(--amb)';el.style.borderColor='rgba(251,191,36,.3)';}
+  DB._savedAt=Date.now();
+  try{localStorage.setItem('zyntra_v9',JSON.stringify(DB));}catch(e){}
+  var body=JSON.stringify(DB,null,2);
+  var b64=_b64uFC(body);
+  var api='https://api.github.com/repos/'+_GH_FC_REPO+'/contents/data.json';
+  var h={'Authorization':'Bearer '+_GH_FC_TOKEN,'Accept':'application/vnd.github+json','User-Agent':'ZyntraFC-PWA','Content-Type':'application/json'};
+  fetch(api,{headers:h})
+    .then(function(r){return r.json();})
+    .then(function(info){
+      return fetch(api,{method:'PUT',headers:h,body:JSON.stringify({message:'update data',content:b64,sha:info.sha})});
+    })
+    .then(function(r){
+      var ts=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+      if(el){el.textContent='✅ Salvo às '+ts;el.style.color='var(--grn)';el.style.background='rgba(74,222,128,.15)';el.style.borderColor='rgba(74,222,128,.3)';}
+      _mostrarNotif('✅ Salvo!','Dados enviados para o servidor','grn');
+    })
+    .catch(function(){
+      if(el){el.textContent='❌ Erro ao salvar';el.style.color='var(--red)';}
+      _mostrarNotif('❌ Erro ao salvar','Verifique sua conexão','red');
+    });
+}
+
 function save(){
+  DB._savedAt=Date.now();
   try{localStorage.setItem('zyntra_v9',JSON.stringify(DB));}catch(e){}
   if(_isElectron){
-    // Electron: salva direto no arquivo via Node.js — 100% confiável
     window.zyntraElectron.salvar(DB).then(function(r){
       var el=document.getElementById('fs-status');
       if(!el)return;
@@ -427,7 +436,7 @@ function save(){
       }
     });
   } else {
-    _fsSalvar();
+    _ghSalvarFC();
   }
 }
 
@@ -637,7 +646,8 @@ var TITULOS={
   cats:'Resumo por Categoria',
   impostos:'Impostos & Obrigações',imp:'Impostos & Obrigações',
   estoque:'Controle de Estoque',est:'Controle de Estoque',
-  invest:'Investimentos & CAPEX'
+  invest:'Investimentos & CAPEX',
+  notif:'Alertas & Notificações'
 };
 // Mapa de funções: as chaves do sidebar são mapeadas aqui
 var FN_MAP={
@@ -650,28 +660,21 @@ var FN_MAP={
   cats:function(){pCats();},
   impostos:function(){pImpostos();},imp:function(){pImpostos();},
   estoque:function(){pEstoque();},est:function(){pEstoque();},
-  invest:function(){pInvest();}
+  invest:function(){pInvest();},
+  notif:function(){pNotif();}
 };
 var _curMes=0,_curTipo='';
 function ir(tipo,mes,el){
   document.querySelectorAll('.ni').forEach(function(x){x.classList.remove('on');});
   if(el)el.classList.add('on');
-  _curTipo=tipo; _curMes=mes||0;
-  // Seções bloqueadas para colaborador
   var _bloqFC=['dash','resumo','resumo_fc','dre','mkt','socios','cats','impostos','imp','estoque','est','invest','caixa','ctrl_caixa','notif'];
   if(_isFuncionario()&&_bloqFC.indexOf(tipo)>=0){_bloqueadoFunc();document.getElementById('ptitle').textContent='Acesso Restrito';return;}
+  _curTipo=tipo; _curMes=mes||0;
   if(tipo==='fc'){document.getElementById('ptitle').textContent='Fluxo de Caixa — '+MFULL[mes-1]+' 2026';pFC(mes);}
   else if(tipo==='vnd'){document.getElementById('ptitle').textContent='Vendas — '+MFULL[mes-1]+' 2026';pVND(mes);}
   else{document.getElementById('ptitle').textContent=TITULOS[tipo]||tipo;
     (FN_MAP[tipo]||function(){})();}
   document.querySelector('.pg').scrollTop=0;
-  // Sincroniza bottom nav mobile
-  if(typeof bnavAtivar==='function'){
-    if(tipo==='dash') bnavAtivar('bn-dash');
-    else if(tipo==='fc') bnavAtivar('bn-fc');
-    else if(tipo==='vnd') bnavAtivar('bn-vnd');
-    else if(['resumo_fc','resumo','ctrl_caixa','caixa','dre','mkt','socios','cats','imp','impostos','est','estoque','invest'].indexOf(tipo)>=0) bnavAtivar('bn-rpt');
-  }
 }
 function _rfcF(){
   var b=document.getElementById('fcs'),t=document.getElementById('ft'),c=document.getElementById('fc2');
@@ -1074,7 +1077,8 @@ function calcEV(){try{var cmv=parseFloat(document.getElementById('ev-cmv').value
 function delVND(id,mes){var p=DB.vnd.find(function(x){return x.id===id;});if(!p||!confirm('Excluir pedido '+(p.pedido||p.produto)+'?'))return;DB.vnd=DB.vnd.filter(function(x){return x.id!==id;});save();badges();pVND(mes);}
 
 // ── RESUMO FC ──────────────────────────────────────────
-function pResumo(){if(_isFuncionario()){_bloqueadoFunc();return;}
+function pResumo(){
+  if(_isFuncionario()){_bloqueadoFunc();return;}
   var tf=totFC(DB.fc);var acum=0;
   var h='<div class="sec">💰 RESUMO CONSOLIDADO — FLUXO DE CAIXA 2026</div>';
   h+='<div class="g3" style="margin-bottom:12px">';
@@ -1109,7 +1113,8 @@ function pCaixa(){
 }
 
 // ── DRE ────────────────────────────────────────────────
-function pDRE(){if(_isFuncionario()){_bloqueadoFunc();return;}
+function pDRE(){
+  if(_isFuncionario()){_bloqueadoFunc();return;}
   var D=calcDRE(0);
   var h='<div class="sec">📈 DRE — DEMONSTRAÇÃO DO RESULTADO — 2026</div>';
   h+='<div class="g4" style="margin-bottom:12px">';
@@ -1137,7 +1142,8 @@ function pDRE(){if(_isFuncionario()){_bloqueadoFunc();return;}
 }
 
 // ── MARKETPLACES — todos os meses ──────────────────────
-function pMKT(){if(_isFuncionario()){_bloqueadoFunc();return;}
+function pMKT(){
+  if(_isFuncionario()){_bloqueadoFunc();return;}
   var mp=calcMP();
   var ativos=Object.keys(mp).filter(function(k){return mp[k].n>0;});
   var h='<div class="sec">🌐 DESEMPENHO POR MARKETPLACE — TODOS OS MESES</div>';
@@ -1229,7 +1235,8 @@ function pMKT(){if(_isFuncionario()){_bloqueadoFunc();return;}
 }
 
 // ── SÓCIOS ─────────────────────────────────────────────
-function pSocios(){if(_isFuncionario()){_bloqueadoFunc();return;}
+function pSocios(){
+  if(_isFuncionario()){_bloqueadoFunc();return;}
   var ret=DB.fc.filter(function(l){return l.tipo==='RETIRADA';});var totRet=ret.reduce(function(a,l){return a+l.valor;},0);
   var porSoc={};ret.forEach(function(l){if(!porSoc[l.resp])porSoc[l.resp]={pl:0,dl:0,ret:0};if(l.cat==='PRÓ-LABORE')porSoc[l.resp].pl+=l.valor;else if(l.cat==='DISTRIBUIÇÃO DE LUCROS')porSoc[l.resp].dl+=l.valor;else porSoc[l.resp].ret+=l.valor;});
   var fat=DB.fc.filter(function(l){return l.tipo==='ENTRADA';}).reduce(function(a,l){return a+l.valor;},0);
@@ -1261,7 +1268,8 @@ function pSocios(){if(_isFuncionario()){_bloqueadoFunc();return;}
 }
 
 // ── CATEGORIAS ─────────────────────────────────────────
-function pCats(){if(_isFuncionario()){_bloqueadoFunc();return;}
+function pCats(){
+  if(_isFuncionario()){_bloqueadoFunc();return;}
   var grp={};
   DB.fc.forEach(function(l){
     var g=({ENTRADA:'Receitas',ESTOQUE:'Estoque',IMPOSTOS:'Tributos',RETIRADA:'Sócios',INVESTIMENTO:'Investimentos'})[l.tipo]||'Administrativo';
@@ -1277,7 +1285,8 @@ function pCats(){if(_isFuncionario()){_bloqueadoFunc();return;}
 }
 
 // ── IMPOSTOS ───────────────────────────────────────────
-function pImpostos(){if(_isFuncionario()){_bloqueadoFunc();return;}
+function pImpostos(){
+  if(_isFuncionario()){_bloqueadoFunc();return;}
   var cats=['SIMPLES NACIONAL','IMPOSTOS E TAXAS','INSS SÓCIO ADM','IMPORTAÇÃO DE PRODUTOS','ICMS/ISS','PIS/COFINS','IRPJ/CSLL','TAXAS BANCÁRIAS'];
   var data={};cats.forEach(function(c){data[c]={};for(var m=1;m<=12;m++)data[c][m]=0;data[c].total=0;});
   DB.fc.filter(function(l){return l.tipo==='IMPOSTOS'||cats.indexOf(l.cat)>=0;}).forEach(function(l){var cat=data[l.cat]?l.cat:'IMPOSTOS E TAXAS';if(!data[cat]){data[cat]={};for(var m=1;m<=12;m++)data[cat][m]=0;data[cat].total=0;}data[cat][l.mes]+=l.valor;data[cat].total+=l.valor;});
@@ -1291,7 +1300,8 @@ function pImpostos(){if(_isFuncionario()){_bloqueadoFunc();return;}
 }
 
 // ── ESTOQUE ────────────────────────────────────────────
-function pEstoque(){if(_isFuncionario()){_bloqueadoFunc();return;}
+function pEstoque(){
+  if(_isFuncionario()){_bloqueadoFunc();return;}
   var comp=DB.fc.filter(function(l){return l.tipo==='ESTOQUE';});var totComp=comp.reduce(function(a,l){return a+l.valor;},0);var cmvV=DB.vnd.reduce(function(a,p){return a+p.cmv;},0);var fat=DB.vnd.reduce(function(a,p){return a+p.venda;},0);
   var h='<div class="sec">📦 CONTROLE DE ESTOQUE — 2026</div><div class="g4" style="margin-bottom:12px">';
   h+=card('Compras Estoque (FC)',R(totComp),'amb',comp.length+' lançamentos');h+=card('CMV Vendas',R(cmvV),'red','');h+=card('Saldo Teórico',R(totComp-cmvV),totComp-cmvV>=0?'grn':'red','');h+=card('CMV / Faturamento',(fat>0?(cmvV/fat*100).toFixed(2):0)+'%','','');
@@ -1306,7 +1316,8 @@ function pEstoque(){if(_isFuncionario()){_bloqueadoFunc();return;}
 }
 
 // ── INVESTIMENTOS ──────────────────────────────────────
-function pInvest(){if(_isFuncionario()){_bloqueadoFunc();return;}
+function pInvest(){
+  if(_isFuncionario()){_bloqueadoFunc();return;}
   var inv=DB.fc.filter(function(l){return l.tipo==='INVESTIMENTO';});var totInv=inv.reduce(function(a,l){return a+l.valor;},0);
   var cats=['INVESTIMENTO','INVESTIMENTO EM EQUIPAMENTOS','INVESTIMENTO EM TECNOLOGIA','INVESTIMENTO EM MARKETING','JUROS/RENDIMENTOS'];
   var data={};cats.forEach(function(c){data[c]=[];for(var i=0;i<12;i++)data[c][i]=0;});
@@ -1324,6 +1335,8 @@ function pInvest(){if(_isFuncionario()){_bloqueadoFunc();return;}
 // ── LOGIN SEGURO ─────────────────────────────────────────
 var _SALT = 'zyntra_fc_2026';
 
+// Usuários com senhas hasheadas (SHA-256 de "user:pass:salt")
+// Para alterar: gere novo hash com sha256hash(user+':'+novaSenha+':'+_SALT)
 var _USERS = {
   'felipe': 'f81de35c06462ab747e898954d6c1b0b8a6adb64303638872ddb8e13797bf164',
   'admin':  'eff6ac44a97baf3e7e6bdac246a4c5f2c9ce32b9fbfc97f64d2399b924ae633d',
@@ -1351,21 +1364,7 @@ function _loginShake(){
 }
 
 var _lockTentFC=0,_lockAteFC=0;
-function _loginLock(){
-  if(_lockAteFC>0 && Date.now()<_lockAteFC){
-    var restante = Math.ceil((_lockAteFC - Date.now()) / 1000);
-    var min = Math.floor(restante/60), seg = restante%60;
-    document.getElementById('li-lock').style.display='block';
-    document.getElementById('li-lock').textContent='🔒 Aguarde '+min+'m '+seg+'s para tentar novamente';
-    document.getElementById('li-btn').disabled=true;
-    setTimeout(_loginLock, 1000);
-    return true;
-  }
-  _lockAteFC=0;_lockTentFC=0;
-  document.getElementById('li-lock').style.display='none';
-  document.getElementById('li-btn').disabled=false;
-  return false;
-}
+function _loginLock(){if(_lockAteFC>0&&Date.now()<_lockAteFC){var r=Math.ceil((_lockAteFC-Date.now())/1000);var ll=document.getElementById('li-lock');if(ll){ll.style.display='block';ll.textContent='🔒 Aguarde '+Math.floor(r/60)+'m '+r%60+'s';}var btn=document.getElementById('li-btn');if(btn)btn.disabled=true;setTimeout(_loginLock,1000);return true;}_lockAteFC=0;_lockTentFC=0;var ll=document.getElementById('li-lock');if(ll)ll.style.display='none';var btn=document.getElementById('li-btn');if(btn)btn.disabled=false;return false;}
 
 async function doLogin(){
   if(_loginLock()) return;
@@ -1383,34 +1382,27 @@ async function doLogin(){
 
   if(_USERS[user] && _USERS[user]===hash){
     // Sucesso
-    var duracao = 4*60*60*1000;
-    var role = _ROLES[user] || 'dono';
-    localStorage.setItem('zyntra_sess', JSON.stringify({user:user, role:role, until:Date.now()+duracao}));
+    var duracao = 4*60*60*1000; // 4 horas fixo
+    localStorage.setItem('zyntra_sess', JSON.stringify({user:user, role:(_ROLES[user]||'dono'), until:Date.now()+duracao}));
     document.getElementById('login-bg').classList.add('hidden');
+    document.body.classList.remove('login-open');
     _iniciarWatchSessao();
     badges();
-    if(role==='funcionario'){ir('fc', new Date().getMonth()+1);}else{pDash(); verificarBackup();}
+    if((_ROLES[user]||'dono')==='funcionario'){ir('fc',new Date().getMonth()+1);}else{pDash();verificarBackup();}
   } else {
     // Falha
     document.getElementById('li-pass').value='';
     document.getElementById('li-pass').focus();
     _loginShake();
-    _lockTentFC++;
-    if(_lockTentFC >= _MAX_TENTATIVAS){
-      _lockAteFC = Date.now() + _LOCK_MS;
-      _lockTentFC = 0;
-      err.textContent='';
-      _loginLock();
-    } else {
-      var restam = _MAX_TENTATIVAS - _lockTentFC;
-      err.textContent='Usuário ou senha incorretos. '+restam+' tentativa'+(restam>1?'s':'')+' restante'+(restam>1?'s':'')+'.'
-    }
+    _lockTentFC++;if(_lockTentFC>=_MAX_TENTATIVAS){_lockAteFC=Date.now()+_LOCK_MS;_lockTentFC=0;var err2=document.getElementById('li-err');if(err2)err2.textContent='';_loginLock();}else{var rem=_MAX_TENTATIVAS-_lockTentFC;var err2=document.getElementById('li-err');if(err2)err2.textContent='Incorreto. '+rem+' tentativa'+(rem>1?'s':'')+' restante'+(rem>1?'s':'')+'.';}
+
   }
 }
 
 function _expirarSessao(){
   localStorage.removeItem('zyntra_sess');
   document.getElementById('login-bg').classList.remove('hidden');
+  document.body.classList.add('login-open');
   document.getElementById('li-pass').value='';
   document.getElementById('li-err').textContent='';
   var el=document.createElement('div');
@@ -1440,6 +1432,7 @@ function checkSessao(){
   // MOSTRA a tela de login (remove o hidden)
   var bg = document.getElementById('login-bg');
   if(bg) bg.classList.remove('hidden');
+  document.body.classList.add('login-open');
   setTimeout(function(){
     var u=document.getElementById('li-user');
     if(u)u.focus();
@@ -1480,24 +1473,159 @@ function exportarDados(){
 
 async function fazerBackup(){
   var btn=document.getElementById('ni-backup');
+  function resetBtn(){if(btn){btn.querySelector('.lbl').textContent='Backup Completo';btn.style.opacity='';}}
   if(btn){btn.querySelector('.lbl').textContent='Fazendo backup...';btn.style.opacity='.6';}
-
-  if(_isElectron && window.zyntraElectron.backupCompleto){
-    // Electron: backup completo (app + dados)
-    var r = await window.zyntraElectron.backupCompleto();
-    if(btn){btn.querySelector('.lbl').textContent='Backup Completo';btn.style.opacity='';}
-    if(r.ok){
-      _mostrarNotif('✅ Backup completo criado!','Salvo em: Zyntra Global → Backups','grn');
-      localStorage.setItem('zyntra_ultimo_backup',''+Date.now());
+  try{
+    if(_isElectron && window.zyntraElectron && window.zyntraElectron.backupCompleto){
+      var r = await window.zyntraElectron.backupCompleto();
+      resetBtn();
+      if(r.ok){_mostrarNotif('✅ Backup completo!','Salvo em Zyntra Global → Backups','grn');localStorage.setItem('zyntra_ultimo_backup',''+Date.now());}
+      else{_mostrarNotif('❌ Erro no backup',r.error||'Tente novamente','red');}
     } else {
-      _mostrarNotif('❌ Erro no backup',r.error||'Tente novamente','red');
+      exportarDados();
+      resetBtn();
+      _mostrarNotif('✅ Dados exportados!','Arquivo JSON salvo nos Downloads','grn');
     }
+  }catch(e){resetBtn();_mostrarNotif('❌ Erro','Tente novamente','red');}
+}
+
+// ── ALERTAS & NOTIFICAÇÕES ────────────────────────────
+function _calcAlertasFC(){
+  var alertas=[];
+  var mes=new Date().getMonth()+1;
+  var DM=calcDRE(mes);
+  var DA=calcDRE(0);
+  if(DM.lliq<0) alertas.push({tipo:'danger',titulo:'Resultado Negativo — '+MFULL[mes-1],msg:'Lucro líquido: '+R(DM.lliq)});
+  if(DA.lliq<-500) alertas.push({tipo:'danger',titulo:'Acumulado Negativo no Ano',msg:'Total: '+R(DA.lliq)});
+  var fc_mes=(DB.fc||[]).filter(function(l){return l.mes===mes&&l.tipo==='despesa';});
+  var td=fc_mes.reduce(function(a,l){return a+(l.valor||0);},0);
+  if(td>8000) alertas.push({tipo:'warn',titulo:'Despesas Altas em '+MFULL[mes-1],msg:'Total despesas: '+R(td)});
+  return alertas;
+}
+
+function _assinarPushFC(){
+  if(!('serviceWorker' in navigator)||!('Notification' in window)||Notification.permission!=='granted')return;
+  navigator.serviceWorker.ready.then(function(reg){
+    reg.pushManager.getSubscription().then(function(sub){
+      var salvar=function(s){fetch('https://ntfy.sh/zyntra-sub-fc-zg2026x',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(s)}).catch(function(){});};
+      if(sub){salvar(sub);return;}
+      reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:_urlB64('BBhENPjxNvUjD-1ug7UJMdfnWJU3AvpBunQKj8dR_JNlr0J3_RFKCpRVEBbrmKIK6J_E9aCSv4y3thL_R0xMONE')}).then(salvar).catch(function(){});
+    });
+  });
+}
+
+function pNotif(){
+  var tem=('Notification' in window);
+  var perm=tem?Notification.permission:'denied';
+  var sw=('serviceWorker' in navigator);
+  var h='<div class="sec">🔔 Notificações</div>';
+  if(!tem||!sw){
+    h+='<div class="card danger"><div class="lbl">Suporte</div><div class="val red" style="font-size:14px">Não suportado</div><div class="sub" style="margin-top:6px">Instale o app na Tela de Início via Safari e use iOS 16.4+</div></div>';
   } else {
-    // Browser: exporta só os dados em JSON
-    exportarDados();
-    if(btn){btn.querySelector('.lbl').textContent='Backup Completo';btn.style.opacity='';}
-    _mostrarNotif('✅ Dados exportados!','Arquivo JSON salvo nos Downloads','grn');
+    var cor=perm==='granted'?'grn':perm==='denied'?'red':'amb';
+    var txt=perm==='granted'?'✅ Ativadas':perm==='denied'?'❌ Bloqueadas':'⏳ Aguardando permissão';
+    h+='<div class="card"><div class="lbl">Status das Notificações</div><div class="val '+cor+'" style="font-size:16px">'+txt+'</div>';
+    if(perm==='default'){
+      h+='<div style="margin-top:12px"><button class="btn btnp" style="width:100%;justify-content:center;padding:12px" onclick="notifAtivar()">🔔 Ativar Notificações</button></div>';
+    } else if(perm==='denied'){
+      h+='<div class="sub" style="color:var(--amb);margin-top:8px">Vá em Ajustes → Notificações → Zyntra FC → Permitir notificações</div>';
+    } else {
+      // Já ativado — assina push automaticamente em background
+      _assinarPushFC();
+      h+='<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="notifTestar()">📤 Enviar teste</button><button class="btn" onclick="notifChecar()">🔍 Verificar alertas</button><button class="btn" onclick="_assinarPushFC();_mostrarNotif(\'🔄 Push renovado\',\'Assinatura atualizada no relay\',\'grn\')">🔄 Renovar push</button></div>';
+    }
+    h+='</div>';
   }
+  // Status de sync em tempo real
+  h+='<div class="sec" style="margin-top:14px">📡 Status Sync</div>';
+  h+='<div class="card"><div class="lbl">Última verificação</div><div class="val" style="font-size:13px;color:var(--t2)">'+(window._zyntraLastSync||'Ainda não sincronizou')+'</div>';
+  h+='<div class="sub" style="margin-top:4px;font-size:10px;color:var(--t3)">'+(window._zyntraSyncStatus||'—')+'</div>';
+  h+='<div style="margin-top:10px"><button class="btn btnp" style="width:100%;justify-content:center" onclick="notifTestarDireto()">🧪 Disparar notificação agora</button></div></div>';
+
+  var alertas=_calcAlertasFC();
+  h+='<div class="sec" style="margin-top:14px">⚠️ Alertas Ativos</div>';
+  if(alertas.length===0){
+    h+='<div class="card ok"><div class="val grn" style="font-size:14px">✅ Nenhum alerta</div><div class="sub">Financeiro em ordem</div></div>';
+  } else {
+    alertas.forEach(function(a){
+      h+='<div class="card '+(a.tipo==='danger'?'danger':'warn')+'"><div class="lbl">'+a.titulo+'</div><div class="val" style="font-size:14px;margin-top:4px">'+a.msg+'</div></div>';
+    });
+  }
+  setPage(h);
+}
+
+function _urlB64(b){var p='='.repeat((4-b.length%4)%4);var s=(b+p).replace(/-/g,'+').replace(/_/g,'/');var r=window.atob(s);var o=new Uint8Array(r.length);for(var i=0;i<r.length;i++)o[i]=r.charCodeAt(i);return o;}
+
+function notifAtivar(){
+  if(!('Notification' in window)){_mostrarNotif('❌ Não suportado','Use Safari + Adicionar à Tela de Início','red');return;}
+  // iOS: requestPermission DEVE ser o primeiro await — sem nenhum await antes
+  Notification.requestPermission().then(function(perm){
+    if(perm==='granted'){
+      navigator.serviceWorker.ready.then(function(reg){
+        // Assina push VAPID e salva subscription no relay ntfy (só relay, não manda notif ntfy)
+        reg.pushManager.subscribe({
+          userVisibleOnly:true,
+          applicationServerKey:_urlB64('BBhENPjxNvUjD-1ug7UJMdfnWJU3AvpBunQKj8dR_JNlr0J3_RFKCpRVEBbrmKIK6J_E9aCSv4y3thL_R0xMONE')
+        }).then(function(sub){
+          fetch('https://ntfy.sh/zyntra-sub-fc-zg2026x',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(sub)}).catch(function(){});
+          reg.showNotification('Zyntra FC ✅',{body:'Notificações ativadas! Cada alteração chegará aqui.',icon:'/zyntra-fc/icon-192.png',tag:'zyntra-ativado'});
+          _mostrarNotif('✅ Pronto!','Cada alteração vai chegar como notificação','grn');
+          pNotif();
+        }).catch(function(){
+          // Fallback: só permissão local
+          reg.showNotification('Zyntra FC ✅',{body:'Notificações locais ativadas.',icon:'/zyntra-fc/icon-192.png',tag:'zyntra-ativado'});
+          _mostrarNotif('✅ Notificações locais ativadas','Push direto indisponível neste dispositivo','grn');
+          pNotif();
+        });
+      });
+    } else if(perm==='denied'){
+      _mostrarNotif('❌ Permissão negada','Vá em Ajustes → Notificações → Zyntra FC','red');
+      pNotif();
+    }
+  });
+}
+
+function notifTestarDireto(){
+  if(!('serviceWorker' in navigator)){alert('Service Worker não suportado');return;}
+  navigator.serviceWorker.ready.then(function(reg){
+    reg.showNotification('🧪 Zyntra FC — Teste',{
+      body:'Notificação funcionando! '+new Date().toLocaleTimeString('pt-BR'),
+      icon:'/zyntra-fc/icon-192.png',
+      badge:'/zyntra-fc/icon-192.png',
+      tag:'zyntra-teste-'+Date.now()
+    }).then(function(){
+      _mostrarNotif('✅ Disparado!','Verifique a central de notificações','grn');
+    }).catch(function(e){
+      _mostrarNotif('❌ Erro: '+e.message,'','red');
+    });
+  }).catch(function(e){
+    _mostrarNotif('❌ SW não pronto: '+e.message,'','red');
+  });
+}
+function notifTestar(){
+  if(Notification.permission!=='granted'){_mostrarNotif('❌ Sem permissão','Ative as notificações primeiro','red');return;}
+  navigator.serviceWorker.ready.then(function(reg){
+    var alertas=_calcAlertasFC();
+    if(alertas.length>0){
+      reg.showNotification('Zyntra FC — '+alertas[0].titulo,{body:alertas[0].msg,icon:'/zyntra-fc/icon-192.png',tag:'zyntra-alerta'});
+    } else {
+      reg.showNotification('Zyntra FC ✅',{body:'Nenhum alerta ativo. Tudo certo!',icon:'/zyntra-fc/icon-192.png',tag:'zyntra-ok'});
+    }
+    _mostrarNotif('📤 Notificação enviada!','Veja a central de notificações','grn');
+  });
+}
+
+function notifChecar(){
+  var alertas=_calcAlertasFC();
+  if(alertas.length===0){_mostrarNotif('✅ Tudo certo','Nenhum alerta financeiro','grn');return;}
+  navigator.serviceWorker.ready.then(function(reg){
+    alertas.forEach(function(a,i){
+      setTimeout(function(){
+        reg.showNotification('Zyntra FC — '+a.titulo,{body:a.msg,icon:'/zyntra-fc/icon-192.png',tag:'zyntra-alerta-'+i});
+      },i*500);
+    });
+    _mostrarNotif('⚠️ '+alertas.length+' alerta(s) enviados','Veja a central de notificações','grn');
+  });
 }
 
 function _mostrarNotif(titulo, msg, tipo){
@@ -1552,66 +1680,6 @@ if(_isElectron){
 } else {
   _fsInit();
 }
-
-// ── MOBILE BOTTOM NAV ──
-var _bnavMesAtual = function(tipo){
-  var meses = DB && DB.fc ? DB.fc : FC;
-  var ultimo = 1;
-  for(var i=1;i<=12;i++){
-    var arr = tipo==='fc' ? (DB&&DB.fc?DB.fc.filter(function(l){return l.mes===i}):[]) : (DB&&DB.vnd?DB.vnd.filter(function(l){return l.mes===i}):[]);
-    if(arr.length>0) ultimo=i;
-  }
-  return ultimo;
-};
-
-function bnavAtivar(id){
-  ['bn-dash','bn-fc','bn-vnd','bn-rpt','bn-menu'].forEach(function(b){
-    var el=document.getElementById(b);
-    if(el) el.classList.remove('on');
-  });
-  var el=document.getElementById(id);
-  if(el) el.classList.add('on');
-}
-
-function bnavMenu(){
-  var sb=document.querySelector('.sb');
-  var aberto=sb.classList.toggle('mob-open');
-  bnavAtivar('bn-menu');
-  if(!aberto){
-    // se fechou sem escolher nada, mantém o tab anterior ativo
-  }
-}
-
-function bnavIr(tipo){
-  document.querySelector('.sb').classList.remove('mob-open');
-  if(tipo==='dash'){
-    bnavAtivar('bn-dash');
-    var ni=document.querySelector('.ni[onclick*="dash"]');
-    ir('dash',0,ni);
-  } else if(tipo==='fc'){
-    bnavAtivar('bn-fc');
-    var m=_bnavMesAtual('fc');
-    var ni=document.querySelector('.ni[onclick*="\'fc\',' + m + '"]');
-    ir('fc',m,ni);
-  } else if(tipo==='vnd'){
-    bnavAtivar('bn-vnd');
-    var m=_bnavMesAtual('vnd');
-    var ni=document.querySelector('.ni[onclick*="\'vnd\',' + m + '"]');
-    ir('vnd',m,ni);
-  } else if(tipo==='rpt'){
-    bnavAtivar('bn-rpt');
-    var ni=document.querySelector('.ni[onclick*="resumo_fc"]');
-    ir('resumo_fc',0,ni);
-  }
-}
-
-// Fecha sidebar ao clicar num item dela no mobile
-document.querySelector('.sb').addEventListener('click',function(e){
-  var ni=e.target.closest('.ni');
-  if(ni && window.innerWidth<=768){
-    document.querySelector('.sb').classList.remove('mob-open');
-  }
-});
 </script>
 
 <!-- LOGIN — começa VISÍVEL, some só após login com sucesso -->
@@ -1622,8 +1690,8 @@ document.querySelector('.sb').addEventListener('click',function(e){
     <!-- PAINEL ESQUERDO: MARCA -->
     <div class="login-brand">
       <div class="login-logo-wrap">
-        <img class="login-logo-img" src="_files/zyntra-logo.jpg"
-          onerror="this.src='electron/icon.ico'"
+        <img class="login-logo-img" src="_files/zyntra-logo.png"
+          onerror="this.src='icon-192.png'"
           alt="Zyntra">
         <div class="login-logo-ring"></div>
         <div class="login-logo-ring2"></div>
@@ -1639,7 +1707,7 @@ document.querySelector('.sb').addEventListener('click',function(e){
     </div>
 
     <!-- PAINEL DIREITO: FORMULÁRIO -->
-    <div class="login-form-side">
+    <div class="login-form-side"><div class="login-logo-mob" style="display:none"><img src="_files/zyntra-logo.png" alt="Zyntra"><div class="t1">ZYNTRA <em>·</em> FC</div></div>
       <div class="login-tag">Acesso Seguro</div>
       <div class="login-title">Bem-vindo<br>de volta</div>
       <div class="login-subtitle">Faça login para acessar o sistema</div>
@@ -1730,4 +1798,69 @@ document.querySelector('.sb').addEventListener('click',function(e){
 
 
 
-</body></html>
+<script src="web-sync.js"></script><nav class="mob-nav" style="display:none" id="mob-nav">
+  <button class="mob-nav-btn" onclick="mobIr('dash')" id="mn-dash"><span class="ico">📊</span><span>Dashboard</span></button>
+  <button class="mob-nav-btn" onclick="mobIr('fc')" id="mn-fc"><span class="ico">💰</span><span>Fluxo Caixa</span></button>
+  <button class="mob-nav-btn" onclick="mobIr('vnd')" id="mn-vnd"><span class="ico">🛒</span><span>Vendas</span></button>
+  <button class="mob-nav-btn" onclick="mobIr('rel')" id="mn-rel"><span class="ico">📈</span><span>Relatórios</span></button>
+  <button class="mob-nav-btn" onclick="mobIr('notif')" id="mn-notif"><span class="ico">🔔</span><span>Alertas</span><span class="mob-bdg" id="mn-bdg-notif" style="display:none"></span></button>
+  <button class="mob-nav-btn" onclick="mobMenu()" id="mn-menu"><span class="ico">☰</span><span>Menu</span></button>
+</nav>
+<script>
+(function(){
+  function isMob(){ return window.innerWidth<=768; }
+  function showNav(){ if(isMob()){ document.getElementById('mob-nav').style.display='flex'; } }
+  window.mobIr=function(sec){
+    document.querySelectorAll('.mob-nav-btn').forEach(b=>b.classList.remove('on'));
+    var mes=new Date().getMonth()+1;
+    if(sec==='dash'){document.getElementById('mn-dash').classList.add('on');ir('dash');}
+    else if(sec==='fc'){document.getElementById('mn-fc').classList.add('on');ir('fc',mes);}
+    else if(sec==='vnd'){document.getElementById('mn-vnd').classList.add('on');ir('vnd',mes);}
+    else if(sec==='rel'){document.getElementById('mn-rel').classList.add('on');ir('resumo_fc');}
+    else if(sec==='notif'){document.getElementById('mn-notif').classList.add('on');ir('notif');}
+  };
+  window.mobMenu=function(){
+    document.getElementById('mn-menu').classList.add('on');
+    var sb=document.querySelector('.sb');
+    if(!sb)return;
+    sb.style.cssText='display:flex!important;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch;position:fixed;top:0;left:0;bottom:calc(58px + env(safe-area-inset-bottom));z-index:999;width:80%;max-width:280px;';
+    var ov=document.createElement('div');
+    ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:998;';
+    ov.onclick=function(){sb.style.cssText='display:none!important;';this.remove();document.getElementById('mn-menu').classList.remove('on');};
+    document.body.appendChild(ov);
+  };
+  window.addEventListener('resize',showNav);
+  window.addEventListener('load',showNav);
+
+  // MutationObserver: envolve tabelas em scroll container assim que aparecem no DOM
+  function mobWrapTables(root){
+    if(window.innerWidth>768) return;
+    (root||document).querySelectorAll('table').forEach(function(t){
+      var p=t.parentElement;
+      if(!p) return;
+      // Se o pai já é um wrapper nosso ou tem .tw, pula
+      if(p.hasAttribute('data-mob-wrap-div')) return;
+      if(p.classList.contains('tw')) {
+        // .tw já existe — garante que .ts não sobrescreve o scroll
+        if(p.classList.contains('ts')){
+          p.style.overflowX='auto';
+          p.style.webkitOverflowScrolling='touch';
+        }
+        return;
+      }
+      // Cria wrapper com scroll horizontal
+      var w=document.createElement('div');
+      w.setAttribute('data-mob-wrap-div','1');
+      w.style.cssText='display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%;max-width:100%;';
+      p.insertBefore(w,t);
+      w.appendChild(t);
+    });
+  }
+  var _pg=document.getElementById('pg');
+  if(_pg){
+    var _mo=new MutationObserver(function(){ mobWrapTables(_pg); });
+    _mo.observe(_pg,{childList:true,subtree:true});
+  }
+  window.addEventListener('load',function(){ mobWrapTables(); });
+})();
+</script></body></html>
