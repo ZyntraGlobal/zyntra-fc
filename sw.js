@@ -1,7 +1,6 @@
-const CACHE = 'zyntra-fc-v9';
+const CACHE = 'zyntra-fc-v10';
+// index.html FORA do cache — sempre baixa o mais recente da internet
 const ASSETS = [
-  '/zyntra-fc/',
-  '/zyntra-fc/index.html',
   '/zyntra-fc/mobile.css',
   '/zyntra-fc/manifest.json',
   '/zyntra-fc/icon-192.png',
@@ -11,7 +10,6 @@ const ASSETS = [
   '/zyntra-fc/_files/zyntra-logo.jpg',
 ];
 
-// Instala e cacheia todos os assets
 self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE).then(c => c.addAll(ASSETS))
@@ -19,7 +17,6 @@ self.addEventListener('install', e => {
   );
 });
 
-// Remove caches antigos
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys().then(keys =>
@@ -31,7 +28,16 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const url = e.request.url;
 
-  // data.json: sempre tenta rede primeiro, fallback cache
+  // index.html: SEMPRE da rede — nunca do cache
+  if (url.endsWith('/zyntra-fc/') || url.includes('/zyntra-fc/index.html')) {
+    e.respondWith(
+      fetch(e.request, { cache: 'no-store' })
+        .catch(() => caches.match('/zyntra-fc/index.html'))
+    );
+    return;
+  }
+
+  // data.json: rede primeiro, fallback cache
   if (url.includes('data.json')) {
     e.respondWith(
       fetch(e.request)
@@ -41,7 +47,7 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  // Fontes Google: cache primeiro (permanente)
+  // Fontes: cache permanente
   if (url.includes('fonts.gstatic.com') || url.includes('fonts.googleapis.com')) {
     e.respondWith(
       caches.match(e.request).then(r => r || fetch(e.request).then(res => {
@@ -52,7 +58,7 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  // Todo o resto: cache primeiro, fallback rede
+  // Todo o resto: cache primeiro
   e.respondWith(
     caches.match(e.request).then(r => r || fetch(e.request).then(res => {
       if (res && res.status === 200) {
