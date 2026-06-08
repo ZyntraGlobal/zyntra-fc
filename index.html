@@ -1350,10 +1350,10 @@ function _loginShake(){
   box.style.animation='loginShake .35s ease';
 }
 
+var _lockTentFC=0,_lockAteFC=0;
 function _loginLock(){
-  var lockData = JSON.parse(localStorage.getItem('zyntra_lock')||'{}');
-  if(lockData.until && Date.now() < lockData.until){
-    var restante = Math.ceil((lockData.until - Date.now()) / 1000);
+  if(_lockAteFC>0 && Date.now()<_lockAteFC){
+    var restante = Math.ceil((_lockAteFC - Date.now()) / 1000);
     var min = Math.floor(restante/60), seg = restante%60;
     document.getElementById('li-lock').style.display='block';
     document.getElementById('li-lock').textContent='🔒 Aguarde '+min+'m '+seg+'s para tentar novamente';
@@ -1361,6 +1361,7 @@ function _loginLock(){
     setTimeout(_loginLock, 1000);
     return true;
   }
+  _lockAteFC=0;_lockTentFC=0;
   document.getElementById('li-lock').style.display='none';
   document.getElementById('li-btn').disabled=false;
   return false;
@@ -1382,7 +1383,6 @@ async function doLogin(){
 
   if(_USERS[user] && _USERS[user]===hash){
     // Sucesso
-    localStorage.removeItem('zyntra_lock');
     var duracao = 4*60*60*1000;
     var role = _ROLES[user] || 'dono';
     localStorage.setItem('zyntra_sess', JSON.stringify({user:user, role:role, until:Date.now()+duracao}));
@@ -1395,17 +1395,14 @@ async function doLogin(){
     document.getElementById('li-pass').value='';
     document.getElementById('li-pass').focus();
     _loginShake();
-    var lock = JSON.parse(localStorage.getItem('zyntra_lock')||'{"tentativas":0}');
-    lock.tentativas = (lock.tentativas||0) + 1;
-    if(lock.tentativas >= _MAX_TENTATIVAS){
-      lock.until = Date.now() + _LOCK_MS;
-      lock.tentativas = 0;
-      localStorage.setItem('zyntra_lock', JSON.stringify(lock));
+    _lockTentFC++;
+    if(_lockTentFC >= _MAX_TENTATIVAS){
+      _lockAteFC = Date.now() + _LOCK_MS;
+      _lockTentFC = 0;
       err.textContent='';
       _loginLock();
     } else {
-      localStorage.setItem('zyntra_lock', JSON.stringify(lock));
-      var restam = _MAX_TENTATIVAS - lock.tentativas;
+      var restam = _MAX_TENTATIVAS - _lockTentFC;
       err.textContent='Usuário ou senha incorretos. '+restam+' tentativa'+(restam>1?'s':'')+' restante'+(restam>1?'s':'')+'.'
     }
   }
@@ -1528,8 +1525,6 @@ function importarDados(){
   inp.click();
 }
 
-// Limpa lockout ao abrir o app (evita usuário ficar travado)
-try{localStorage.removeItem('zyntra_lock');}catch(e){}
 document.getElementById('tdate').textContent=new Date().toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
 initFrases();
 if(checkSessao()){
