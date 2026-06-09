@@ -1794,6 +1794,30 @@
       "valor": 138.07,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 727,
+      "mes": 6,
+      "data": "09/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "ANTECIPAÇÃO DE RECEBÍVEIS",
+      "desc": "ANTECIPAÇÃO MERCADO PAGO",
+      "conta": "MERCADO PAGO",
+      "valor": 5.17,
+      "resp": "FELIPE",
+      "obs": ""
+    },
+    {
+      "id": 728,
+      "mes": 6,
+      "data": "09/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETES E LOGÍSTICA",
+      "desc": "FRETE",
+      "conta": "CRESOL",
+      "valor": 9.8,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -2734,7 +2758,7 @@
       "roi": 0
     }
   ],
-  "nfc": 727,
+  "nfc": 729,
   "nvnd": 320,
-  "_savedAt": 1781027503245
+  "_savedAt": 1781029841432
 }
