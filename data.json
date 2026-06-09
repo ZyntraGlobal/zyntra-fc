@@ -1710,6 +1710,18 @@
       "valor": 705.68,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 720,
+      "mes": 6,
+      "data": "09/06/2026",
+      "tipo": "ENTRADA",
+      "cat": "APORTE DE SÓCIO",
+      "desc": "APORTE",
+      "conta": "CRESOL",
+      "valor": 1600,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -2578,7 +2590,7 @@
       "roi": 0
     }
   ],
-  "nfc": 720,
+  "nfc": 721,
   "nvnd": 316,
-  "_savedAt": 1781009456723
+  "_savedAt": 1781018367121
 }
