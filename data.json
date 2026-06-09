@@ -1770,6 +1770,18 @@
       "valor": 7.8,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 725,
+      "mes": 6,
+      "data": "09/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETE E LOGÍSTICA",
+      "desc": "FRETE TERCEIRIZADO",
+      "conta": "MERCADO PAGO",
+      "valor": 140,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -2692,7 +2704,7 @@
       "roi": 0
     }
   ],
-  "nfc": 725,
+  "nfc": 726,
   "nvnd": 319,
-  "_savedAt": 1781025560761
+  "_savedAt": 1781025576161
 }
