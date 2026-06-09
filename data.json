@@ -2534,9 +2534,27 @@
       "lucro": 358.05,
       "margem": 96.77288575366902,
       "roi": 0
+    },
+    {
+      "id": 315,
+      "mes": 6,
+      "dv": "08/06/2026",
+      "de": "09/06/2026",
+      "produto": "TECLADO GAMER REDRAGON DITI K585 - PRETO",
+      "plat": "AMAZON",
+      "pedido": "702-2155711-1130638",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 299.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 288.05,
+      "margem": 96.01986732891096,
+      "roi": 0
     }
   ],
   "nfc": 718,
-  "nvnd": 315,
-  "_savedAt": 1780964296335
+  "nvnd": 316,
+  "_savedAt": 1780964592810
 }
