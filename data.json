@@ -1686,6 +1686,18 @@
       "valor": 75.83,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 718,
+      "mes": 6,
+      "data": "10/06/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS AMAZON",
+      "desc": "RECEBIMENTOS DE PLATAFORMA",
+      "conta": "BTG PACTUAL",
+      "valor": 313.59,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -2554,7 +2566,7 @@
       "roi": 0
     }
   ],
-  "nfc": 718,
+  "nfc": 719,
   "nvnd": 316,
-  "_savedAt": 1780964592810
+  "_savedAt": 1781009433241
 }
