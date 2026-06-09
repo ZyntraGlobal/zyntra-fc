@@ -1674,6 +1674,18 @@
       "valor": 7.2,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 717,
+      "mes": 6,
+      "data": "08/06/2026",
+      "tipo": "ESTOQUE",
+      "cat": "COMPRA DE MERCADORIA",
+      "desc": "ESTOQUE",
+      "conta": "BTG PACTUAL",
+      "valor": 75.83,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -2470,7 +2482,7 @@
       "roi": 125.83410259791643
     }
   ],
-  "nfc": 717,
+  "nfc": 718,
   "nvnd": 312,
-  "_savedAt": 1780945812193
+  "_savedAt": 1780963977834
 }
