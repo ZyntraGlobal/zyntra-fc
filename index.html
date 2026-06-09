@@ -395,7 +395,29 @@ var _GH_FC_TOKEN = 'gho_pxYKZ3'+'ODVXqH70zN9V0dIsBkqjMlUs2ID4k2';
 var _GH_FC_REPO  = 'ZyntraGlobal/zyntra-fc';
 function _b64uFC(str){var b=new TextEncoder().encode(str);var s='';b.forEach(function(x){s+=String.fromCharCode(x);});return btoa(s);}
 
+function _pushSWNotifFC(titulo, corpo){
+  if(!('serviceWorker' in navigator))return;
+  navigator.serviceWorker.ready.then(function(reg){
+    if(!reg.showNotification)return;
+    reg.showNotification(titulo,{body:corpo,icon:'/zyntra-fc/icon-192.png',badge:'/zyntra-fc/icon-192.png',tag:'zyntra-fc-save',vibrate:[200,100,200]});
+  }).catch(function(){});
+}
+function _resumoSalvoFC(antes, depois){
+  var L=[];
+  var R=function(v){return 'R$ '+Number(v||0).toFixed(2).replace('.',',');};
+  // Vendas/FC
+  var nA=(antes.fc||[]).length; var nD=(depois.fc||[]).length;
+  if(nD>nA)L.push('➕ '+(nD-nA)+' novo(s) lançamento(s)');
+  // Resumo de valores
+  var totD=(depois.fc||[]).reduce(function(s,x){return s+(x.valor||0);},0);
+  var totA=(antes.fc||[]).reduce(function(s,x){return s+(x.valor||0);},0);
+  if(Math.abs(totD-totA)>0.01)L.push('💰 Total: '+R(totA)+' → '+R(totD));
+  if(!L.length)L.push('Dados sincronizados com sucesso');
+  return L.slice(0,5).join('\n');
+}
 function _ghSalvarFC(){
+  var _antes=null;
+  try{_antes=JSON.parse(localStorage.getItem('zyntra_v9'));}catch(e){}
   var el=document.getElementById('fs-status');
   if(el){el.textContent='💾 Salvando...';el.style.color='var(--amb)';el.style.borderColor='rgba(251,191,36,.3)';}
   DB._savedAt=Date.now();
@@ -413,6 +435,7 @@ function _ghSalvarFC(){
       var ts=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
       if(el){el.textContent='✅ Salvo às '+ts;el.style.color='var(--grn)';el.style.background='rgba(74,222,128,.15)';el.style.borderColor='rgba(74,222,128,.3)';}
       _mostrarNotif('✅ Salvo!','Dados enviados para o servidor','grn');
+      _pushSWNotifFC('Zyntra FC — salvo ✅', _resumoSalvoFC(_antes||{}, DB));
     })
     .catch(function(){
       if(el){el.textContent='❌ Erro ao salvar';el.style.color='var(--red)';}

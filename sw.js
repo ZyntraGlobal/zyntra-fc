@@ -1,5 +1,5 @@
-const CACHE = 'zyntra-fc-v11';
-// index.html FORA do cache — sempre baixa o mais recente da internet
+﻿const CACHE = 'zyntra-fc-v12';
+// index.html FORA do cache â€” sempre baixa o mais recente da internet
 const ASSETS = [
   '/zyntra-fc/mobile.css',
   '/zyntra-fc/manifest.json',
@@ -28,7 +28,7 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const url = e.request.url;
 
-  // index.html: SEMPRE da rede — nunca do cache
+  // index.html: SEMPRE da rede â€” nunca do cache
   if (url.endsWith('/zyntra-fc/') || url.includes('/zyntra-fc/index.html')) {
     e.respondWith(
       fetch(e.request, { cache: 'no-store' })
@@ -70,7 +70,7 @@ self.addEventListener('fetch', e => {
 });
 
 self.addEventListener('push', e => {
-  const data = e.data ? e.data.json() : { title: 'Zyntra FC', body: 'Nova notificação' };
+  const data = e.data ? e.data.json() : { title: 'Zyntra FC', body: 'Nova notificaÃ§Ã£o' };
   e.waitUntil(
     self.registration.showNotification(data.title || 'Zyntra FC', {
       body: data.body || '',
@@ -93,3 +93,4 @@ self.addEventListener('notificationclick', e => {
     })
   );
 });
+
