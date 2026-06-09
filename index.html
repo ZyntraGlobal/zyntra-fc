@@ -1721,6 +1721,20 @@ if(_isElectron){
     if(_fsEl){ _fsEl.style.display='none'; }
   }
 }
+
+// Auto-reload quando SW atualizar — sem precisar limpar cache manualmente
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.addEventListener('message', function(e){
+    if(e.data && e.data.type === 'SW_UPDATED'){
+      // Recarrega silenciosamente para pegar o novo código
+      window.location.reload();
+    }
+  });
+  // Registra SW e verifica atualização a cada vez que abre
+  navigator.serviceWorker.register('/zyntra-fc/sw.js').then(function(reg){
+    reg.update(); // força verificação imediata de nova versão
+  }).catch(function(){});
+}
 </script>
 
 <!-- LOGIN — começa VISÍVEL, some só após login com sucesso -->
