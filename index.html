@@ -429,17 +429,19 @@ function _ghSalvarFC(){
   fetch(api,{headers:h})
     .then(function(r){return r.json();})
     .then(function(info){
+      if(!info||!info.sha){throw new Error('SHA não encontrado — tente novamente');}
       return fetch(api,{method:'PUT',headers:h,body:JSON.stringify({message:'update data',content:b64,sha:info.sha})});
     })
     .then(function(r){
+      if(!r.ok){throw new Error('GitHub retornou erro '+r.status);}
       var ts=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
       if(el){el.textContent='✅ Salvo às '+ts;el.style.color='var(--grn)';el.style.background='rgba(74,222,128,.15)';el.style.borderColor='rgba(74,222,128,.3)';}
-      _mostrarNotif('✅ Salvo!','Dados enviados para o servidor','grn');
+      _mostrarNotif('✅ Salvo e sincronizado!','Notebook vai atualizar em até 30s','grn');
       _pushSWNotifFC('Zyntra FC — salvo ✅', _resumoSalvoFC(_antes||{}, DB));
     })
-    .catch(function(){
-      if(el){el.textContent='❌ Erro ao salvar';el.style.color='var(--red)';}
-      _mostrarNotif('❌ Erro ao salvar','Verifique sua conexão','red');
+    .catch(function(err){
+      if(el){el.textContent='❌ Erro ao salvar';el.style.color='var(--red)';el.style.background='rgba(239,68,68,.1)';el.style.borderColor='rgba(239,68,68,.3)';}
+      _mostrarNotif('❌ Erro ao salvar','Verifique sua conexão e tente novamente','red');
     });
 }
 
