@@ -2624,9 +2624,27 @@
       "lucro": 288.05,
       "margem": 96.01986732891096,
       "roi": 0
+    },
+    {
+      "id": 316,
+      "mes": 6,
+      "dv": "0806/2026",
+      "de": "09/06/2026",
+      "produto": "MOUSE GAMER REDRAGON M724 - BRANCO",
+      "plat": "TIKTOK SHOP",
+      "pedido": "584428080158508869",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 149.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 138.05,
+      "margem": 92.0394692979532,
+      "roi": 0
     }
   ],
   "nfc": 724,
-  "nvnd": 316,
-  "_savedAt": 1781018669967
+  "nvnd": 317,
+  "_savedAt": 1781024856330
 }
