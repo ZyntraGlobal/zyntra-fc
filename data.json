@@ -2786,9 +2786,27 @@
       "lucro": 348.05,
       "margem": 96.68324120114448,
       "roi": 0
+    },
+    {
+      "id": 321,
+      "mes": 6,
+      "dv": "08/06/2026",
+      "de": "09/06/2026",
+      "produto": "MOUSE GAMER REDRAGON M913 IMPACT ELITE - PRETO",
+      "plat": "AMAZON",
+      "pedido": "701-8875232-1334653",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 359.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 348.05,
+      "margem": 96.68324120114448,
+      "roi": 0
     }
   ],
   "nfc": 731,
-  "nvnd": 321,
-  "_savedAt": 1781037461529
+  "nvnd": 322,
+  "_savedAt": 1781037517695
 }
