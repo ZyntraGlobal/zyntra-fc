@@ -1712,7 +1712,14 @@ if(_isElectron){
     };
   }
 } else {
-  _fsInit();
+  // No iPhone/PWA: File System Access API não é suportado — só mostra status de sync
+  if(typeof window.showDirectoryPicker === 'function'){
+    _fsInit();
+  } else {
+    // iOS/Safari: esconde botão de auto-save (irrelevante) — sync é via GitHub
+    var _fsEl = document.getElementById('fs-status');
+    if(_fsEl){ _fsEl.style.display='none'; }
+  }
 }
 </script>
 
