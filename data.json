@@ -1758,6 +1758,18 @@
       "valor": 16.5,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 724,
+      "mes": 6,
+      "data": "09/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETE E LOGÍSTICA",
+      "desc": "FRETE",
+      "conta": "BTG PACTUAL",
+      "valor": 7.8,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -2680,7 +2692,7 @@
       "roi": 0
     }
   ],
-  "nfc": 724,
+  "nfc": 725,
   "nvnd": 319,
-  "_savedAt": 1781025525426
+  "_savedAt": 1781025560761
 }
