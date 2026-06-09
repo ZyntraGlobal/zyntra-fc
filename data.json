@@ -1782,6 +1782,18 @@
       "valor": 140,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 726,
+      "mes": 6,
+      "data": "09/06/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS AMAZON",
+      "desc": "RECEBIMENTOS",
+      "conta": "MERCADO PAGO",
+      "valor": 138.07,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -2722,7 +2734,7 @@
       "roi": 0
     }
   ],
-  "nfc": 726,
+  "nfc": 727,
   "nvnd": 320,
-  "_savedAt": 1781026277654
+  "_savedAt": 1781027503245
 }
