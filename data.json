@@ -1827,7 +1827,7 @@
       "cat": "FRETES E LOGÍSTICA",
       "desc": "FRETE",
       "conta": "BTG PACTUAL",
-      "valor": 5.2,
+      "valor": 5.8,
       "resp": "FELIPE",
       "obs": ""
     }
@@ -2671,12 +2671,12 @@
       "pedido": "702-4149679-7906664",
       "qtd": 1,
       "cmv": 0,
-      "venda": 359.99,
+      "venda": 369.99,
       "taxas": 0,
       "imp": 0,
       "co": 11.94,
-      "lucro": 348.05,
-      "margem": 96.68324120114448,
+      "lucro": 358.05,
+      "margem": 96.77288575366902,
       "roi": 0
     },
     {
@@ -2772,5 +2772,5 @@
   ],
   "nfc": 730,
   "nvnd": 320,
-  "_savedAt": 1781034842588
+  "_savedAt": 1781035627702
 }
