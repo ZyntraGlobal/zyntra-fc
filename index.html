@@ -1338,12 +1338,11 @@ var _SALT = 'zyntra_fc_2026';
 // Usuários com senhas hasheadas (SHA-256 de "user:pass:salt")
 // Para alterar: gere novo hash com sha256hash(user+':'+novaSenha+':'+_SALT)
 var _USERS = {
-  'felipe': 'f81de35c06462ab747e898954d6c1b0b8a6adb64303638872ddb8e13797bf164',
-  'admin':  'eff6ac44a97baf3e7e6bdac246a4c5f2c9ce32b9fbfc97f64d2399b924ae633d',
-  'colab':  '3ac5b83609a5f285a872ba990724d2b0ce0b438087af6a280d8d818a16bf68c0'
+  'felipe':      'f81de35c06462ab747e898954d6c1b0b8a6adb64303638872ddb8e13797bf164',
+  'funcionario': 'd5ba75a966480f7e2a404599b3ffdbb56ac906a44138366028050d7e603fdc10'
 };
 
-var _ROLES = {'felipe':'dono','admin':'dono','colab':'funcionario'};
+var _ROLES = {'felipe':'dono','funcionario':'funcionario'};
 function _isFuncionario(){try{var s=JSON.parse(localStorage.getItem('zyntra_sess')||'{}');return s.role==='funcionario';}catch(e){return false;}}
 function _bloqueadoFunc(){setPage('<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:60vh;gap:16px"><div style="font-size:48px">🔒</div><div style="font-size:16px;font-weight:700;color:var(--t)">Acesso Restrito</div><div style="font-size:13px;color:var(--t3);text-align:center">Esta seção é exclusiva do proprietário.</div></div>');}
 
