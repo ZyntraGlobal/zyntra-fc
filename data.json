@@ -1818,18 +1818,6 @@
       "valor": 9.8,
       "resp": "FELIPE",
       "obs": ""
-    },
-    {
-      "id": 729,
-      "mes": 6,
-      "data": "09/06/2026",
-      "tipo": "SAÍDA",
-      "cat": "FRETES E LOGÍSTICA",
-      "desc": "FRETE",
-      "conta": "BTG PACTUAL",
-      "valor": 5.8,
-      "resp": "FELIPE",
-      "obs": ""
     }
   ],
   "vnd": [
@@ -2671,12 +2659,12 @@
       "pedido": "702-4149679-7906664",
       "qtd": 1,
       "cmv": 0,
-      "venda": 369.99,
+      "venda": 359.99,
       "taxas": 0,
       "imp": 0,
       "co": 11.94,
-      "lucro": 358.05,
-      "margem": 96.77288575366902,
+      "lucro": 348.05,
+      "margem": 96.68324120114448,
       "roi": 0
     },
     {
@@ -2772,5 +2760,5 @@
   ],
   "nfc": 730,
   "nvnd": 320,
-  "_savedAt": 1781035627702
+  "_savedAt": 1781035668172
 }
