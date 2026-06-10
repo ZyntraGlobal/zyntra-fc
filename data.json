@@ -2828,9 +2828,27 @@
       "lucro": 186.4,
       "margem": 51.77921608933581,
       "roi": 115.31085678935973
+    },
+    {
+      "id": 322,
+      "mes": 6,
+      "dv": "10/06/2026",
+      "de": "11/06/2026",
+      "produto": "MOUSE GAMER REDRAGON M908 IMPACT - PRETO",
+      "plat": "AMAZON",
+      "pedido": "702-7430783-2122614",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 259.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 248.05,
+      "margem": 95.40751567367975,
+      "roi": 0
     }
   ],
   "nfc": 733,
-  "nvnd": 322,
-  "_savedAt": 1781093510816
+  "nvnd": 323,
+  "_savedAt": 1781110606609
 }
