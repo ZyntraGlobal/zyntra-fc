@@ -82,7 +82,14 @@
       // Compara por _savedAt — mais confiável que contar itens
       const tRemoto = remoto._savedAt || 0;
       const tLocal  = local ? (local._savedAt || 0) : 0;
-      if (tRemoto <= tLocal) return false; // Já temos esta versão
+      if (tRemoto <= tLocal) {
+        // Local é mais recente que GitHub — push automático (dados ficaram presos por falha anterior)
+        if (tLocal > tRemoto && typeof _ghSalvarFC === 'function' && typeof DB !== 'undefined' && DB && DB.fc) {
+          console.log('[ZyntraFC] Auto-push: local mais recente que GitHub — enviando...');
+          _ghSalvarFC();
+        }
+        return false;
+      }
 
       // Remoto é mais recente — calcula diff e notifica
       const linhas = _diffFC(local, remoto);
