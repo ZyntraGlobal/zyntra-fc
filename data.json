@@ -1854,6 +1854,18 @@
       "valor": 5.8,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 733,
+      "mes": 6,
+      "data": "10/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETES E LOGÍSTICA",
+      "desc": "FRETE UBER",
+      "conta": "SICOOB",
+      "valor": 6.24,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -2866,7 +2878,7 @@
       "roi": 0
     }
   ],
-  "nfc": 733,
+  "nfc": 734,
   "nvnd": 324,
-  "_savedAt": 1781110797828
+  "_savedAt": 1781114411388
 }
