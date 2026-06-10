@@ -1,5 +1,5 @@
-const CACHE = 'zyntra-fc-v16';
-// index.html FORA do cache — sempre baixa o mais recente da internet
+const CACHE = 'zyntra-fc-v17';
+// index.html e web-sync.js FORA do cache — sempre baixa o mais recente da internet
 const ASSETS = [
   '/zyntra-fc/mobile.css',
   '/zyntra-fc/manifest.json',
@@ -39,8 +39,8 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  // index.html: SEMPRE da rede — nunca do cache
-  if (url.endsWith('/zyntra-fc/') || url.includes('/zyntra-fc/index.html')) {
+  // index.html e web-sync.js: SEMPRE da rede — nunca do cache
+  if (url.endsWith('/zyntra-fc/') || url.includes('/zyntra-fc/index.html') || url.includes('/zyntra-fc/web-sync.js')) {
     e.respondWith(
       fetch(e.request, { cache: 'no-store' })
         .catch(() => caches.match('/zyntra-fc/index.html'))
