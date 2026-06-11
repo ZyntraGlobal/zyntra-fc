@@ -1878,6 +1878,18 @@
       "valor": 6.24,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 735,
+      "mes": 6,
+      "data": "11/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "TAXAS BANCÁRIAS",
+      "desc": "trt",
+      "conta": "MERCADO PAGO",
+      "valor": 30,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -2890,7 +2902,7 @@
       "roi": 72.4095267553356
     }
   ],
-  "nfc": 735,
+  "nfc": 736,
   "nvnd": 324,
-  "_savedAt": 1781202408090
+  "_savedAt": 1781211676764
 }
