@@ -1866,6 +1866,18 @@
       "valor": 6.24,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 734,
+      "mes": 6,
+      "data": "11/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETES E LOGÍSTICA",
+      "desc": "FRETE UBER",
+      "conta": "BTG PACTUAL",
+      "valor": 6.24,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -2878,7 +2890,7 @@
       "roi": 0
     }
   ],
-  "nfc": 734,
+  "nfc": 735,
   "nvnd": 324,
-  "_savedAt": 1781114411388
+  "_savedAt": 1781201735595
 }
