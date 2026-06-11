@@ -1878,6 +1878,18 @@
       "valor": 6.24,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 736,
+      "mes": 7,
+      "data": "11/07/2026",
+      "tipo": "ESTOQUE",
+      "cat": "IMPORTAÇÃO DE PRODUTOS",
+      "desc": "Imp",
+      "conta": "BTG PACTUAL",
+      "valor": 500,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -2890,7 +2902,7 @@
       "roi": 72.4095267553356
     }
   ],
-  "nfc": 736,
+  "nfc": 737,
   "nvnd": 324,
-  "_savedAt": 1781211690708
+  "_savedAt": 1781213730384
 }
