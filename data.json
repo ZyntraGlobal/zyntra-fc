@@ -1926,6 +1926,18 @@
       "valor": 888.95,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 742,
+      "mes": 6,
+      "data": "12/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "SOFTWARES E ASSINATURAS",
+      "desc": "ERP BLING",
+      "conta": "SICOOB",
+      "valor": 55,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -3010,7 +3022,7 @@
       "roi": 73.72062581811383
     }
   ],
-  "nfc": 742,
+  "nfc": 743,
   "nvnd": 328,
-  "_savedAt": 1781274065613
+  "_savedAt": 1781274496035
 }
