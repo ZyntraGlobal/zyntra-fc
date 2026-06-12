@@ -1914,6 +1914,18 @@
       "valor": 160.14,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 741,
+      "mes": 6,
+      "data": "12/06/2026",
+      "tipo": "ESTOQUE",
+      "cat": "COMPRA DE MERCADORIA",
+      "desc": "ESTOQUE",
+      "conta": "SICOOB",
+      "valor": 888.95,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -2926,7 +2938,7 @@
       "roi": 72.4095267553356
     }
   ],
-  "nfc": 741,
+  "nfc": 742,
   "nvnd": 324,
-  "_savedAt": 1781272644682
+  "_savedAt": 1781273795516
 }
