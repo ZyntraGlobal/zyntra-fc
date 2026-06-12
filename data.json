@@ -1938,6 +1938,18 @@
       "valor": 55,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 743,
+      "mes": 6,
+      "data": "12/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETES E LOGÍSTICA",
+      "desc": "FRETE",
+      "conta": "SICOOB",
+      "valor": 13.4,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -3022,7 +3034,7 @@
       "roi": 73.72062581811383
     }
   ],
-  "nfc": 743,
+  "nfc": 744,
   "nvnd": 328,
-  "_savedAt": 1781274496035
+  "_savedAt": 1781285558626
 }
