@@ -1974,6 +1974,18 @@
       "valor": 6.24,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 746,
+      "mes": 6,
+      "data": "12/06/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS MERCADO LIVRE",
+      "desc": "RECEBIMENTOS",
+      "conta": "MERCADO PAGO",
+      "valor": 158.04,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -3058,7 +3070,7 @@
       "roi": 73.72062581811383
     }
   ],
-  "nfc": 746,
+  "nfc": 747,
   "nvnd": 328,
-  "_savedAt": 1781285600086
+  "_savedAt": 1781362344345
 }
