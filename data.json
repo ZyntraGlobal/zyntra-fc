@@ -3110,9 +3110,27 @@
       "lucro": 312.40000000000003,
       "margem": 78.10195254881373,
       "roi": 0
+    },
+    {
+      "id": 329,
+      "mes": 6,
+      "dv": "13/06/2026",
+      "de": "15/06/2026",
+      "produto": "MOUSE GAMER CORSAIR SMICITAR - PRETO",
+      "plat": "MERCADO LIVRE",
+      "pedido": "2000013503421313",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 399.99,
+      "taxas": 75.65,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 312.40000000000003,
+      "margem": 78.10195254881373,
+      "roi": 0
     }
   ],
   "nfc": 749,
-  "nvnd": 329,
-  "_savedAt": 1781463364527
+  "nvnd": 330,
+  "_savedAt": 1781463454872
 }
