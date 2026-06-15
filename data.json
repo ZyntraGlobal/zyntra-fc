@@ -2046,6 +2046,18 @@
       "valor": 175,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 752,
+      "mes": 6,
+      "data": "15/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "OUTRAS SAÍDAS",
+      "desc": "TAXA DE LIXO",
+      "conta": "SICOOB",
+      "valor": 122.18,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -3166,7 +3178,7 @@
       "roi": 0
     }
   ],
-  "nfc": 752,
+  "nfc": 753,
   "nvnd": 330,
-  "_savedAt": 1781531352331
+  "_savedAt": 1781531769099
 }
