@@ -2094,6 +2094,18 @@
       "valor": 103.85,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 756,
+      "mes": 6,
+      "data": "12/06/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS SHOPEE",
+      "desc": "RECEBIMENTOS",
+      "conta": "SICOOB",
+      "valor": 162.7,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -3250,7 +3262,7 @@
       "roi": 0
     }
   ],
-  "nfc": 756,
+  "nfc": 757,
   "nvnd": 332,
-  "_savedAt": 1781551155464
+  "_savedAt": 1781551210423
 }
