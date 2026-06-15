@@ -2034,6 +2034,18 @@
       "valor": 10.32,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 751,
+      "mes": 6,
+      "data": "15/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "SERVIÇOS DE TERCEIROS",
+      "desc": "AJUSTES SITE ZYNTRA",
+      "conta": "MERCADO PAGO",
+      "valor": 175,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -3154,7 +3166,7 @@
       "roi": 0
     }
   ],
-  "nfc": 751,
+  "nfc": 752,
   "nvnd": 330,
-  "_savedAt": 1781531332213
+  "_savedAt": 1781531352331
 }
