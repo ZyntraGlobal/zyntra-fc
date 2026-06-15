@@ -3194,9 +3194,27 @@
       "lucro": 348.05,
       "margem": 96.68324120114448,
       "roi": 0
+    },
+    {
+      "id": 331,
+      "mes": 6,
+      "dv": "15/06/2026",
+      "de": "17/06/2026",
+      "produto": "MOUSE GAMER CORSAIR M75 - PRETO",
+      "plat": "AMAZON",
+      "pedido": "702-7742019-7301837",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 359.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 348.05,
+      "margem": 96.68324120114448,
+      "roi": 0
     }
   ],
   "nfc": 753,
-  "nvnd": 331,
-  "_savedAt": 1781550495062
+  "nvnd": 332,
+  "_savedAt": 1781550542349
 }
