@@ -2142,6 +2142,18 @@
       "valor": 158.04,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 760,
+      "mes": 6,
+      "data": "16/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "ANTECIPAÇÃO DE RECEBÍVEIS",
+      "desc": "ANTECIPAÇÃO MERCADO PAGO",
+      "conta": "MERCADO PAGO",
+      "valor": 5.69,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -3298,7 +3310,7 @@
       "roi": 0
     }
   ],
-  "nfc": 760,
+  "nfc": 761,
   "nvnd": 332,
-  "_savedAt": 1781646623780
+  "_savedAt": 1781646655648
 }
