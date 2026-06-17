@@ -1,4 +1,4 @@
-const CACHE = 'zyntra-fc-v17';
+const CACHE = 'zyntra-fc-v18';
 // index.html e web-sync.js FORA do cache — sempre baixa o mais recente da internet
 const ASSETS = [
   '/zyntra-fc/mobile.css',
@@ -81,14 +81,15 @@ self.addEventListener('fetch', e => {
 });
 
 self.addEventListener('push', e => {
-  const data = e.data ? e.data.json() : { title: 'Zyntra FC', body: 'Nova notificação' };
+  let data = { title: 'Zyntra FC', body: 'Dados atualizados' };
+  try { if (e.data) data = e.data.json(); } catch(ex) {}
   e.waitUntil(
     self.registration.showNotification(data.title || 'Zyntra FC', {
-      body: data.body || '',
+      body: data.body || 'Dados atualizados',
       icon: '/zyntra-fc/icon-192.png',
       badge: '/zyntra-fc/icon-192.png',
-      tag: data.tag || 'zyntra-fc',
-      data: data
+      tag: 'zyntra-fc-' + Date.now(),
+      renotify: true
     })
   );
 });
