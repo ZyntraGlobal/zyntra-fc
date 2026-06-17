@@ -3362,9 +3362,27 @@
       "lucro": 348.05,
       "margem": 96.68324120114448,
       "roi": 0
+    },
+    {
+      "id": 333,
+      "mes": 6,
+      "dv": "16/06/2026",
+      "de": "18/06/2026",
+      "produto": "HEADSET GAMER LOGIYECH G435 - ROXO",
+      "plat": "AMAZON",
+      "pedido": "701-7688045-7262639",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 569.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 558.05,
+      "margem": 97.90522640748082,
+      "roi": 0
     }
   ],
   "nfc": 764,
-  "nvnd": 333,
-  "_savedAt": 1781714380602
+  "nvnd": 334,
+  "_savedAt": 1781714422752
 }
