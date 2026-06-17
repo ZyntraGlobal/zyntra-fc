@@ -2110,7 +2110,7 @@
     {
       "id": 757,
       "mes": 6,
-      "data": "17/06/2026",
+      "data": "18/06/2026",
       "tipo": "ENTRADA",
       "cat": "VENDAS AMAZON",
       "desc": "RECEBIMENTOS",
@@ -3444,5 +3444,5 @@
   ],
   "nfc": 767,
   "nvnd": 336,
-  "_savedAt": 1781731726727
+  "_savedAt": 1781731782823
 }
