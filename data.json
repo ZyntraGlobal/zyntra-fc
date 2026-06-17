@@ -2190,6 +2190,18 @@
       "valor": 7.7,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 764,
+      "mes": 6,
+      "data": "17/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "GOOGLE ADS",
+      "desc": "gsg",
+      "conta": "BTG PACTUAL",
+      "valor": 54,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -3418,7 +3430,7 @@
       "roi": 0
     }
   ],
-  "nfc": 764,
+  "nfc": 765,
   "nvnd": 336,
-  "_savedAt": 1781714488789
+  "_savedAt": 1781719472681
 }
