@@ -2226,6 +2226,18 @@
       "valor": 298.31,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 768,
+      "mes": 6,
+      "data": "18/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "TAXAS BANCÁRIAS",
+      "desc": "tewt",
+      "conta": "BTG PACTUAL",
+      "valor": 55,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -3526,7 +3538,7 @@
       "roi": 0
     }
   ],
-  "nfc": 768,
+  "nfc": 769,
   "nvnd": 340,
-  "_savedAt": 1781805368061
+  "_savedAt": 1781805664118
 }
