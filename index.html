@@ -1431,6 +1431,8 @@ async function doLogin(){
       document.getElementById('login-bg').classList.add('hidden');
       document.body.classList.remove('login-open');
       _iniciarWatchSessao();
+      // Renova push subscription ao fazer login
+      try{_assinarPushFC();}catch(e){}
       try{badges();}catch(e){}
       try{
         if((_ROLES[user]||'dono')==='funcionario'){ir('fc',new Date().getMonth()+1);}
