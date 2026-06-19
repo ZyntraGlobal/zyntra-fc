@@ -3572,9 +3572,27 @@
       "lucro": 348.05,
       "margem": 96.68324120114448,
       "roi": 0
+    },
+    {
+      "id": 342,
+      "mes": 6,
+      "dv": "19/06/2026",
+      "de": "19/06/2026",
+      "produto": "faefeaf",
+      "plat": "AMAZON",
+      "pedido": "fdafadfa",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 888,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 876.06,
+      "margem": 98.65540540540539,
+      "roi": 0
     }
   ],
   "nfc": 770,
-  "nvnd": 342,
-  "_savedAt": 1781885196149
+  "nvnd": 343,
+  "_savedAt": 1781894142918
 }
