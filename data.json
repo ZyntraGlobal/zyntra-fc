@@ -2250,6 +2250,18 @@
       "valor": 178.31,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 771,
+      "mes": 6,
+      "data": "22/06/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS AMAZON",
+      "desc": "RECEBIMENTOS",
+      "conta": "OUTRA CONTA",
+      "valor": 313.59,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -3586,7 +3598,7 @@
       "roi": 0
     }
   ],
-  "nfc": 771,
+  "nfc": 772,
   "nvnd": 343,
-  "_savedAt": 1781901837905
+  "_savedAt": 1781988321978
 }
