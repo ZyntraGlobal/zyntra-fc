@@ -2286,6 +2286,18 @@
       "valor": 11.71,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 774,
+      "mes": 6,
+      "data": "22/06/2026",
+      "tipo": "ESTOQUE",
+      "cat": "COMPRA DE MERCADORIA",
+      "desc": "ESTOQUE",
+      "conta": "OUTRA CONTA",
+      "valor": 1560.78,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -3658,7 +3670,7 @@
       "roi": 0
     }
   ],
-  "nfc": 774,
+  "nfc": 775,
   "nvnd": 345,
-  "_savedAt": 1782148355846
+  "_savedAt": 1782148691708
 }
