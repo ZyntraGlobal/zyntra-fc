@@ -3462,19 +3462,19 @@
     {
       "id": 333,
       "mes": 6,
-      "dv": "16/06/2026",
-      "de": "18/06/2026",
-      "produto": "HEADSET GAMER LOGIYECH G435 - ROXO",
+      "dv": "21/06/2026",
+      "de": "22/06/2026",
+      "produto": "SUPORTE GAMER REDRAGON HA300 - PRETO",
       "plat": "AMAZON",
-      "pedido": "701-7688045-7262639",
+      "pedido": "701-7898519-7771465",
       "qtd": 1,
       "cmv": 0,
-      "venda": 569.99,
+      "venda": 179.99,
       "taxas": 0,
       "imp": 0,
       "co": 11.94,
-      "lucro": 558.05,
-      "margem": 97.90522640748082,
+      "lucro": 168.05,
+      "margem": 93.36629812767376,
       "roi": 0
     },
     {
@@ -3624,5 +3624,5 @@
   ],
   "nfc": 774,
   "nvnd": 343,
-  "_savedAt": 1782090004706
+  "_savedAt": 1782148086249
 }
