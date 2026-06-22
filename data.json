@@ -2298,6 +2298,18 @@
       "valor": 1560.78,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 775,
+      "mes": 6,
+      "data": "22/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETES E LOGÍSTICA",
+      "desc": "MOTOTAXI E 99",
+      "conta": "OUTRA CONTA",
+      "valor": 44.3,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -3670,7 +3682,7 @@
       "roi": 0
     }
   ],
-  "nfc": 775,
+  "nfc": 776,
   "nvnd": 345,
-  "_savedAt": 1782148691708
+  "_savedAt": 1782148735085
 }
