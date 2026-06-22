@@ -3620,9 +3620,27 @@
       "lucro": 348.05,
       "margem": 96.68324120114448,
       "roi": 0
+    },
+    {
+      "id": 343,
+      "mes": 6,
+      "dv": "22/06/2026",
+      "de": "22/06/2026",
+      "produto": "HEADSET GAMER LOGITECH G G321 - PRETO",
+      "plat": "MERCADO LIVRE",
+      "pedido": "200001359524574",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 463.79,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 451.85,
+      "margem": 97.42555898143557,
+      "roi": 0
     }
   ],
   "nfc": 774,
-  "nvnd": 343,
-  "_savedAt": 1782148086249
+  "nvnd": 344,
+  "_savedAt": 1782148300234
 }
