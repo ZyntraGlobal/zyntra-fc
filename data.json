@@ -2442,6 +2442,18 @@
       "valor": 288.63,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 787,
+      "mes": 6,
+      "data": "23/06/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS",
+      "desc": "VENDA APROVADA",
+      "conta": "MERCADO PAGO",
+      "valor": 1287.12,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -3904,7 +3916,7 @@
       "roi": 0
     }
   ],
-  "nfc": 787,
+  "nfc": 788,
   "nvnd": 351,
-  "_savedAt": 1782245244222
+  "_savedAt": 1782249257669
 }
