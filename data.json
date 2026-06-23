@@ -3922,7 +3922,7 @@
       "de": "26/06/2026",
       "produto": "GABINETE GAMER LIAN LI O11 VISION COMPACT - BRANCO",
       "plat": "SITE ZYNTRA",
-      "pedido": "",
+      "pedido": "4969",
       "qtd": 1,
       "cmv": 0,
       "venda": 1299.99,
@@ -3936,5 +3936,5 @@
   ],
   "nfc": 788,
   "nvnd": 352,
-  "_savedAt": 1782249378581
+  "_savedAt": 1782249679156
 }
