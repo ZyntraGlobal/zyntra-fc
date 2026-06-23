@@ -3854,9 +3854,27 @@
       "lucro": 388.05,
       "margem": 97.01492537313433,
       "roi": 0
+    },
+    {
+      "id": 350,
+      "mes": 6,
+      "dv": "23/06/2026",
+      "de": "25/06/2026",
+      "produto": "GABINETE GAMER LIAN LI A3-MATX Micro ATX - BRANCO",
+      "plat": "SHOPEE",
+      "pedido": "260623TASQGQ5J",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 699.99,
+      "taxas": 124,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 564.05,
+      "margem": 80.57972256746524,
+      "roi": 0
     }
   ],
   "nfc": 783,
-  "nvnd": 350,
-  "_savedAt": 1782232909626
+  "nvnd": 351,
+  "_savedAt": 1782238894520
 }
