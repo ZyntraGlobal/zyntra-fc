@@ -2430,6 +2430,18 @@
       "valor": 11.71,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 786,
+      "mes": 6,
+      "data": "23/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "SERVIÇOS DE TERCEIROS",
+      "desc": "REGISTRO DE MARCA",
+      "conta": "MERCADO PAGO",
+      "valor": 288.63,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -3892,7 +3904,7 @@
       "roi": 0
     }
   ],
-  "nfc": 786,
+  "nfc": 787,
   "nvnd": 351,
-  "_savedAt": 1782244840285
+  "_savedAt": 1782245244222
 }
