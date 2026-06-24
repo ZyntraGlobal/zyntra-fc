@@ -2502,6 +2502,18 @@
       "valor": 1038.57,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 792,
+      "mes": 6,
+      "data": "24/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETE E LOGÍSTICA",
+      "desc": "FRETE",
+      "conta": "OUTRA CONTA",
+      "valor": 27.3,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -3982,7 +3994,7 @@
       "roi": 0
     }
   ],
-  "nfc": 792,
+  "nfc": 793,
   "nvnd": 352,
-  "_savedAt": 1782307376093
+  "_savedAt": 1782307407051
 }
