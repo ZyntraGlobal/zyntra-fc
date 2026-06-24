@@ -2466,6 +2466,18 @@
       "valor": 112.41,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 789,
+      "mes": 6,
+      "data": "23/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "SERVIÇOS DE TERCEIROS",
+      "desc": "MANUTENÇÃO SITE ZYNTRA",
+      "conta": "SICOOB",
+      "valor": 175,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -3946,7 +3958,7 @@
       "roi": 0
     }
   ],
-  "nfc": 789,
+  "nfc": 790,
   "nvnd": 352,
-  "_savedAt": 1782262741090
+  "_savedAt": 1782264089036
 }
