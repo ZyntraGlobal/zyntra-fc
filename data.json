@@ -2454,6 +2454,18 @@
       "valor": 1287.12,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 788,
+      "mes": 6,
+      "data": "23/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "INTERNET E TELEFONIA",
+      "desc": "INTERNET ESCRITÓRIO",
+      "conta": "OUTRA CONTA",
+      "valor": 112.41,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -3934,7 +3946,7 @@
       "roi": 0
     }
   ],
-  "nfc": 788,
+  "nfc": 789,
   "nvnd": 352,
-  "_savedAt": 1782249679156
+  "_savedAt": 1782262741090
 }
