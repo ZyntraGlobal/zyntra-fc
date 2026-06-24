@@ -4040,9 +4040,27 @@
       "lucro": 348.05,
       "margem": 96.68324120114448,
       "roi": 0
+    },
+    {
+      "id": 354,
+      "mes": 6,
+      "dv": "24/06/2026",
+      "de": "26/06/2026",
+      "produto": "GABINETE GAMER LIAN LI O11 VISION - BRANCO",
+      "plat": "MERCADO LIVRE",
+      "pedido": "2000013679484521",
+      "qtd": 1,
+      "cmv": 623.05,
+      "venda": 1299.99,
+      "taxas": 312.65,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 352.3500000000001,
+      "margem": 27.10405464657421,
+      "roi": 56.55244362410723
     }
   ],
   "nfc": 794,
-  "nvnd": 354,
-  "_savedAt": 1782317650101
+  "nvnd": 355,
+  "_savedAt": 1782320171477
 }
