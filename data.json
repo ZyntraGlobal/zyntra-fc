@@ -4148,9 +4148,27 @@
       "lucro": 339.6,
       "margem": 78.97858089723017,
       "roi": 0
+    },
+    {
+      "id": 360,
+      "mes": 6,
+      "dv": "25/06/2026",
+      "de": "26/06/2026",
+      "produto": "HEADSET GAMER LOGITECH G G312 - PRETO",
+      "plat": "MERCADO LIVRE",
+      "pedido": "2000013608511313",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 463.79,
+      "taxas": 83.94,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 367.91,
+      "margem": 79.32685051424137,
+      "roi": 0
     }
   ],
   "nfc": 794,
-  "nvnd": 360,
-  "_savedAt": 1782401213964
+  "nvnd": 361,
+  "_savedAt": 1782401875536
 }
