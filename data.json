@@ -4226,9 +4226,27 @@
       "lucro": 348.05,
       "margem": 96.68324120114448,
       "roi": 0
+    },
+    {
+      "id": 363,
+      "mes": 6,
+      "dv": "25/06/2026",
+      "de": "26/06/2026",
+      "produto": "MOUSE GAMER LAMZU MAYA X - AZUL",
+      "plat": "AMAZON",
+      "pedido": "701-3748941-9593814",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 809.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 798.05,
+      "margem": 98.52590772725588,
+      "roi": 0
     }
   ],
   "nfc": 796,
-  "nvnd": 363,
-  "_savedAt": 1782402642216
+  "nvnd": 364,
+  "_savedAt": 1782425256740
 }
