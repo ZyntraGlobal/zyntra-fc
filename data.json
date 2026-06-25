@@ -4130,9 +4130,27 @@
       "lucro": 1327.76,
       "margem": 88.51792345282303,
       "roi": 0
+    },
+    {
+      "id": 359,
+      "mes": 6,
+      "dv": "25/06/2026",
+      "de": "26/06/2026",
+      "produto": "CONTROLE GAMER GAMESIR G7 - PRETO",
+      "plat": "MERCADO LIVRE",
+      "pedido": "2000017067674822",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 429.99,
+      "taxas": 78.45,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 339.6,
+      "margem": 78.97858089723017,
+      "roi": 0
     }
   ],
   "nfc": 794,
-  "nvnd": 359,
-  "_savedAt": 1782400790356
+  "nvnd": 360,
+  "_savedAt": 1782401213964
 }
