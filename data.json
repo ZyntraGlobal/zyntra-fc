@@ -2658,6 +2658,18 @@
       "valor": 313.59,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 805,
+      "mes": 6,
+      "data": "30/06/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS AMAZON",
+      "desc": "PAGAMENTO",
+      "conta": "OUTRA CONTA",
+      "valor": 208.84,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -4390,7 +4402,7 @@
       "roi": 90.06357670221493
     }
   ],
-  "nfc": 805,
+  "nfc": 806,
   "nvnd": 367,
-  "_savedAt": 1782602174619
+  "_savedAt": 1782733059899
 }
