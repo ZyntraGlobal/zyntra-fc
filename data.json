@@ -2754,6 +2754,18 @@
       "valor": 30.8,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 813,
+      "mes": 6,
+      "data": "29/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "EMPRÉSTIMOS / FINANCIAMENTOS",
+      "desc": "EMPRÉSTIMO EXPRESS ML",
+      "conta": "MERCADO PAGO",
+      "valor": 124.67,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -4486,7 +4498,7 @@
       "roi": 90.06357670221493
     }
   ],
-  "nfc": 813,
+  "nfc": 814,
   "nvnd": 367,
-  "_savedAt": 1782752173226
+  "_savedAt": 1782753691443
 }
