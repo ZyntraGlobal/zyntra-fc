@@ -2691,7 +2691,7 @@
       "cat": "EMPRÉSTIMO RECEBIDO",
       "desc": "CAPITAL DE GIRO",
       "conta": "SICOOB",
-      "valor": 20,
+      "valor": 20000,
       "resp": "FELIPE",
       "obs": ""
     }
@@ -4428,5 +4428,5 @@
   ],
   "nfc": 808,
   "nvnd": 367,
-  "_savedAt": 1782740399174
+  "_savedAt": 1782740414021
 }
