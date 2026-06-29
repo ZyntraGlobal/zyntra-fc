@@ -2682,6 +2682,18 @@
       "valor": 394.56,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 807,
+      "mes": 7,
+      "data": "03/07/2026",
+      "tipo": "ENTRADA",
+      "cat": "EMPRÉSTIMO RECEBIDO",
+      "desc": "CAPITAL DE GIRO",
+      "conta": "SICOOB",
+      "valor": 20,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -4414,7 +4426,7 @@
       "roi": 90.06357670221493
     }
   ],
-  "nfc": 807,
+  "nfc": 808,
   "nvnd": 367,
-  "_savedAt": 1782737860749
+  "_savedAt": 1782740399174
 }
