@@ -2766,6 +2766,18 @@
       "valor": 124.67,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 814,
+      "mes": 6,
+      "data": "30/06/2026",
+      "tipo": "ESTOQUE",
+      "cat": "ESTOQUE",
+      "desc": "ESTOQUE",
+      "conta": "OUTRA CONTA",
+      "valor": 113,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -4498,7 +4510,7 @@
       "roi": 90.06357670221493
     }
   ],
-  "nfc": 814,
+  "nfc": 815,
   "nvnd": 367,
-  "_savedAt": 1782753691443
+  "_savedAt": 1782827332567
 }
