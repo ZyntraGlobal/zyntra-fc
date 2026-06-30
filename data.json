@@ -2778,6 +2778,18 @@
       "valor": 113,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 815,
+      "mes": 6,
+      "data": "30/06/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETES E LOGÍSTICA",
+      "desc": "FRETE",
+      "conta": "OUTRA CONTA",
+      "valor": 28,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -4510,7 +4522,7 @@
       "roi": 90.06357670221493
     }
   ],
-  "nfc": 815,
+  "nfc": 816,
   "nvnd": 367,
-  "_savedAt": 1782827332567
+  "_savedAt": 1782827346679
 }
