@@ -2802,6 +2802,18 @@
       "valor": 311.39,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 817,
+      "mes": 6,
+      "data": "30/06/2026",
+      "tipo": "ESTOQUE",
+      "cat": "COMPRA DE MERCADORIA",
+      "desc": "ESTOQUE",
+      "conta": "OUTRA CONTA",
+      "valor": 590.64,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -4534,7 +4546,7 @@
       "roi": 90.06357670221493
     }
   ],
-  "nfc": 817,
+  "nfc": 818,
   "nvnd": 367,
-  "_savedAt": 1782829837983
+  "_savedAt": 1782829887762
 }
