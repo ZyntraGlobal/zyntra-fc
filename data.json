@@ -4664,9 +4664,27 @@
       "lucro": 348.05,
       "margem": 96.68324120114448,
       "roi": 0
+    },
+    {
+      "id": 373,
+      "mes": 6,
+      "dv": "30/06/2026",
+      "de": "01/07/2026",
+      "produto": "GABINETE GAMER LIAN A3 MATX - BRANCO",
+      "plat": "SHOPEE",
+      "pedido": "260701FREW3F6K",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 699.99,
+      "taxas": 124,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 564.05,
+      "margem": 80.57972256746524,
+      "roi": 0
     }
   ],
   "nfc": 819,
-  "nvnd": 373,
-  "_savedAt": 1782851692636
+  "nvnd": 374,
+  "_savedAt": 1782851975126
 }
