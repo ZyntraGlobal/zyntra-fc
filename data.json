@@ -4682,9 +4682,27 @@
       "lucro": 564.05,
       "margem": 80.57972256746524,
       "roi": 0
+    },
+    {
+      "id": 374,
+      "mes": 6,
+      "dv": "30/06/2026",
+      "de": "01/07/2026",
+      "produto": "GABINETE GAMER LIAN LI 011 VISION COMPACT - PRETO",
+      "plat": "SHOPEE",
+      "pedido": "260701G78GUGNR",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 1299.99,
+      "taxas": 208,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 1080.05,
+      "margem": 83.08140831852552,
+      "roi": 0
     }
   ],
   "nfc": 819,
-  "nvnd": 374,
-  "_savedAt": 1782851975126
+  "nvnd": 375,
+  "_savedAt": 1782915708662
 }
