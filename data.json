@@ -4748,9 +4748,27 @@
       "lucro": 348.05,
       "margem": 96.68324120114448,
       "roi": 0
+    },
+    {
+      "id": 378,
+      "mes": 7,
+      "dv": "01/07/2026",
+      "de": "01/07/2026",
+      "produto": "MOUSE GAMER REDRAGON M916P PRO - ROSA",
+      "plat": "AMAZON",
+      "pedido": "701-8518602-6350663",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 499.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 488.05,
+      "margem": 97.61195223904478,
+      "roi": 0
     }
   ],
   "nfc": 820,
-  "nvnd": 378,
-  "_savedAt": 1782917699402
+  "nvnd": 379,
+  "_savedAt": 1782917728749
 }
