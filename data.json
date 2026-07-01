@@ -2874,6 +2874,18 @@
       "valor": 11.71,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 823,
+      "mes": 7,
+      "data": "01/07/2026",
+      "tipo": "ENTRADA",
+      "cat": "EMPRÉSTIMO RECEBIDO",
+      "desc": "CAPITAL DE GIRO",
+      "conta": "MERCADO PAGO",
+      "valor": 1630,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -4822,7 +4834,7 @@
       "roi": 0
     }
   ],
-  "nfc": 823,
+  "nfc": 824,
   "nvnd": 380,
-  "_savedAt": 1782935425441
+  "_savedAt": 1782939216476
 }
