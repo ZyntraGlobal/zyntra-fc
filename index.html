@@ -347,7 +347,7 @@ var VND=[{"id":1,"mes":5,"dv":"01/05/2026","de":"04/05/2026","produto":"MOUSE GA
 var FRASES=["🔥 A diferença entre quem chega e quem desiste é a consistência.", "⚡ Dados não mentem. Decisões sem dados, sim.", "🚀 Cada pedido é um passo rumo ao próximo nível.", "🎯 Meta sem número é sonho. Com número, é plano.", "🏆 Quem conhece suas margens, controla seu futuro.", "💡 Lucro real começa com gestão real.", "📈 Pequenos ganhos consistentes constroem grandes impérios.", "⚔️ No mercado gamer, quem gerencia melhor, vende mais.", "💎 Controle seus números antes que eles controlem você.", "🌟 Excelência não é acidente. É o resultado de gestão inteligente."];
 var MFULL=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 var TIPOS=['ENTRADA','SAÍDA','ESTOQUE','RETIRADA','IMPOSTOS','INVESTIMENTO','TRANSFERÊNCIA'];
-var CONTAS=['SICOOB','BTG PACTUAL','MERCADO PAGO','CRESOL','NUBANK','BANCO INTER','PIX','ESPÉCIE','OUTRA CONTA'];
+var CONTAS=['SICOOB','BTG PACTUAL','MERCADO PAGO','CRESOL','ITAÚ','C6 EMPRESAS','PIX','ESPÉCIE','OUTRA CONTA'];
 var MPS=['MERCADO LIVRE','AMAZON','SHOPEE','TIKTOK SHOP','SITE ZYNTRA'];
 var CATS_T={
   ENTRADA:['VENDAS','VENDAS MERCADO LIVRE','VENDAS AMAZON','VENDAS SHOPEE','VENDAS MARKETPLACE','RECEBIMENTOS DE CLIENTES','REEMBOLSO DE MARKETPLACE','JUROS/RENDIMENTOS','OUTRAS ENTRADAS','APORTE DE SÓCIO','EMPRÉSTIMO RECEBIDO'],
@@ -627,6 +627,16 @@ function calcDRE(mes){
   };
 }
 
+// Melhor mês da empresa — maior lucro líquido entre meses com atividade
+function melhorMes(){
+  var melhor=0,best=-Infinity;
+  for(var mi=1;mi<=12;mi++){
+    var md=calcDRE(mi);
+    if((md.fat>0||md.desp>0)&&md.lliq>best){best=md.lliq;melhor=mi;}
+  }
+  return melhor;
+}
+
 // Dados de marketplace — dinâmico, TODOS os meses
 function calcMP(){
   var mp={};
@@ -901,10 +911,11 @@ function pDash(){
   h+='<div class="panel"><div class="ph"><div class="pt">Resultado por Mês</div></div><div class="tw"><table>';
   h+='<thead><tr><th>MÊS</th><th class="tr">FATURAMENTO</th><th class="tr">CMV</th><th class="tr">TX+FRETES</th><th class="tr">CUSTOS OP.</th><th class="tr">LUCRO BRUTO</th><th class="tr">DESP.CORP.</th><th class="tr">IMP.CORP.</th><th class="tr">LUCRO LÍQ.</th><th class="tr">MARGEM%</th><th class="tr">PEDIDOS</th></tr></thead><tbody>';
   var totA={fat:0,cmv:0,tx:0,co:0,lbv:0,desp:0,impC:0,lliq:0,n:0};
+  var melhor=melhorMes();
   for(var mi=1;mi<=12;mi++){
     var md=calcDRE(mi); var ok=md.fat>0||md.desp>0;
-    h+='<tr'+(mi===5?' class="hl"':'')+(ok?'':' style="opacity:.25"')+'>';
-    h+='<td class="tnw" style="font-weight:'+(mi===5?700:400)+'">'+MFULL[mi-1]+(mi===5?' ★':'')+'</td>';
+    h+='<tr'+(mi===melhor?' class="hl"':'')+(ok?'':' style="opacity:.25"')+'>';
+    h+='<td class="tnw" style="font-weight:'+(mi===melhor?700:400)+'">'+MFULL[mi-1]+(mi===melhor?' ★':'')+'</td>';
     if(ok){
       h+='<td class="tr gld">'+R(md.fat)+'</td>';
       h+='<td class="tr red">'+R(md.cmv)+'</td>';
@@ -1133,10 +1144,11 @@ function pResumo(){
   h+=card('Total Entradas',R(tf.e),'grn','');h+=card('Total Saídas',R(tf.s+tf.est+tf.ret+tf.imp),'red','');h+=card('Saldo Acumulado',R(tf.saldo),tf.saldo>=0?'grn':'red','');
   h+='</div><div class="panel"><div class="ph"><div class="pt">Detalhamento Mensal</div></div><div class="tw"><table>';
   h+='<thead><tr><th>MÊS</th><th class="tr">ENTRADAS</th><th class="tr">SAÍDAS OP.</th><th class="tr">ESTOQUE</th><th class="tr">RETIRADAS</th><th class="tr">IMPOSTOS</th><th class="tr">INV.</th><th class="tr">SALDO MÊS</th><th class="tr">SALDO ACUM.</th><th>LANÇ.</th></tr></thead><tbody>';
+  var melhor=melhorMes();
   for(var mi=1;mi<=12;mi++){
     var arr=DB.fc.filter(function(l){return l.mes===mi;});var t=totFC(arr);acum+=t.saldo;var ok=arr.length>0;
-    h+='<tr'+(mi===5?' class="hl"':'')+(ok?'':' style="opacity:.25"')+'>';
-    h+='<td class="tnw" style="font-weight:'+(mi===5?700:400)+'">'+MFULL[mi-1]+(mi===5?' ★':'')+'</td>';
+    h+='<tr'+(mi===melhor?' class="hl"':'')+(ok?'':' style="opacity:.25"')+'>';
+    h+='<td class="tnw" style="font-weight:'+(mi===melhor?700:400)+'">'+MFULL[mi-1]+(mi===melhor?' ★':'')+'</td>';
     h+='<td class="tr grn">'+(t.e>0?R(t.e):'—')+'</td><td class="tr red">'+(t.s>0?R(t.s):'—')+'</td><td class="tr amb">'+(t.est>0?R(t.est):'—')+'</td><td class="tr blu">'+(t.ret>0?R(t.ret):'—')+'</td><td class="tr pur">'+(t.imp>0?R(t.imp):'—')+'</td><td class="tr">'+(t.inv>0?R(t.inv):'—')+'</td>';
     h+='<td class="tr '+(t.saldo>=0?'grn':'red')+'" style="font-weight:700">'+(ok?R(t.saldo):'—')+'</td>';
     h+='<td class="tr '+(acum>=0?'grn':'red')+'" style="font-weight:700">'+(ok||acum!==0?R(acum):'—')+'</td>';
@@ -1176,10 +1188,11 @@ function pDRE(){
   h+='<div class="panel"><div class="ph"><div class="pt">DRE por Mês</div></div><div class="tw"><table>';
   h+='<thead><tr><th>MÊS</th><th class="tr">FAT.</th><th class="tr">CMV</th><th class="tr">TX+FR</th><th class="tr">L.BRUTO</th><th class="tr">DESP.</th><th class="tr">IMP.</th><th class="tr">L.LÍQ.</th><th class="tr">MG%</th><th class="tr">PED.</th></tr></thead><tbody>';
   var tA={fat:0,cmv:0,tx:0,lbv:0,desp:0,impC:0,lliq:0,n:0};
+  var melhor=melhorMes();
   for(var mi=1;mi<=12;mi++){
     var md=calcDRE(mi);var ok=md.fat>0||md.desp>0;
-    h+='<tr'+(mi===5?' class="hl"':'')+(ok?'':' style="opacity:.25"')+'>';
-    h+='<td class="tnw" style="font-weight:'+(mi===5?700:400)+'">'+MFULL[mi-1].slice(0,3)+(mi===5?' ★':'')+'</td>';
+    h+='<tr'+(mi===melhor?' class="hl"':'')+(ok?'':' style="opacity:.25"')+'>';
+    h+='<td class="tnw" style="font-weight:'+(mi===melhor?700:400)+'">'+MFULL[mi-1].slice(0,3)+(mi===melhor?' ★':'')+'</td>';
     if(ok){h+='<td class="tr gld">'+R(md.fat)+'</td><td class="tr red">'+R(md.cmv)+'</td><td class="tr amb">'+R(md.tx)+'</td><td class="tr grn">'+R(md.lbv)+'</td><td class="tr red">'+R(md.desp)+'</td><td class="tr pur">'+R(md.impC)+'</td><td class="tr '+(md.lliq>=0?'grn':'red')+'" style="font-weight:700">'+R(md.lliq)+'</td><td class="tr '+(md.mg>=0?'grn':'red')+'">'+md.mg.toFixed(1)+'%</td><td class="tr">'+md.n+'</td>';}
     else{h+='<td colspan="9" style="color:var(--t3)">—</td>';}
     h+='</tr>';
@@ -1297,12 +1310,13 @@ function pSocios(){
   h+='</div><div class="row2">';
   h+='<div class="panel"><div class="ph"><div class="pt">Resumo Mensal</div></div><div class="tw"><table><thead><tr><th>MÊS</th><th class="tr">PRÓ-LABORE</th><th class="tr">DIST. LUCROS</th><th class="tr">RETIRADA SÓCIO</th><th class="tr">TOTAL RETIRADO</th></tr></thead><tbody>';
   var tPL=0,tDL=0,tRS=0;
+  var melhor=melhorMes();
   for(var mi=1;mi<=12;mi++){
     var arr=ret.filter(function(l){return l.mes===mi;});
     var pl=arr.filter(function(l){return l.cat==='PRÓ-LABORE';}).reduce(function(a,l){return a+l.valor;},0);
     var dl=arr.filter(function(l){return l.cat==='DISTRIBUIÇÃO DE LUCROS';}).reduce(function(a,l){return a+l.valor;},0);
     var rs=arr.filter(function(l){return l.cat==='RETIRADA DE SÓCIO';}).reduce(function(a,l){return a+l.valor;},0);
-    h+='<tr'+(mi===5?' class="hl"':'')+(arr.length===0?' style="opacity:.25"':'')+'><td class="tnw">'+MFULL[mi-1]+'</td><td class="tr">'+(pl>0?R(pl):'—')+'</td><td class="tr">'+(dl>0?R(dl):'—')+'</td><td class="tr blu">'+(rs>0?R(rs):'—')+'</td><td class="tr red" style="font-weight:700">'+(pl+dl+rs>0?R(pl+dl+rs):'—')+'</td></tr>';
+    h+='<tr'+(mi===melhor?' class="hl"':'')+(arr.length===0?' style="opacity:.25"':'')+'><td class="tnw">'+MFULL[mi-1]+'</td><td class="tr">'+(pl>0?R(pl):'—')+'</td><td class="tr">'+(dl>0?R(dl):'—')+'</td><td class="tr blu">'+(rs>0?R(rs):'—')+'</td><td class="tr red" style="font-weight:700">'+(pl+dl+rs>0?R(pl+dl+rs):'—')+'</td></tr>';
     tPL+=pl;tDL+=dl;tRS+=rs;
   }
   h+='<tfoot><tr><td>TOTAL ANUAL</td><td class="tr">'+R(tPL)+'</td><td class="tr">'+R(tDL)+'</td><td class="tr blu" style="font-weight:700">'+R(tRS)+'</td><td class="tr red" style="font-weight:700">'+R(totRet)+'</td></tr></tfoot></tbody></table></div></div>';
@@ -1355,8 +1369,8 @@ function pEstoque(){
   h+=card('Compras Estoque (FC)',R(totComp),'amb',comp.length+' lançamentos');h+=card('CMV Vendas',R(cmvV),'red','');h+=card('Saldo Teórico',R(totComp-cmvV),totComp-cmvV>=0?'grn':'red','');h+=card('CMV / Faturamento',(fat>0?(cmvV/fat*100).toFixed(2):0)+'%','','');
   h+='</div><div class="row2">';
   h+='<div class="panel"><div class="ph"><div class="pt">Compras × CMV por Mês</div></div><table><thead><tr><th>MÊS</th><th class="tr">COMPRAS ESTOQUE</th><th class="tr">CMV VENDAS</th><th class="tr">SALDO ACUM.</th></tr></thead><tbody>';
-  var acum=0;
-  for(var mi=1;mi<=12;mi++){var c=comp.filter(function(l){return l.mes===mi;}).reduce(function(a,l){return a+l.valor;},0);var cmv=DB.vnd.filter(function(p){return p.mes===mi;}).reduce(function(a,p){return a+p.cmv;},0);acum+=c-cmv;h+='<tr'+(mi===5?' class="hl"':'')+(c===0&&cmv===0?' style="opacity:.25"':'')+'><td class="tnw">'+MFULL[mi-1]+(mi===5?' ★':'')+'</td><td class="tr amb">'+(c>0?R(c):'—')+'</td><td class="tr red">'+(cmv>0?R(cmv):'—')+'</td><td class="tr '+(acum>=0?'grn':'red')+'" style="font-weight:700">'+R(acum)+'</td></tr>';}
+  var acum=0;var melhor=melhorMes();
+  for(var mi=1;mi<=12;mi++){var c=comp.filter(function(l){return l.mes===mi;}).reduce(function(a,l){return a+l.valor;},0);var cmv=DB.vnd.filter(function(p){return p.mes===mi;}).reduce(function(a,p){return a+p.cmv;},0);acum+=c-cmv;h+='<tr'+(mi===melhor?' class="hl"':'')+(c===0&&cmv===0?' style="opacity:.25"':'')+'><td class="tnw">'+MFULL[mi-1]+(mi===melhor?' ★':'')+'</td><td class="tr amb">'+(c>0?R(c):'—')+'</td><td class="tr red">'+(cmv>0?R(cmv):'—')+'</td><td class="tr '+(acum>=0?'grn':'red')+'" style="font-weight:700">'+R(acum)+'</td></tr>';}
   h+='<tfoot><tr><td>TOTAL ANUAL</td><td class="tr amb" style="font-weight:700">'+R(totComp)+'</td><td class="tr red" style="font-weight:700">'+R(cmvV)+'</td><td class="tr '+(totComp-cmvV>=0?'grn':'red')+'" style="font-weight:700">'+R(totComp-cmvV)+'</td></tr></tfoot></tbody></table></div>';
   h+='<div class="panel"><div class="ph"><div class="pt">Lançamentos de Estoque</div></div><div class="ts tw"><table><thead><tr><th>DATA</th><th>CATEGORIA</th><th>DESCRIÇÃO</th><th>CONTA</th><th class="tr">VALOR</th></tr></thead><tbody>';
   comp.forEach(function(l){h+='<tr><td class="mono tnw" style="font-size:11px">'+l.data+'</td><td style="font-size:11px">'+l.cat+'</td><td style="max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+l.desc+'</td><td><span class="mono">'+l.conta+'</span></td><td class="tr amb" style="font-weight:600">'+R(l.valor)+'</td></tr>';});
