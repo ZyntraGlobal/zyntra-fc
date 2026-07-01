@@ -2826,6 +2826,18 @@
       "valor": 13.3,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 819,
+      "mes": 7,
+      "data": "02/07/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS AMAZON",
+      "desc": "PAGAMENTO",
+      "conta": "OUTRA CONTA",
+      "valor": 296.19,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -4702,7 +4714,7 @@
       "roi": 0
     }
   ],
-  "nfc": 819,
+  "nfc": 820,
   "nvnd": 376,
-  "_savedAt": 1782916572669
+  "_savedAt": 1782916675520
 }
