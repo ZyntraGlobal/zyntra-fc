@@ -2850,6 +2850,18 @@
       "valor": 324.34,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 821,
+      "mes": 7,
+      "data": "01/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "EMPRÉSTIMOS / FINANCIAMENTOS",
+      "desc": "EMPRÉSTIMO",
+      "conta": "MERCADO PAGO",
+      "valor": 99.17,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -4798,7 +4810,7 @@
       "roi": 0
     }
   ],
-  "nfc": 821,
+  "nfc": 822,
   "nvnd": 380,
-  "_savedAt": 1782935387611
+  "_savedAt": 1782935408396
 }
