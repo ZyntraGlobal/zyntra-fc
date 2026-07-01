@@ -2798,7 +2798,7 @@
       "tipo": "ENTRADA",
       "cat": "VENDAS AMAZON",
       "desc": "PAGAMENTOS",
-      "conta": "OUTRA CONTA",
+      "conta": "C6 EMPRESAS",
       "valor": 311.39,
       "resp": "FELIPE",
       "obs": ""
@@ -4788,5 +4788,5 @@
   ],
   "nfc": 820,
   "nvnd": 380,
-  "_savedAt": 1782926982099
+  "_savedAt": 1782926985941
 }
