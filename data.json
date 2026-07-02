@@ -2946,6 +2946,18 @@
       "valor": 134.8,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 829,
+      "mes": 7,
+      "data": "02/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "EMBALAGENS",
+      "desc": "EMBALAGENS",
+      "conta": "ITAÚ",
+      "valor": 34.6,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -4894,7 +4906,7 @@
       "roi": 0
     }
   ],
-  "nfc": 829,
+  "nfc": 830,
   "nvnd": 380,
-  "_savedAt": 1783003060308
+  "_savedAt": 1783012781062
 }
