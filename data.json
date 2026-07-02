@@ -2958,6 +2958,18 @@
       "valor": 34.6,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 830,
+      "mes": 7,
+      "data": "02/07/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS SHOPEE",
+      "desc": "PAGAMENTOS",
+      "conta": "SICOOB",
+      "valor": 575.5,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -4906,7 +4918,7 @@
       "roi": 0
     }
   ],
-  "nfc": 830,
+  "nfc": 831,
   "nvnd": 380,
-  "_savedAt": 1783013186539
+  "_savedAt": 1783032664324
 }
