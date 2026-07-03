@@ -3018,6 +3018,18 @@
       "valor": 896.38,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 835,
+      "mes": 7,
+      "data": "03/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "DESPESAS ADMINISTRATIVAS",
+      "desc": "DESPESAS GERAIS",
+      "conta": "ITAÚ",
+      "valor": 20,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -4948,7 +4960,7 @@
       "roi": 0
     }
   ],
-  "nfc": 835,
+  "nfc": 836,
   "nvnd": 381,
-  "_savedAt": 1783104834076
+  "_savedAt": 1783104864359
 }
