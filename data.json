@@ -3090,6 +3090,18 @@
       "valor": 52,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 841,
+      "mes": 7,
+      "data": "05/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "OUTRAS SAÍDAS",
+      "desc": "TARIFA AMAZON",
+      "conta": "OUTRA CONTA",
+      "valor": 19,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5218,7 +5230,7 @@
       "roi": 0
     }
   ],
-  "nfc": 841,
+  "nfc": 842,
   "nvnd": 392,
-  "_savedAt": 1783270281495
+  "_savedAt": 1783271091708
 }
