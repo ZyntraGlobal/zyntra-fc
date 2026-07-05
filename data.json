@@ -3102,18 +3102,6 @@
       "valor": 19,
       "resp": "FELIPE",
       "obs": ""
-    },
-    {
-      "id": 842,
-      "mes": 7,
-      "data": "05/07/2026",
-      "tipo": "SAÍDA",
-      "cat": "MARKETING E TRÁFEGO PAGO",
-      "desc": "TWTW",
-      "conta": "BTG PACTUAL",
-      "valor": 99,
-      "resp": "FELIPE",
-      "obs": ""
     }
   ],
   "vnd": [
@@ -5244,5 +5232,5 @@
   ],
   "nfc": 843,
   "nvnd": 392,
-  "_savedAt": 1783279355225
+  "_savedAt": 1783279395322
 }
