@@ -43,7 +43,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t);font-siz
 .topbar{height:50px;background:var(--w);border-bottom:1px solid var(--bdr);display:flex;align-items:center;padding:0 20px;gap:12px;flex-shrink:0}
 .topbar-title{font-size:13px;font-weight:600;flex:0 0 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--t2)}
 .chip{background:var(--gl);color:var(--gold);border:1px solid var(--glb);border-radius:20px;padding:3px 10px;font-size:10px;font-weight:700;white-space:nowrap;letter-spacing:.3px}
-.sync-fab{position:fixed;bottom:24px;right:20px;z-index:9999;width:58px;height:58px;border-radius:50%;border:none;background:var(--gold);color:#1a1a1a;font-size:26px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.45);cursor:pointer;transition:transform .15s ease}
+.sync-fab{position:fixed;top:calc(60px + env(safe-area-inset-top));right:14px;z-index:10000;width:48px;height:48px;border-radius:50%;border:none;background:var(--gold);color:#1a1a1a;font-size:21px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.4);cursor:pointer;transition:transform .15s ease}
 .sync-fab:active{transform:scale(.9)}
 .sync-fab.syncing{animation:sf-spin .9s linear infinite}
 @keyframes sf-spin{to{transform:rotate(360deg)}}
