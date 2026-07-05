@@ -3078,6 +3078,18 @@
       "valor": 313.59,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 840,
+      "mes": 7,
+      "data": "05/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETES E LOGÍSTICA",
+      "desc": "FRETE TERCEIRIZADO",
+      "conta": "ITAÚ",
+      "valor": 52,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5188,7 +5200,7 @@
       "roi": 0
     }
   ],
-  "nfc": 840,
+  "nfc": 841,
   "nvnd": 391,
-  "_savedAt": 1783194687981
+  "_savedAt": 1783259862776
 }
