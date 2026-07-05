@@ -2,7 +2,8 @@ name: Notificação diária de ganho líquido
 
 on:
   schedule:
-    - cron: '0 23 * * *'   # 23:00 UTC = 20:00 horário de Brasília
+    # 11h,14h,17h,20h,23h UTC = 8h,11h,14h,17h,20h horário de Brasília (5x/dia)
+    - cron: '0 11,14,17,20,23 * * *'
   workflow_dispatch: {}    # permite disparar manualmente pra testar
 
 jobs:
