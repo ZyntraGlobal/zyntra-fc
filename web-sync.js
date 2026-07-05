@@ -111,6 +111,17 @@
     else if (jaLogado) window.dispatchEvent(new CustomEvent('zyntra-sync'));
   }
 
+  // Exposto para o botão "🔄 Atualizar" da topbar — sincroniza sob demanda, sem esperar o polling
+  window.forcarSincronizarFC = async function() {
+    const mudou = await sincronizar();
+    if (mudou) {
+      const jaLogado = localStorage.getItem('zyntra_sess');
+      if (jaLogado && typeof carregarDados === 'function') carregarDados();
+      else if (jaLogado) window.dispatchEvent(new CustomEvent('zyntra-sync'));
+    }
+    return mudou;
+  };
+
   // Renova subscription push, republica no relay ntfy (instantâneo, mas expira em 12h)
   // e persiste no GitHub (push-sub.json — não expira, é a fonte confiável pro desktop)
   var _lastPushRenew = 0;
