@@ -3102,18 +3102,6 @@
       "valor": 19,
       "resp": "FELIPE",
       "obs": ""
-    },
-    {
-      "id": 845,
-      "mes": 7,
-      "data": "05/07/2026",
-      "tipo": "SAÍDA",
-      "cat": "EMBALAGENS",
-      "desc": "gh7ytg",
-      "conta": "BTG PACTUAL",
-      "valor": 99,
-      "resp": "FELIPE",
-      "obs": ""
     }
   ],
   "vnd": [
@@ -5244,5 +5232,5 @@
   ],
   "nfc": 846,
   "nvnd": 392,
-  "_savedAt": 1783298877781
+  "_savedAt": 1783298902770
 }
