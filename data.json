@@ -3102,18 +3102,6 @@
       "valor": 19,
       "resp": "FELIPE",
       "obs": ""
-    },
-    {
-      "id": 847,
-      "mes": 7,
-      "data": "05/07/2026",
-      "tipo": "ESTOQUE",
-      "cat": "REPOSIÇÃO DE ESTOQUE",
-      "desc": "t4t4t4t",
-      "conta": "SICOOB",
-      "valor": 5454,
-      "resp": "FELIPE",
-      "obs": ""
     }
   ],
   "vnd": [
@@ -5244,5 +5232,5 @@
   ],
   "nfc": 848,
   "nvnd": 392,
-  "_savedAt": 1783300235540
+  "_savedAt": 1783300261135
 }
