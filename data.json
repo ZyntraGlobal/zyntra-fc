@@ -3210,6 +3210,18 @@
       "valor": 590,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 857,
+      "mes": 7,
+      "data": "06/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETE E LOGÍSTICA",
+      "desc": "FRETES",
+      "conta": "C6 EMPRESAS",
+      "valor": 24.7,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5356,7 +5368,7 @@
       "roi": 0
     }
   ],
-  "nfc": 857,
+  "nfc": 858,
   "nvnd": 393,
-  "_savedAt": 1783360930194
+  "_savedAt": 1783360985286
 }
