@@ -7,17 +7,19 @@ const webpush = require('web-push');
 const VAPID_PUBLIC = process.env.VAPID_PUBLIC_KEY;
 const VAPID_PRIVATE = process.env.VAPID_PRIVATE_KEY;
 
+// Valor SEMPRE logo no início da frase — o iOS às vezes corta o título por
+// tamanho, e se o valor estivesse no meio/fim ele podia ser cortado junto.
 const FRASES_POSITIVAS = [
-  '🚀 Hoje você ganhou {valor} líquido! Continue assim',
-  '💰 Fechou o dia com {valor} de lucro líquido. Orgulho!',
-  '🔥 {valor} líquido no bolso hoje. Você está construindo algo grande',
-  '⭐ Dia produtivo: {valor} de ganho líquido',
+  '🚀 {valor} líquido hoje! Continue assim',
+  '💰 {valor} de lucro líquido hoje. Orgulho!',
+  '🔥 {valor} líquido no bolso hoje. Construindo algo grande',
+  '⭐ {valor} de ganho líquido — dia produtivo',
   '🏆 {valor} líquido hoje — a Zyntra está crescendo'
 ];
 const FRASES_NEUTRAS = [
-  '📊 Hoje o resultado líquido foi {valor}. Amanhã é um novo dia',
-  '🎯 Fechamento do dia: {valor} líquido. Bora ajustar a rota',
-  '📉 Resultado líquido de hoje: {valor}. Fique de olho nas despesas'
+  '📊 {valor} de resultado líquido hoje. Amanhã é um novo dia',
+  '🎯 {valor} líquido — fechamento do dia. Bora ajustar a rota',
+  '📉 {valor} de resultado líquido hoje. Fique de olho nas despesas'
 ];
 
 function hojeBRT() {
