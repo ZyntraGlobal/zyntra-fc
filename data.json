@@ -3222,6 +3222,18 @@
       "valor": 24.7,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 858,
+      "mes": 7,
+      "data": "06/07/2026",
+      "tipo": "IMPOSTOS",
+      "cat": "SIMPLES NACIONAL",
+      "desc": "IMPOSTO MÊS 5-26",
+      "conta": "C6 EMPRESAS",
+      "valor": 385.97,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5404,7 +5416,7 @@
       "roi": 0
     }
   ],
-  "nfc": 858,
+  "nfc": 859,
   "nvnd": 395,
-  "_savedAt": 1783363322500
+  "_savedAt": 1783366263402
 }
