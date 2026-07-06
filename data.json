@@ -3138,6 +3138,18 @@
       "valor": 189.84,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 851,
+      "mes": 7,
+      "data": "06/07/2026",
+      "tipo": "ESTOQUE",
+      "cat": "COMPRA DE MERCADORIA",
+      "desc": "COMPRA",
+      "conta": "ESPÉCIE",
+      "valor": 299,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5284,7 +5296,7 @@
       "roi": 0
     }
   ],
-  "nfc": 851,
+  "nfc": 852,
   "nvnd": 393,
-  "_savedAt": 1783340753503
+  "_savedAt": 1783347839302
 }
