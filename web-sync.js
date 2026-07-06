@@ -111,8 +111,12 @@
   const atualizou = await sincronizar();
   if (atualizou) {
     const jaLogado = localStorage.getItem('zyntra_sess');
-    if (jaLogado && typeof carregarDados === 'function') carregarDados();
-    else if (jaLogado) window.dispatchEvent(new CustomEvent('zyntra-sync'));
+    if (jaLogado) {
+      // carregarDados() nunca existiu nesse app — sem reload, os dados ficavam
+      // salvos no localStorage mas a tela renderizada continuava com a versão antiga.
+      if (typeof carregarDados === 'function') carregarDados();
+      else window.location.reload();
+    }
   }
 
   // Exposto para o botão "🔄 Atualizar" da topbar — sincroniza sob demanda, sem esperar o polling

@@ -575,19 +575,18 @@ async function forcarSincronizar(){
     _mostrarNotif('❌ Tempo esgotado','Verifique sua conexão e tente de novo','red');
   },12000);
   try{
-    var mudou=false;
     if(window.zyntraElectron&&window.zyntraElectron.forcarSync){
       await window.zyntraElectron.forcarSync();
     }else if(typeof window.forcarSincronizarFC==='function'){
-      mudou=await window.forcarSincronizarFC();
+      // Sempre recarrega, mesmo se o polling em segundo plano já tiver
+      // absorvido a mudança em silêncio antes deste clique — só um reload
+      // garante que a TELA (não só o armazenamento local) fique em dia.
+      await window.forcarSincronizarFC();
     }
     clearTimeout(trava);
-    if(mudou){
-      _mostrarNotif('✅ Atualizado','Novos dados encontrados — recarregando...','grn');
-      setTimeout(function(){window.location.reload();},900);
-      return;
-    }
-    _mostrarNotif('✅ Atualizado','Você está com os dados mais recentes','grn');
+    _mostrarNotif('✅ Atualizado','Recarregando com os dados mais recentes...','grn');
+    setTimeout(function(){window.location.reload();},700);
+    return;
   }catch(e){
     clearTimeout(trava);
     _mostrarNotif('❌ Erro ao atualizar','Verifique sua conexão','red');
