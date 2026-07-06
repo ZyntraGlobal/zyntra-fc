@@ -3102,6 +3102,18 @@
       "valor": 19,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 846,
+      "mes": 7,
+      "data": "05/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "META ADS / INSTAGRAM ADS",
+      "desc": "rur",
+      "conta": "SICOOB",
+      "valor": 66,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5230,7 +5242,7 @@
       "roi": 0
     }
   ],
-  "nfc": 846,
+  "nfc": 847,
   "nvnd": 392,
-  "_savedAt": 1783298902770
+  "_savedAt": 1783299683385
 }
