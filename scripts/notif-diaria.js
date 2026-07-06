@@ -7,19 +7,18 @@ const webpush = require('web-push');
 const VAPID_PUBLIC = process.env.VAPID_PUBLIC_KEY;
 const VAPID_PRIVATE = process.env.VAPID_PRIVATE_KEY;
 
-// Valor SEMPRE logo no início da frase — o iOS às vezes corta o título por
-// tamanho, e se o valor estivesse no meio/fim ele podia ser cortado junto.
+// Título tem que caber numa linha só (o iOS corta e não expande sozinho na
+// tela de bloqueio) — por isso é bem curto, só o valor. Detalhes (pedidos,
+// lucro, despesas) vão no corpo, que consegue mostrar várias linhas sem cortar.
 const FRASES_POSITIVAS = [
-  '🚀 {valor} líquido hoje! Continue assim',
-  '💰 {valor} de lucro líquido hoje. Orgulho!',
-  '🔥 {valor} líquido no bolso hoje. Construindo algo grande',
-  '⭐ {valor} de ganho líquido — dia produtivo',
-  '🏆 {valor} líquido hoje — a Zyntra está crescendo'
+  '🚀 Líquido hoje: {valor}',
+  '💰 Lucro líquido: {valor}',
+  '🏆 Ganho líquido: {valor}'
 ];
 const FRASES_NEUTRAS = [
-  '📊 {valor} de resultado líquido hoje. Amanhã é um novo dia',
-  '🎯 {valor} líquido — fechamento do dia. Bora ajustar a rota',
-  '📉 {valor} de resultado líquido hoje. Fique de olho nas despesas'
+  '📊 Resultado hoje: {valor}',
+  '🎯 Líquido do dia: {valor}',
+  '📉 Resultado líquido: {valor}'
 ];
 
 function hojeBRT() {
