@@ -568,10 +568,16 @@ async function forcarSincronizar(){
   var el=document.getElementById('btn-sync');
   if(el)el.classList.add('syncing');
   try{
+    var mudou=false;
     if(window.zyntraElectron&&window.zyntraElectron.forcarSync){
       await window.zyntraElectron.forcarSync();
     }else if(typeof window.forcarSincronizarFC==='function'){
-      await window.forcarSincronizarFC();
+      mudou=await window.forcarSincronizarFC();
+    }
+    if(mudou){
+      _mostrarNotif('✅ Atualizado','Novos dados encontrados — recarregando...','grn');
+      setTimeout(function(){window.location.reload();},900);
+      return;
     }
     _mostrarNotif('✅ Atualizado','Você está com os dados mais recentes','grn');
   }catch(e){
