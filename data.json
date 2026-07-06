@@ -3102,6 +3102,18 @@
       "valor": 19,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 844,
+      "mes": 7,
+      "data": "05/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "META ADS / INSTAGRAM ADS",
+      "desc": "tewrtt",
+      "conta": "MERCADO PAGO",
+      "valor": 55,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5230,7 +5242,7 @@
       "roi": 0
     }
   ],
-  "nfc": 844,
+  "nfc": 845,
   "nvnd": 392,
-  "_savedAt": 1783298231369
+  "_savedAt": 1783298255506
 }
