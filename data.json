@@ -5504,9 +5504,27 @@
       "lucro": 1288.05,
       "margem": 99.08153139639535,
       "roi": 0
+    },
+    {
+      "id": 398,
+      "mes": 7,
+      "dv": "06/07/2026",
+      "de": "08/07/2026",
+      "produto": "GABINETE GAMER LIAN LI O11 VISION COMPACT - PRETO",
+      "plat": "SHOPEE",
+      "pedido": "260707258HND1P",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 1299.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 1288.05,
+      "margem": 99.08153139639535,
+      "roi": 0
     }
   ],
   "nfc": 862,
-  "nvnd": 398,
-  "_savedAt": 1783434799860
+  "nvnd": 399,
+  "_savedAt": 1783434840192
 }
