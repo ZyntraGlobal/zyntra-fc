@@ -3246,6 +3246,18 @@
       "valor": 313.59,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 860,
+      "mes": 7,
+      "data": "08/07/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS AMAZON",
+      "desc": "PAGAMENTOS",
+      "conta": "C6 EMPRESAS",
+      "valor": 499.44,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5446,7 +5458,7 @@
       "roi": 0
     }
   ],
-  "nfc": 860,
+  "nfc": 861,
   "nvnd": 396,
-  "_savedAt": 1783378549933
+  "_savedAt": 1783424966544
 }
