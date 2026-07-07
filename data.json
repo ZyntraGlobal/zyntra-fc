@@ -3258,6 +3258,18 @@
       "valor": 499.44,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 861,
+      "mes": 7,
+      "data": "07/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "SERVIÇOS DE TERCEIROS",
+      "desc": "FRETES",
+      "conta": "C6 EMPRESAS",
+      "valor": 600,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5458,7 +5470,7 @@
       "roi": 0
     }
   ],
-  "nfc": 861,
+  "nfc": 862,
   "nvnd": 396,
-  "_savedAt": 1783424966544
+  "_savedAt": 1783427444269
 }
