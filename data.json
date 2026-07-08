@@ -3294,6 +3294,18 @@
       "valor": 154.29,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 864,
+      "mes": 7,
+      "data": "08/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "DESPESAS ADMINISTRATIVAS",
+      "desc": "TAXA PREFEITURA",
+      "conta": "SICOOB",
+      "valor": 244.36,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5566,7 +5578,7 @@
       "roi": 0
     }
   ],
-  "nfc": 864,
+  "nfc": 865,
   "nvnd": 400,
-  "_savedAt": 1783516613532
+  "_savedAt": 1783521386007
 }
