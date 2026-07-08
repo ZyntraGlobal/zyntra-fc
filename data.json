@@ -2684,18 +2684,6 @@
       "obs": ""
     },
     {
-      "id": 807,
-      "mes": 7,
-      "data": "03/07/2026",
-      "tipo": "ENTRADA",
-      "cat": "EMPRÉSTIMO RECEBIDO",
-      "desc": "CAPITAL DE GIRO",
-      "conta": "SICOOB",
-      "valor": 20000,
-      "resp": "FELIPE",
-      "obs": ""
-    },
-    {
       "id": 808,
       "mes": 6,
       "data": "29/06/2026",
@@ -5580,5 +5568,5 @@
   ],
   "nfc": 865,
   "nvnd": 400,
-  "_savedAt": 1783521386007
+  "_savedAt": 1783524418053
 }
