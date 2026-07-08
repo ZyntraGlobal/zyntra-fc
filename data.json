@@ -5584,7 +5584,7 @@
       "de": "09/07/2026",
       "produto": "GABINETE GAMER LIAN 011 VISION COMPACT - PRETO",
       "plat": "SITE ZYNTRA",
-      "pedido": "",
+      "pedido": "5008",
       "qtd": 1,
       "cmv": 590,
       "venda": 1299.99,
@@ -5598,5 +5598,5 @@
   ],
   "nfc": 866,
   "nvnd": 401,
-  "_savedAt": 1783533692502
+  "_savedAt": 1783533775481
 }
