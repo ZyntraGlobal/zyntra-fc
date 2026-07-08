@@ -3294,6 +3294,18 @@
       "valor": 244.36,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 865,
+      "mes": 7,
+      "data": "08/07/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS",
+      "desc": "VENDAS SITE ZYNTRA",
+      "conta": "MERCADO PAGO",
+      "valor": 1235.25,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5566,7 +5578,7 @@
       "roi": 0
     }
   ],
-  "nfc": 865,
+  "nfc": 866,
   "nvnd": 400,
-  "_savedAt": 1783524418053
+  "_savedAt": 1783533570306
 }
