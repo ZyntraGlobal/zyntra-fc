@@ -5576,9 +5576,27 @@
       "lucro": 1288.05,
       "margem": 99.08153139639535,
       "roi": 0
+    },
+    {
+      "id": 400,
+      "mes": 7,
+      "dv": "08/07/2026",
+      "de": "09/07/2026",
+      "produto": "GABINETE GAMER LIAN 011 VISION COMPACT - PRETO",
+      "plat": "SITE ZYNTRA",
+      "pedido": "",
+      "qtd": 1,
+      "cmv": 590,
+      "venda": 1299.99,
+      "taxas": 64.64,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 633.41,
+      "margem": 48.72422095554581,
+      "roi": 107.35762711864407
     }
   ],
   "nfc": 866,
-  "nvnd": 400,
-  "_savedAt": 1783533570306
+  "nvnd": 401,
+  "_savedAt": 1783533692502
 }
