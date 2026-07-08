@@ -3306,6 +3306,18 @@
       "valor": 1235.25,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 866,
+      "mes": 7,
+      "data": "08/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "TAXAS BANCÁRIAS",
+      "desc": "CHEQUE ESPECIAL",
+      "conta": "CRESOL",
+      "valor": 1000,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5596,7 +5608,7 @@
       "roi": 80.32542372881356
     }
   ],
-  "nfc": 866,
+  "nfc": 867,
   "nvnd": 401,
-  "_savedAt": 1783536386900
+  "_savedAt": 1783537774460
 }
