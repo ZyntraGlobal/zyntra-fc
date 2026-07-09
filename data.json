@@ -3342,6 +3342,18 @@
       "valor": 47.9,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 869,
+      "mes": 7,
+      "data": "09/07/2026",
+      "tipo": "ENTRADA",
+      "cat": "EMPRÉSTIMO RECEBIDO",
+      "desc": "CAPITAL DE GIRO",
+      "conta": "CRESOL",
+      "valor": 15000,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5632,7 +5644,7 @@
       "roi": 82.47118644067797
     }
   ],
-  "nfc": 869,
+  "nfc": 870,
   "nvnd": 402,
-  "_savedAt": 1783555341210
+  "_savedAt": 1783600595358
 }
