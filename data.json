@@ -3354,6 +3354,18 @@
       "valor": 15000,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 870,
+      "mes": 7,
+      "data": "09/07/2026",
+      "tipo": "ESTOQUE",
+      "cat": "COMPRA DE MERCADORIA",
+      "desc": "ESTOQUE",
+      "conta": "CRESOL",
+      "valor": 860,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5644,7 +5656,7 @@
       "roi": 82.47118644067797
     }
   ],
-  "nfc": 870,
+  "nfc": 871,
   "nvnd": 402,
-  "_savedAt": 1783600598330
+  "_savedAt": 1783602494818
 }
