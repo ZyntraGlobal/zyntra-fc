@@ -5678,9 +5678,27 @@
       "lucro": 486.58,
       "margem": 32.43888292588617,
       "roi": 82.47118644067797
+    },
+    {
+      "id": 402,
+      "mes": 7,
+      "dv": "08/07/2026",
+      "de": "09/07/2026",
+      "produto": "MOUSE GAMER REDRAGON M724 - ROSA",
+      "plat": "MERCADO LIVRE",
+      "pedido": "2000013848793663",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 209.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 198.05,
+      "margem": 94.31401495309301,
+      "roi": 0
     }
   ],
   "nfc": 873,
-  "nvnd": 402,
-  "_savedAt": 1783607420978
+  "nvnd": 403,
+  "_savedAt": 1783612643071
 }
