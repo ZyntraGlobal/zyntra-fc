@@ -3366,6 +3366,18 @@
       "valor": 860,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 871,
+      "mes": 7,
+      "data": "09/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETE E LOGÍSTICA",
+      "desc": "FRETE",
+      "conta": "ESPÉCIE",
+      "valor": 26,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5656,7 +5668,7 @@
       "roi": 82.47118644067797
     }
   ],
-  "nfc": 871,
+  "nfc": 872,
   "nvnd": 402,
-  "_savedAt": 1783602494818
+  "_savedAt": 1783602518782
 }
