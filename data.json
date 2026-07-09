@@ -5738,9 +5738,27 @@
       "lucro": 348.05,
       "margem": 96.68324120114448,
       "roi": 0
+    },
+    {
+      "id": 410,
+      "mes": 7,
+      "dv": "09/07/2026",
+      "de": "10/07/2026",
+      "produto": "GABINETE GAMER LIAN ATX 3 - PRETO-MADEIRA",
+      "plat": "AMAZON",
+      "pedido": "702-4240535-8248255",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 799.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 788.05,
+      "margem": 98.50748134351679,
+      "roi": 0
     }
   ],
   "nfc": 875,
-  "nvnd": 410,
-  "_savedAt": 1783636078324
+  "nvnd": 411,
+  "_savedAt": 1783636700377
 }
