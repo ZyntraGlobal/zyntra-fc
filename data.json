@@ -3414,6 +3414,18 @@
       "valor": 627.18,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 875,
+      "mes": 7,
+      "data": "10/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "ANTECIPAÇÃO DE RECEBÍVEIS",
+      "desc": "ANTECIPAÇÃO",
+      "conta": "MERCADO PAGO",
+      "valor": 5.61,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5758,7 +5770,7 @@
       "roi": 0
     }
   ],
-  "nfc": 875,
+  "nfc": 876,
   "nvnd": 411,
-  "_savedAt": 1783636700377
+  "_savedAt": 1783684273804
 }
