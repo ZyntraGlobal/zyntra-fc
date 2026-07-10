@@ -3498,6 +3498,18 @@
       "valor": 29.2,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 882,
+      "mes": 7,
+      "data": "10/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "MATERIAL DE ESCRITÓRIO",
+      "desc": "MONITOR",
+      "conta": "ESPÉCIE",
+      "valor": 1310,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5842,7 +5854,7 @@
       "roi": 0
     }
   ],
-  "nfc": 882,
+  "nfc": 883,
   "nvnd": 411,
-  "_savedAt": 1783692931558
+  "_savedAt": 1783694124701
 }
