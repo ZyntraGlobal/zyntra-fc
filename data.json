@@ -3438,6 +3438,18 @@
       "valor": 152.43,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 877,
+      "mes": 7,
+      "data": "10/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "HONORÁRIOS CONTÁBEIS",
+      "desc": "PAGAMENTOS",
+      "conta": "CRESOL",
+      "valor": 600,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5782,7 +5794,7 @@
       "roi": 0
     }
   ],
-  "nfc": 877,
+  "nfc": 878,
   "nvnd": 411,
-  "_savedAt": 1783684336477
+  "_savedAt": 1783687813008
 }
