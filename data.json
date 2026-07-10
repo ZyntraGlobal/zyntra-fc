@@ -3450,6 +3450,18 @@
       "valor": 600,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 878,
+      "mes": 7,
+      "data": "10/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "ALUGUEL E CONDOMÍNIO",
+      "desc": "PAGAMENTO",
+      "conta": "ITAÚ",
+      "valor": 900,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5794,7 +5806,7 @@
       "roi": 0
     }
   ],
-  "nfc": 878,
+  "nfc": 879,
   "nvnd": 411,
-  "_savedAt": 1783687813008
+  "_savedAt": 1783689072038
 }
