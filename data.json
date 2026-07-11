@@ -3564,7 +3564,7 @@
       "mes": 7,
       "data": "10/07/2026",
       "tipo": "SAÍDA",
-      "cat": "DESPESAS ADMINISTRATIVAS",
+      "cat": "MATERIAL DE ESCRITORIO",
       "desc": "MEMORIA RAM NOT ESCRITORIO",
       "conta": "ESPÉCIE",
       "valor": 630.5,
@@ -5988,5 +5988,5 @@
   ],
   "nfc": 888,
   "nvnd": 416,
-  "_savedAt": 1783735574232
+  "_savedAt": 1783735602724
 }
