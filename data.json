@@ -6002,9 +6002,27 @@
       "lucro": 788.05,
       "margem": 98.50748134351679,
       "roi": 0
+    },
+    {
+      "id": 417,
+      "mes": 7,
+      "dv": "09/07/2026",
+      "de": "13/07/2026",
+      "produto": "MOUSEPAD GAMER REDRAGON SUZAKU - PRETO",
+      "plat": "AMAZON",
+      "pedido": "701-6305946-1565015",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 159.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 148.05,
+      "margem": 92.53703356459779,
+      "roi": 0
     }
   ],
   "nfc": 888,
-  "nvnd": 417,
-  "_savedAt": 1783782209791
+  "nvnd": 418,
+  "_savedAt": 1783782263564
 }
