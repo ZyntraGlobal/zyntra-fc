@@ -3582,6 +3582,18 @@
       "valor": 55,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 889,
+      "mes": 7,
+      "data": "11/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "ENERGIA",
+      "desc": "LUZ",
+      "conta": "ITAÚ",
+      "valor": 92.5,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -6106,7 +6118,7 @@
       "roi": 0
     }
   ],
-  "nfc": 889,
+  "nfc": 890,
   "nvnd": 422,
-  "_savedAt": 1783788262661
+  "_savedAt": 1783789614107
 }
