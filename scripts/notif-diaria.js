@@ -90,11 +90,6 @@ async function main() {
   const vendasHoje = vnd.filter(v => v.dv === hoje);
   const lancamentosHoje = fc.filter(l => l.data === hoje);
 
-  if (vendasHoje.length === 0 && lancamentosHoje.length === 0) {
-    console.log('Nenhuma venda ou lançamento hoje — não envia notificação.');
-    return;
-  }
-
   const lucroVendas = vendasHoje.reduce((a, v) => a + (Number(v.lucro) || 0), 0);
   const despesasHoje = lancamentosHoje
     .filter(l => l.tipo === 'SAÍDA OPERACIONAL' || l.tipo === 'IMPOSTOS')
