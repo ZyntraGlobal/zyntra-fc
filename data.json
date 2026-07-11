@@ -3351,7 +3351,7 @@
       "cat": "EMPRÉSTIMO RECEBIDO",
       "desc": "CAPITAL DE GIRO",
       "conta": "CRESOL",
-      "valor": 15000,
+      "valor": 17000,
       "resp": "FELIPE",
       "obs": ""
     },
@@ -5988,5 +5988,5 @@
   ],
   "nfc": 888,
   "nvnd": 416,
-  "_savedAt": 1783735602724
+  "_savedAt": 1783735670593
 }
