@@ -3558,6 +3558,18 @@
       "valor": 1091.5,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 887,
+      "mes": 7,
+      "data": "10/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "DESPESAS ADMINISTRATIVAS",
+      "desc": "MEMORIA RAM NOT ESCRITORIO",
+      "conta": "ESPÉCIE",
+      "valor": 630.5,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -5974,7 +5986,7 @@
       "roi": 120.38800705467372
     }
   ],
-  "nfc": 887,
+  "nfc": 888,
   "nvnd": 416,
-  "_savedAt": 1783721582689
+  "_savedAt": 1783735555811
 }
