@@ -3570,6 +3570,18 @@
       "valor": 630.5,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 888,
+      "mes": 7,
+      "data": "11/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "SOFTWARES E ASSINATURAS",
+      "desc": "ERP BLING",
+      "conta": "CRESOL",
+      "valor": 55,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -6040,7 +6052,7 @@
       "roi": 0
     }
   ],
-  "nfc": 888,
+  "nfc": 889,
   "nvnd": 419,
-  "_savedAt": 1783782298820
+  "_savedAt": 1783782505378
 }
