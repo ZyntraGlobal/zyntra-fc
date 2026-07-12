@@ -3702,6 +3702,18 @@
       "valor": 3000,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 899,
+      "mes": 7,
+      "data": "12/07/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS",
+      "desc": "VENDAS SITE",
+      "conta": "MERCADO PAGO",
+      "valor": 1235.25,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -6244,7 +6256,7 @@
       "roi": 122.12711864406778
     }
   ],
-  "nfc": 899,
+  "nfc": 900,
   "nvnd": 423,
-  "_savedAt": 1783899858172
+  "_savedAt": 1783899891970
 }
