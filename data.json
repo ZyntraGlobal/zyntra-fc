@@ -3690,6 +3690,18 @@
       "valor": 10.52,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 898,
+      "mes": 7,
+      "data": "12/07/2026",
+      "tipo": "RETIRADA",
+      "cat": "PRÓ-LABORE",
+      "desc": "PRO LABORE",
+      "conta": "CRESOL",
+      "valor": 3000,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -6232,7 +6244,7 @@
       "roi": 122.12711864406778
     }
   ],
-  "nfc": 898,
+  "nfc": 899,
   "nvnd": 423,
-  "_savedAt": 1783873738430
+  "_savedAt": 1783873764971
 }
