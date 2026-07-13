@@ -3810,6 +3810,18 @@
       "valor": 11.71,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 908,
+      "mes": 7,
+      "data": "13/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETES E LOGÍSTICA",
+      "desc": "FRETES DO GUIMA",
+      "conta": "CRESOL",
+      "valor": 140,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -6370,7 +6382,7 @@
       "roi": 0
     }
   ],
-  "nfc": 908,
+  "nfc": 909,
   "nvnd": 424,
-  "_savedAt": 1783959999664
+  "_savedAt": 1783967185437
 }
