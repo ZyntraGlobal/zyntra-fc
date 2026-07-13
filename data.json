@@ -3750,6 +3750,18 @@
       "valor": 627.34,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 903,
+      "mes": 7,
+      "data": "13/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "OUTRAS SAÍDAS",
+      "desc": "FATURA MERCADO PAGO",
+      "conta": "MERCADO PAGO",
+      "valor": 99,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -6310,7 +6322,7 @@
       "roi": 0
     }
   ],
-  "nfc": 903,
+  "nfc": 904,
   "nvnd": 424,
-  "_savedAt": 1783947566107
+  "_savedAt": 1783947585526
 }
