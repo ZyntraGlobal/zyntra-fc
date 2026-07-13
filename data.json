@@ -3726,6 +3726,18 @@
       "valor": 313.59,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 901,
+      "mes": 7,
+      "data": "13/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "OUTRAS SAÍDAS",
+      "desc": "FATURA CARTÃO DE CRÉDITO",
+      "conta": "CRESOL",
+      "valor": 3793.12,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -6286,7 +6298,7 @@
       "roi": 0
     }
   ],
-  "nfc": 901,
+  "nfc": 902,
   "nvnd": 424,
-  "_savedAt": 1783944454722
+  "_savedAt": 1783944672695
 }
