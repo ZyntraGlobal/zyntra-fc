@@ -3774,6 +3774,18 @@
       "valor": 26.1,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 905,
+      "mes": 7,
+      "data": "13/07/2026",
+      "tipo": "ENTRADA",
+      "cat": "APORTE DE SÓCIO",
+      "desc": "APORTE",
+      "conta": "ESPÉCIE",
+      "valor": 2000,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -6334,7 +6346,7 @@
       "roi": 0
     }
   ],
-  "nfc": 905,
+  "nfc": 906,
   "nvnd": 424,
-  "_savedAt": 1783947615105
+  "_savedAt": 1783959543611
 }
