@@ -3894,6 +3894,18 @@
       "valor": 99.6,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 915,
+      "mes": 7,
+      "data": "14/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETES E LOGÍSTICA",
+      "desc": "FRETE",
+      "conta": "ITAÚ",
+      "valor": 27.7,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -6598,7 +6610,7 @@
       "roi": 0
     }
   ],
-  "nfc": 915,
+  "nfc": 916,
   "nvnd": 432,
-  "_savedAt": 1784035984723
+  "_savedAt": 1784038130148
 }
