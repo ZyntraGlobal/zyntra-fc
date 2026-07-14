@@ -3846,6 +3846,18 @@
       "valor": 31.12,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 911,
+      "mes": 7,
+      "data": "14/07/2026",
+      "tipo": "ESTOQUE",
+      "cat": "COMPRA DE MERCADORIA",
+      "desc": "COMPRA",
+      "conta": "ITAÚ",
+      "valor": 1162,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -6406,7 +6418,7 @@
       "roi": 0
     }
   ],
-  "nfc": 911,
+  "nfc": 912,
   "nvnd": 424,
-  "_savedAt": 1784029576016
+  "_savedAt": 1784030378356
 }
