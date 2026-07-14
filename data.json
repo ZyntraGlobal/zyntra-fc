@@ -5821,19 +5821,19 @@
       "id": 379,
       "mes": 7,
       "dv": "12/07/2026",
-      "de": "13/07/2026",
+      "de": "14/07/2026",
       "produto": "GABINETE GAMER LIAN LI O11 VISION COMPACT - PRETO",
       "plat": "SITE ZYNTRA",
       "pedido": "5029",
       "qtd": 1,
-      "cmv": 0,
+      "cmv": 580.7,
       "venda": 1299.99,
-      "taxas": 0,
+      "taxas": 192.93,
       "imp": 0,
       "co": 11.94,
-      "lucro": 1288.05,
-      "margem": 99.08153139639535,
-      "roi": 0
+      "lucro": 514.4199999999998,
+      "margem": 39.57107362364325,
+      "roi": 88.58618908214221
     },
     {
       "id": 380,
@@ -6594,5 +6594,5 @@
   ],
   "nfc": 919,
   "nvnd": 432,
-  "_savedAt": 1784056040761
+  "_savedAt": 1784056169317
 }
