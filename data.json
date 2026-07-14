@@ -3870,6 +3870,18 @@
       "valor": 517.53,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 913,
+      "mes": 7,
+      "data": "14/07/2026",
+      "tipo": "ENTRADA",
+      "cat": "APORTE DE SÓCIO",
+      "desc": "APORTE",
+      "conta": "ITAÚ",
+      "valor": 2000,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -6574,7 +6586,7 @@
       "roi": 0
     }
   ],
-  "nfc": 913,
+  "nfc": 914,
   "nvnd": 432,
-  "_savedAt": 1784035101913
+  "_savedAt": 1784035740044
 }
