@@ -90,6 +90,7 @@ async function main() {
   const vendasHoje = vnd.filter(v => v.dv === hoje);
   const lancamentosHoje = fc.filter(l => l.data === hoje);
 
+  const totalVendas = vendasHoje.reduce((a, v) => a + (Number(v.venda) || 0), 0);
   const lucroVendas = vendasHoje.reduce((a, v) => a + (Number(v.lucro) || 0), 0);
   const despesasHoje = lancamentosHoje
     .filter(l => l.tipo === 'SAÍDA OPERACIONAL' || l.tipo === 'IMPOSTOS')
@@ -103,7 +104,7 @@ async function main() {
 
   const qtdPedidos = vendasHoje.length;
   const corpo = qtdPedidos > 0
-    ? qtdPedidos + ' pedido' + (qtdPedidos > 1 ? 's' : '') + ' hoje · lucro vendas ' + fmtMoeda(lucroVendas) + (despesasHoje > 0 ? ' · despesas ' + fmtMoeda(despesasHoje) : '')
+    ? qtdPedidos + ' pedido' + (qtdPedidos > 1 ? 's' : '') + ' · vendido ' + fmtMoeda(totalVendas) + ' · lucro ' + fmtMoeda(lucroVendas) + (despesasHoje > 0 ? ' · despesas ' + fmtMoeda(despesasHoje) : '')
     : 'Sem vendas hoje · despesas ' + fmtMoeda(despesasHoje);
 
   webpush.setVapidDetails('mailto:contato@zyntraglobal.com.br', VAPID_PUBLIC, VAPID_PRIVATE);
