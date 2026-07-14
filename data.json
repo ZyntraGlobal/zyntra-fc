@@ -3882,6 +3882,18 @@
       "valor": 2000,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 914,
+      "mes": 7,
+      "data": "14/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "OUTRAS SAÍDAS",
+      "desc": "TAXAS",
+      "conta": "MERCADO PAGO",
+      "valor": 99.6,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -6586,7 +6598,7 @@
       "roi": 0
     }
   ],
-  "nfc": 914,
+  "nfc": 915,
   "nvnd": 432,
-  "_savedAt": 1784035740044
+  "_savedAt": 1784035984723
 }
