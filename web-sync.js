@@ -133,9 +133,13 @@
   // e persiste no GitHub (push-sub.json — não expira, é a fonte confiável pro desktop)
   var _lastPushRenew = 0;
   var PUSH_SUB_API_FC = 'https://api.github.com/repos/ZyntraGlobal/zyntra-fc/contents/push-sub.json';
-  function _salvarSubGitHubFC(sub) {
+  function _salvarSubGitHubFC(sub, forcar) {
     try {
-      if (localStorage.getItem('fc_push_ep') === sub.endpoint) return; // já publicado, sem mudança
+      var mudou = localStorage.getItem('fc_push_ep') !== sub.endpoint;
+      var ultimaPub = Number(localStorage.getItem('fc_push_pub_ts') || 0);
+      // Sem mudança de endpoint, republica mesmo assim 1x/dia — autocorreção caso o
+      // arquivo remoto tenha ficado dessincronizado sem o endpoint em si ter mudado.
+      if (!mudou && !forcar && (Date.now() - ultimaPub) < 86400000) return;
       var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(sub))));
       var hh = { 'Authorization': 'Bearer ' + GH_TOKEN, 'Accept': 'application/vnd.github+json', 'User-Agent': 'ZyntraFC-PWA', 'Content-Type': 'application/json' };
       fetch(PUSH_SUB_API_FC, { headers: hh, cache: 'no-store' })
@@ -145,8 +149,16 @@
           if (info && info.sha) payload.sha = info.sha;
           return fetch(PUSH_SUB_API_FC, { method: 'PUT', headers: hh, cache: 'no-store', body: JSON.stringify(payload) });
         })
-        .then(function(r) { if (r && r.ok) localStorage.setItem('fc_push_ep', sub.endpoint); })
-        .catch(function(){});
+        .then(function(r) {
+          if (r && r.ok) {
+            localStorage.setItem('fc_push_ep', sub.endpoint);
+            localStorage.setItem('fc_push_pub_ts', String(Date.now()));
+          } else {
+            // Falha no PUT — tenta de novo em 30s em vez de esperar o próximo ciclo de 20min
+            setTimeout(function() { _salvarSubGitHubFC(sub, true); }, 30000);
+          }
+        })
+        .catch(function() { setTimeout(function() { _salvarSubGitHubFC(sub, true); }, 30000); });
     } catch(e) {}
   }
   function _renewPushFC() {
