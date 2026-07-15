@@ -3966,6 +3966,18 @@
       "valor": 1091.5,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 921,
+      "mes": 7,
+      "data": "15/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "OUTRAS SAÍDAS",
+      "desc": "TAXA DE LIXO PARCELA 4",
+      "conta": "CRESOL",
+      "valor": 122.18,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -6670,7 +6682,7 @@
       "roi": 0
     }
   ],
-  "nfc": 921,
+  "nfc": 922,
   "nvnd": 435,
-  "_savedAt": 1784134842842
+  "_savedAt": 1784139871703
 }
