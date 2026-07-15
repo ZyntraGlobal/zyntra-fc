@@ -4002,6 +4002,18 @@
       "valor": 1052.26,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 924,
+      "mes": 7,
+      "data": "15/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETE E LOGÍSTICA",
+      "desc": "FRETE",
+      "conta": "CRESOL",
+      "valor": 20,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -6724,7 +6736,7 @@
       "roi": 76.80445151033388
     }
   ],
-  "nfc": 924,
+  "nfc": 925,
   "nvnd": 436,
-  "_savedAt": 1784140885300
+  "_savedAt": 1784140911077
 }
