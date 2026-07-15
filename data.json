@@ -3978,6 +3978,18 @@
       "valor": 122.18,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 922,
+      "mes": 7,
+      "data": "15/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETES E LOGÍSTICA",
+      "desc": "FRETE AZUL CARGO",
+      "conta": "BTG PACTUAL",
+      "valor": 328.72,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -6682,7 +6694,7 @@
       "roi": 0
     }
   ],
-  "nfc": 922,
+  "nfc": 923,
   "nvnd": 435,
-  "_savedAt": 1784139871703
+  "_savedAt": 1784140255678
 }
