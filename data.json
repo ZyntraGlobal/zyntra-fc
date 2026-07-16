@@ -4074,6 +4074,18 @@
       "valor": 1091.5,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 930,
+      "mes": 7,
+      "data": "16/07/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS AMAZON",
+      "desc": "PAGAMENTOS",
+      "conta": "BTG PACTUAL",
+      "valor": 229.79,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -6758,27 +6770,9 @@
       "lucro": 166.4,
       "margem": 20.80026000325004,
       "roi": 37.060133630289535
-    },
-    {
-      "id": 437,
-      "mes": 7,
-      "dv": "15/07/2026",
-      "de": "16/07/2026",
-      "produto": "GABINETE GAMER LIAN LI O11 VISION COMPACT - PRETO",
-      "plat": "SHOPEE",
-      "pedido": "84733019",
-      "qtd": 1,
-      "cmv": 0,
-      "venda": 1299.99,
-      "taxas": 0,
-      "imp": 0,
-      "co": 11.94,
-      "lucro": 1288.05,
-      "margem": 99.08153139639535,
-      "roi": 0
     }
   ],
-  "nfc": 930,
-  "nvnd": 438,
-  "_savedAt": 1784222291856
+  "nfc": 931,
+  "nvnd": 437,
+  "_savedAt": 1784221646321
 }
