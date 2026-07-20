@@ -4242,6 +4242,18 @@
       "valor": 857.18,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 944,
+      "mes": 7,
+      "data": "20/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETE E LOGÍSTICA",
+      "desc": "FRETE GUIMA",
+      "conta": "CRESOL",
+      "valor": 80,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -7126,7 +7138,7 @@
       "roi": 0
     }
   ],
-  "nfc": 944,
+  "nfc": 945,
   "nvnd": 448,
-  "_savedAt": 1784582341353
+  "_savedAt": 1784584292095
 }
