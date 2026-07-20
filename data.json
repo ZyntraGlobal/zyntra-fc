@@ -4230,6 +4230,18 @@
       "valor": 81.59,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 943,
+      "mes": 7,
+      "data": "20/07/2026",
+      "tipo": "IMPOSTOS",
+      "cat": "SIMPLES NACIONAL",
+      "desc": "SIMPLES",
+      "conta": "CRESOL",
+      "valor": 857.18,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -7114,7 +7126,7 @@
       "roi": 0
     }
   ],
-  "nfc": 943,
+  "nfc": 944,
   "nvnd": 448,
-  "_savedAt": 1784582128188
+  "_savedAt": 1784582341353
 }
