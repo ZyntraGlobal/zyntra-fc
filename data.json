@@ -6886,16 +6886,16 @@
       "de": "16/07/2026",
       "produto": "GABINETE GAMER LIAN LI O11 VISION COMPACT - PRETO",
       "plat": "SHOPEE",
-      "pedido": "84733019",
+      "pedido": "260716S7CE5MTV",
       "qtd": 1,
-      "cmv": 0,
+      "cmv": 620,
       "venda": 1299.99,
-      "taxas": 0,
+      "taxas": 208,
       "imp": 0,
       "co": 11.94,
-      "lucro": 1288.05,
-      "margem": 99.08153139639535,
-      "roi": 0
+      "lucro": 460.05,
+      "margem": 35.38873375949046,
+      "roi": 74.20161290322581
     },
     {
       "id": 438,
@@ -7062,5 +7062,5 @@
   ],
   "nfc": 940,
   "nvnd": 447,
-  "_savedAt": 1784576380483
+  "_savedAt": 1784576485663
 }
