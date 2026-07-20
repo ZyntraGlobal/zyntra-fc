@@ -4182,6 +4182,18 @@
       "valor": 295.89,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 939,
+      "mes": 7,
+      "data": "20/07/2026",
+      "tipo": "ENTRADA",
+      "cat": "REEMBOLSO DE MARKETPLACE",
+      "desc": "REEMBOLSO MELHOR ENVIO",
+      "conta": "BTG PACTUAL",
+      "valor": 279.84,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -7048,7 +7060,7 @@
       "roi": 0
     }
   ],
-  "nfc": 939,
+  "nfc": 940,
   "nvnd": 447,
-  "_savedAt": 1784567021314
+  "_savedAt": 1784567828053
 }
