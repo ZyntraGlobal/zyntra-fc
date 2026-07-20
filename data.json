@@ -4194,6 +4194,18 @@
       "valor": 279.84,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 940,
+      "mes": 7,
+      "data": "20/07/2026",
+      "tipo": "IMPOSTOS",
+      "cat": "INSS SÓCIO ADM",
+      "desc": "PRO LABORE",
+      "conta": "MERCADO PAGO",
+      "valor": 178.31,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -7078,7 +7090,7 @@
       "roi": 0
     }
   ],
-  "nfc": 940,
+  "nfc": 941,
   "nvnd": 448,
-  "_savedAt": 1784578146697
+  "_savedAt": 1784579294833
 }
