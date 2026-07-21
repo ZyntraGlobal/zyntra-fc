@@ -4254,6 +4254,18 @@
       "valor": 80,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 945,
+      "mes": 7,
+      "data": "20/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "INTERNET E TELEFONIA",
+      "desc": "INTERNET",
+      "conta": "CRESOL",
+      "valor": 112.29,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -7138,7 +7150,7 @@
       "roi": 0
     }
   ],
-  "nfc": 945,
+  "nfc": 946,
   "nvnd": 448,
-  "_savedAt": 1784584292095
+  "_savedAt": 1784595377330
 }
