@@ -7184,9 +7184,27 @@
       "lucro": 338.05,
       "margem": 96.58847395639876,
       "roi": 0
+    },
+    {
+      "id": 448,
+      "mes": 7,
+      "dv": "21/07/2026",
+      "de": "21/07/2026",
+      "produto": "GABINETE GAMER LIAN LI - CRHOME",
+      "plat": "SHOPEE",
+      "pedido": "2607219KMHF4NR",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 1399,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 1387.06,
+      "margem": 99.14653323802716,
+      "roi": 0
     }
   ],
   "nfc": 949,
-  "nvnd": 448,
-  "_savedAt": 1784636068847
+  "nvnd": 449,
+  "_savedAt": 1784636309829
 }
