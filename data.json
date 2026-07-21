@@ -4326,6 +4326,18 @@
       "valor": 1091.5,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 951,
+      "mes": 7,
+      "data": "21/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "OUTRAS SAÍDAS",
+      "desc": "FATURA CARTÃO DE CRÉDITO",
+      "conta": "SICOOB",
+      "valor": 2682.73,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -7300,7 +7312,7 @@
       "roi": 0
     }
   ],
-  "nfc": 951,
+  "nfc": 952,
   "nvnd": 453,
-  "_savedAt": 1784663495478
+  "_savedAt": 1784664708456
 }
