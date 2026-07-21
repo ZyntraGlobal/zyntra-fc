@@ -4266,6 +4266,18 @@
       "valor": 112.29,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 946,
+      "mes": 7,
+      "data": "20/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "EMPRÉSTIMOS / FINANCIAMENTOS",
+      "desc": "EMPRÉSTIMO ML",
+      "conta": "CRESOL",
+      "valor": 335.39,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -7150,7 +7162,7 @@
       "roi": 0
     }
   ],
-  "nfc": 946,
+  "nfc": 947,
   "nvnd": 448,
-  "_savedAt": 1784595377330
+  "_savedAt": 1784596572587
 }
