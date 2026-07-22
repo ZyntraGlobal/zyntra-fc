@@ -7329,20 +7329,20 @@
       "dv": "21/07/2026",
       "de": "22/07/2026",
       "produto": "GABINETE GAMER LIAN LI O11 VISION COMPACT - BRANCO",
-      "plat": "TIKTOK SHOP",
+      "plat": "SITE ZYNTRA",
       "pedido": "5047",
       "qtd": 1,
-      "cmv": 0,
+      "cmv": 645,
       "venda": 1299.99,
-      "taxas": 0,
+      "taxas": 140.04,
       "imp": 0,
       "co": 11.94,
-      "lucro": 1288.05,
-      "margem": 99.08153139639535,
-      "roi": 0
+      "lucro": 503.01000000000005,
+      "margem": 38.69337456441973,
+      "roi": 77.98604651162792
     }
   ],
   "nfc": 953,
   "nvnd": 454,
-  "_savedAt": 1784721261059
+  "_savedAt": 1784726838717
 }
