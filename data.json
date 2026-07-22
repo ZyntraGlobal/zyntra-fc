@@ -7412,9 +7412,27 @@
       "lucro": 788.05,
       "margem": 98.50748134351679,
       "roi": 0
+    },
+    {
+      "id": 456,
+      "mes": 7,
+      "dv": "22/07/2026",
+      "de": "23/07/2026",
+      "produto": "MOUSE GAMER REDRAGON M75 - PRETO",
+      "plat": "AMAZON",
+      "pedido": "701-3024743-2176256",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 349.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 338.05,
+      "margem": 96.58847395639876,
+      "roi": 0
     }
   ],
   "nfc": 956,
-  "nvnd": 456,
-  "_savedAt": 1784744261969
+  "nvnd": 457,
+  "_savedAt": 1784744705529
 }
