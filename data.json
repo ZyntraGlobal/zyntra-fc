@@ -4362,6 +4362,18 @@
       "valor": 226.69,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 954,
+      "mes": 7,
+      "data": "22/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "SERVIÇOS DE TERCEIROS",
+      "desc": "REGISTRO DE MARCA",
+      "conta": "CRESOL",
+      "valor": 274.8,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -7390,7 +7402,7 @@
       "roi": 0
     }
   ],
-  "nfc": 954,
+  "nfc": 955,
   "nvnd": 456,
-  "_savedAt": 1784742577190
+  "_savedAt": 1784742804591
 }
