@@ -4494,6 +4494,18 @@
       "valor": 25,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 965,
+      "mes": 7,
+      "data": "24/07/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS SHOPEE",
+      "desc": "PAGAMENTOS",
+      "conta": "CRESOL",
+      "valor": 1091.5,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -7576,7 +7588,7 @@
       "roi": 0
     }
   ],
-  "nfc": 965,
+  "nfc": 966,
   "nvnd": 459,
-  "_savedAt": 1784843077150
+  "_savedAt": 1784895998320
 }
