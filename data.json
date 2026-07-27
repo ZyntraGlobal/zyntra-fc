@@ -7778,9 +7778,27 @@
       "lucro": 198.05,
       "margem": 94.31401495309301,
       "roi": 0
+    },
+    {
+      "id": 467,
+      "mes": 7,
+      "dv": "27/07/2026",
+      "de": "27/07/2026",
+      "produto": "GABINETE GAMER LIAN LI 011 VISION - PRETO",
+      "plat": "AMAZON",
+      "pedido": "702-9738452-3326608",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 1199.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 1188.05,
+      "margem": 99.00499170826423,
+      "roi": 0
     }
   ],
   "nfc": 973,
-  "nvnd": 467,
-  "_savedAt": 1785158688536
+  "nvnd": 468,
+  "_savedAt": 1785158968898
 }
