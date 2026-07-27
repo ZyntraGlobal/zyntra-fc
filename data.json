@@ -4590,6 +4590,18 @@
       "valor": 313.59,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 973,
+      "mes": 7,
+      "data": "27/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "EMBALAGENS",
+      "desc": "ENVELOPE DE SEGURANÇA",
+      "conta": "BTG PACTUAL",
+      "valor": 33.38,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -7816,7 +7828,7 @@
       "roi": 0
     }
   ],
-  "nfc": 973,
+  "nfc": 974,
   "nvnd": 469,
-  "_savedAt": 1785159009220
+  "_savedAt": 1785160966629
 }
