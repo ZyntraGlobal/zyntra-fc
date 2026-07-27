@@ -7724,9 +7724,27 @@
       "lucro": 1738.05,
       "margem": 99.31771038691649,
       "roi": 0
+    },
+    {
+      "id": 464,
+      "mes": 7,
+      "dv": "27/07/2026",
+      "de": "27/07/2026",
+      "produto": "GABINETE GAMER LIAN LI ATX A3 - PRETO",
+      "plat": "SHOPEE",
+      "pedido": "260726PNN9924B",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 699.99,
+      "taxas": 124.49,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 563.56,
+      "margem": 80.50972156745095,
+      "roi": 0
     }
   ],
   "nfc": 973,
-  "nvnd": 464,
-  "_savedAt": 1785157820370
+  "nvnd": 465,
+  "_savedAt": 1785157885115
 }
