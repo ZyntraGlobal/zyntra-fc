@@ -4602,6 +4602,18 @@
       "valor": 33.38,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 974,
+      "mes": 7,
+      "data": "27/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "EMBALAGENS",
+      "desc": "ETIQUETA TÉRMICA",
+      "conta": "BTG PACTUAL",
+      "valor": 33.98,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -7828,7 +7840,7 @@
       "roi": 0
     }
   ],
-  "nfc": 974,
+  "nfc": 975,
   "nvnd": 469,
-  "_savedAt": 1785160966629
+  "_savedAt": 1785161106132
 }
