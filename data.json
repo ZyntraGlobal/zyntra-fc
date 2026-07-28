@@ -7940,9 +7940,27 @@
       "lucro": 1738.05,
       "margem": 99.31771038691649,
       "roi": 0
+    },
+    {
+      "id": 470,
+      "mes": 7,
+      "dv": "28/07/2026",
+      "de": "28/07/2026",
+      "produto": "MEMÓRIA RAM CORSAIR 16GB DDR5 - CMK16GX5M1E6000Z36",
+      "plat": "AMAZON",
+      "pedido": "702-4140193-9009834",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 1749.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 1738.05,
+      "margem": 99.31771038691649,
+      "roi": 0
     }
   ],
   "nfc": 982,
-  "nvnd": 470,
-  "_savedAt": 1785239617933
+  "nvnd": 471,
+  "_savedAt": 1785243435279
 }
