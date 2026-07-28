@@ -4686,6 +4686,18 @@
       "valor": 11.56,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 981,
+      "mes": 7,
+      "data": "28/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETES E LOGÍSTICA",
+      "desc": "FRETE",
+      "conta": "BTG PACTUAL",
+      "valor": 80,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -7930,7 +7942,7 @@
       "roi": 0
     }
   ],
-  "nfc": 981,
+  "nfc": 982,
   "nvnd": 470,
-  "_savedAt": 1785188710004
+  "_savedAt": 1785239617933
 }
