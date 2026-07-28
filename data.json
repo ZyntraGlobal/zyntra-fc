@@ -7958,9 +7958,27 @@
       "lucro": 1738.05,
       "margem": 99.31771038691649,
       "roi": 0
+    },
+    {
+      "id": 471,
+      "mes": 7,
+      "dv": "28/07/2026",
+      "de": "28/07/2026",
+      "produto": "GABINETE GAMER LIAN LI ATX A3 - BRANCO",
+      "plat": "SHOPEE",
+      "pedido": "260727RTCFQ3C4",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 699.99,
+      "taxas": 124,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 564.05,
+      "margem": 80.57972256746524,
+      "roi": 0
     }
   ],
   "nfc": 982,
-  "nvnd": 471,
-  "_savedAt": 1785243435279
+  "nvnd": 472,
+  "_savedAt": 1785243771778
 }
