@@ -4830,6 +4830,18 @@
       "valor": 1218.08,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 993,
+      "mes": 7,
+      "data": "29/07/2026",
+      "tipo": "ESTOQUE",
+      "cat": "COMPRA DE MERCADORIA",
+      "desc": "MOUSEPAD",
+      "conta": "ESPÉCIE",
+      "valor": 40,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -8200,7 +8212,7 @@
       "roi": 93.8931297709924
     }
   ],
-  "nfc": 993,
+  "nfc": 994,
   "nvnd": 477,
-  "_savedAt": 1785336335764
+  "_savedAt": 1785336368072
 }
