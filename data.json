@@ -4866,6 +4866,18 @@
       "valor": 304.31,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 996,
+      "mes": 7,
+      "data": "30/07/2026",
+      "tipo": "ESTOQUE",
+      "cat": "COMPRA DE MERCADORIA",
+      "desc": "COMPRA",
+      "conta": "CRESOL",
+      "valor": 1213.41,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -8290,7 +8302,7 @@
       "roi": 0
     }
   ],
-  "nfc": 996,
+  "nfc": 997,
   "nvnd": 480,
-  "_savedAt": 1785429018856
+  "_savedAt": 1785437232811
 }
