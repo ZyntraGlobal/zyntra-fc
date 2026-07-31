@@ -4950,6 +4950,18 @@
       "valor": 136.59,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1003,
+      "mes": 7,
+      "data": "31/07/2026",
+      "tipo": "ESTOQUE",
+      "cat": "COMPRA DE MERCADORIA",
+      "desc": "COMPRA",
+      "conta": "PIX",
+      "valor": 583,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -8392,7 +8404,7 @@
       "roi": 0
     }
   ],
-  "nfc": 1003,
+  "nfc": 1004,
   "nvnd": 481,
-  "_savedAt": 1785494695540
+  "_savedAt": 1785504942805
 }
