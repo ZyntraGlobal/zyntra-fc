@@ -4926,6 +4926,18 @@
       "valor": 5.78,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1001,
+      "mes": 7,
+      "data": "30/07/2026",
+      "tipo": "SAÍDA",
+      "cat": "EMPRÉSTIMOS / FINANCIAMENTOS",
+      "desc": "PARTE EMPRESTIMO",
+      "conta": "MERCADO PAGO",
+      "valor": 154.36,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -8368,7 +8380,7 @@
       "roi": 0
     }
   ],
-  "nfc": 1001,
+  "nfc": 1002,
   "nvnd": 481,
-  "_savedAt": 1785458774697
+  "_savedAt": 1785458796780
 }
