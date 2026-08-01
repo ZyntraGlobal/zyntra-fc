@@ -4962,6 +4962,18 @@
       "valor": 583,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1004,
+      "mes": 8,
+      "data": "01/08/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS SHOPEE",
+      "desc": "PAGAMENTOS",
+      "conta": "BTG PACTUAL",
+      "valor": 1322.49,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -8404,7 +8416,7 @@
       "roi": 0
     }
   ],
-  "nfc": 1004,
+  "nfc": 1005,
   "nvnd": 481,
-  "_savedAt": 1785504946062
+  "_savedAt": 1785607782939
 }
