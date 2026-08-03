@@ -5022,6 +5022,18 @@
       "valor": 380.38,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1009,
+      "mes": 8,
+      "data": "03/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETES E LOGÍSTICA",
+      "desc": "FRETE GUIMA",
+      "conta": "CRESOL",
+      "valor": 80,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -8464,7 +8476,7 @@
       "roi": 0
     }
   ],
-  "nfc": 1009,
+  "nfc": 1010,
   "nvnd": 481,
-  "_savedAt": 1785718676680
+  "_savedAt": 1785765354001
 }
