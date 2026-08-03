@@ -8690,10 +8690,10 @@
       "lucro": 378.05,
       "margem": 96.93838303546245,
       "roi": 0,
-      "destaque": true
+      "destaque": false
     }
   ],
   "nfc": 1019,
   "nvnd": 487,
-  "_savedAt": 1785787442430
+  "_savedAt": 1785787445616
 }
