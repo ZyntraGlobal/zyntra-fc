@@ -8691,9 +8691,28 @@
       "margem": 61.73748044821662,
       "roi": 175.38607226107226,
       "destaque": false
+    },
+    {
+      "id": 487,
+      "mes": 8,
+      "dv": "03/08/2026",
+      "de": "03/08/2026",
+      "produto": "MEMÓRIA CORSAIR DDR5 16 GB",
+      "plat": "MERCADO LIVRE",
+      "pedido": "2000014275204425",
+      "qtd": 1,
+      "cmv": 1206,
+      "venda": 1999.99,
+      "taxas": 288.35,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 493.7,
+      "margem": 24.685123425617128,
+      "roi": 40.93698175787728,
+      "destaque": false
     }
   ],
   "nfc": 1019,
-  "nvnd": 487,
-  "_savedAt": 1785793046245
+  "nvnd": 488,
+  "_savedAt": 1785793152305
 }
