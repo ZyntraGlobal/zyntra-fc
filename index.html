@@ -627,6 +627,7 @@ async function fsStatusClick(){
 // ── HELPERS ─────────────────────────────────────────────
 function R(v){return 'R$ '+Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
 function N(v){return Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function pfR(v){var n=parseFloat(String(v||'').trim().replace(',','.'));return isNaN(n)?0:n;}
 function pct(v,t){return t>0?(v/t*100).toFixed(2)+'%':'—';}
 
 function totFC(arr){
@@ -1065,12 +1066,12 @@ function modalFC(mes){
   '<div><label>Conta *</label><select id="nl-co"><option value="">Selecione...</option>'+CONTAS.map(function(c){return '<option>'+c+'</option>';}).join('')+'</select></div>'+
   '<div style="grid-column:1/-1"><label>Categoria</label><select id="nl-cat"><option value="">Selecione o tipo primeiro...</option></select></div>'+
   '<div style="grid-column:1/-1"><label>Descrição *</label><input id="nl-ds" placeholder="Detalhe o lançamento..."></div>'+
-  '<div><label>Valor (R$) *</label><input id="nl-v" type="number" step="0.01" min="0.01" placeholder="0,00"></div>'+
+  '<div><label>Valor (R$) *</label><input id="nl-v" type="text" inputmode="decimal" placeholder="0,00"></div>'+
   '<div><label>Responsável</label><input id="nl-r" value="FELIPE"></div>'+
   '<div><label>Observações</label><input id="nl-ob" placeholder="Opcional"></div>'+
   '</div><div id="nl-msg" style="font-size:11px;margin-top:6px;color:var(--red)"></div>',
   function(){
-    var tipo=document.getElementById('nl-t').value,desc=document.getElementById('nl-ds').value.trim(),valor=parseFloat(document.getElementById('nl-v').value)||0,conta=document.getElementById('nl-co').value;
+    var tipo=document.getElementById('nl-t').value,desc=document.getElementById('nl-ds').value.trim(),valor=pfR(document.getElementById('nl-v').value),conta=document.getElementById('nl-co').value;
     if(!tipo||!desc||valor<=0){document.getElementById('nl-msg').textContent='Preencha tipo, descrição e valor.';return;}
     DB.fc.push({id:DB.nfc++,mes:mes,data:document.getElementById('nl-d').value,tipo:tipo,cat:document.getElementById('nl-cat').value||tipo,desc:desc,conta:conta||'SICOOB',valor:valor,resp:document.getElementById('nl-r').value||'FELIPE',obs:document.getElementById('nl-ob').value||''});
     save();badges();fecharM();pFC(mes);
@@ -1091,11 +1092,11 @@ function editFC(id,mes){
   '<div><label>Conta</label><select id="ef-co">'+CONTAS.map(function(c){return '<option'+(c===l.conta?' selected':'')+'>'+c+'</option>';}).join('')+'</select></div>'+
   '<div style="grid-column:1/-1"><label>Categoria</label><input id="ef-cat" value="'+l.cat+'"></div>'+
   '<div style="grid-column:1/-1"><label>Descrição</label><input id="ef-ds" value="'+l.desc+'"></div>'+
-  '<div><label>Valor (R$)</label><input id="ef-v" type="number" step="0.01" value="'+l.valor+'"></div>'+
+  '<div><label>Valor (R$)</label><input id="ef-v" type="text" inputmode="decimal" value="'+N(l.valor)+'"></div>'+
   '<div><label>Responsável</label><input id="ef-r" value="'+(l.resp||'')+'"></div>'+
   '<div><label>Observações</label><input id="ef-ob" value="'+(l.obs||'')+'"></div>'+
   '</div>',
-  function(){l.data=document.getElementById('ef-d').value;l.tipo=document.getElementById('ef-t').value;l.conta=document.getElementById('ef-co').value;l.cat=document.getElementById('ef-cat').value;l.desc=document.getElementById('ef-ds').value;l.valor=parseFloat(document.getElementById('ef-v').value)||0;l.resp=document.getElementById('ef-r').value;l.obs=document.getElementById('ef-ob').value;save();fecharM();pFC(mes);});
+  function(){l.data=document.getElementById('ef-d').value;l.tipo=document.getElementById('ef-t').value;l.conta=document.getElementById('ef-co').value;l.cat=document.getElementById('ef-cat').value;l.desc=document.getElementById('ef-ds').value;l.valor=pfR(document.getElementById('ef-v').value);l.resp=document.getElementById('ef-r').value;l.obs=document.getElementById('ef-ob').value;save();fecharM();pFC(mes);});
 }
 function delFC(id,mes){var l=DB.fc.find(function(x){return x.id===id;});if(!l||!confirm('Excluir "'+l.desc+'" — '+R(l.valor)+'?'))return;DB.fc=DB.fc.filter(function(x){return x.id!==id;});save();badges();pFC(mes);}
 
@@ -1151,11 +1152,11 @@ function modalVND(mes){
   '<div style="grid-column:1/-1"><label>Produto *</label><input id="nv-pr" placeholder="Nome completo do produto"></div>'+
   '<div style="grid-column:1/-1"><label>Nº do Pedido</label><input id="nv-ped" placeholder="Ex: 702-1234567-8901234"></div>'+
   '<div><label>Quantidade (unid.) *</label><input id="nv-qtd" type="number" step="1" min="1" value="1" oninput="calcV()"></div>'+
-  '<div><label>CMV / Custo Produto (R$)</label><input id="nv-cmv" type="number" step="0.01" min="0" value="0" oninput="calcV()"></div>'+
-  '<div><label>Valor de Venda (R$) *</label><input id="nv-v" type="number" step="0.01" min="0.01" value="0" oninput="calcV()"></div>'+
-  '<div><label>Taxas + Fretes (R$)</label><input id="nv-tx" type="number" step="0.01" min="0" value="0" oninput="calcV()"></div>'+
-  '<div><label>Impostos (R$)</label><input id="nv-imp" type="number" step="0.01" min="0" value="0" oninput="calcV()"></div>'+
-  '<div><label>Custos Operacionais (R$)</label><input id="nv-co" type="number" step="0.01" min="0" value="11.94" oninput="calcV()"></div>'+
+  '<div><label>CMV / Custo Produto (R$)</label><input id="nv-cmv" type="text" inputmode="decimal" value="0" oninput="calcV()"></div>'+
+  '<div><label>Valor de Venda (R$) *</label><input id="nv-v" type="text" inputmode="decimal" value="0" oninput="calcV()"></div>'+
+  '<div><label>Taxas + Fretes (R$)</label><input id="nv-tx" type="text" inputmode="decimal" value="0" oninput="calcV()"></div>'+
+  '<div><label>Impostos (R$)</label><input id="nv-imp" type="text" inputmode="decimal" value="0" oninput="calcV()"></div>'+
+  '<div><label>Custos Operacionais (R$)</label><input id="nv-co" type="text" inputmode="decimal" value="11,94" oninput="calcV()"></div>'+
   '</div>'+
   '<div class="calc-box"><div><div class="cl">Lucro Líquido</div><div class="cv" id="cv-luc">R$ 0,00</div></div>'+
   '<div><div class="cl">Margem %</div><div class="cv" id="cv-mg">0,0%</div></div>'+
@@ -1163,17 +1164,17 @@ function modalVND(mes){
   '<div><div class="cl">CMV % Venda</div><div class="cv" id="cv-cmvp">0,0%</div></div></div>'+
   '<div id="nv-msg" style="font-size:11px;color:var(--red);margin-top:4px"></div>',
   function(){
-    var plat=document.getElementById('nv-p').value,prod=document.getElementById('nv-pr').value.trim(),venda=parseFloat(document.getElementById('nv-v').value)||0;
+    var plat=document.getElementById('nv-p').value,prod=document.getElementById('nv-pr').value.trim(),venda=pfR(document.getElementById('nv-v').value);
     if(!plat||!prod||venda<=0){document.getElementById('nv-msg').textContent='Preencha plataforma, produto e valor de venda.';return;}
-    var cmv=parseFloat(document.getElementById('nv-cmv').value)||0,taxas=parseFloat(document.getElementById('nv-tx').value)||0,imp=parseFloat(document.getElementById('nv-imp').value)||0,co=parseFloat(document.getElementById('nv-co').value)||0,lucro=venda-cmv-taxas-imp-co;
+    var cmv=pfR(document.getElementById('nv-cmv').value),taxas=pfR(document.getElementById('nv-tx').value),imp=pfR(document.getElementById('nv-imp').value),co=pfR(document.getElementById('nv-co').value),lucro=venda-cmv-taxas-imp-co;
     var qtd=parseInt(document.getElementById('nv-qtd').value)||1;
     DB.vnd.push({id:DB.nvnd++,mes:mes,dv:document.getElementById('nv-dv').value,de:document.getElementById('nv-de').value,produto:prod,plat:plat,pedido:document.getElementById('nv-ped').value||'',qtd:qtd,cmv:cmv,venda:venda,taxas:taxas,imp:imp,co:co,lucro:lucro,margem:venda>0?lucro/venda*100:0,roi:cmv>0?lucro/cmv*100:0,destaque:false});
     save();badges();fecharM();pVND(mes);
   },true);
 }
-function calcV(){try{var cmv=parseFloat(document.getElementById('nv-cmv').value)||0,v=parseFloat(document.getElementById('nv-v').value)||0,tx=parseFloat(document.getElementById('nv-tx').value)||0,imp=parseFloat(document.getElementById('nv-imp').value)||0,co=parseFloat(document.getElementById('nv-co').value)||0,luc=v-cmv-tx-imp-co,mg=v>0?luc/v*100:0,roi=cmv>0?luc/cmv*100:0,cmvp=v>0?cmv/v*100:0;var el=document.getElementById('cv-luc');el.textContent=R(luc);el.className='cv '+(luc>=0?'grn':'red');var em=document.getElementById('cv-mg');em.textContent=mg.toFixed(1)+'%';em.className='cv '+(mg>=30?'grn':mg>=15?'amb':'red');document.getElementById('cv-roi').textContent=roi.toFixed(0)+'%';document.getElementById('cv-cmvp').textContent=cmvp.toFixed(1)+'%';}catch(e){}}
-function editVND(id,mes){var p=DB.vnd.find(function(x){return x.id===id;});if(!p)return;abrirM('Editar Pedido','<div class="fg f3"><div><label>Data Venda</label><input id="ev-dv" value="'+p.dv+'"></div><div><label>Data Envio</label><input id="ev-de" value="'+p.de+'"></div><div><label>Plataforma</label><select id="ev-p">'+MPS.map(function(m2){return '<option'+(m2===p.plat?' selected':'')+'>'+m2+'</option>';}).join('')+'</select></div><div style="grid-column:1/-1"><label>Produto</label><input id="ev-pr" value="'+p.produto+'"></div><div style="grid-column:1/-1"><label>Nº Pedido</label><input id="ev-ped" value="'+p.pedido+'"></div><div><label>Quantidade (unid.)</label><input id="ev-qtd" type="number" step="1" min="1" value="'+(p.qtd||1)+'"></div><div><label>CMV (R$)</label><input id="ev-cmv" type="number" step="0.01" value="'+p.cmv+'" oninput="calcEV()"></div><div><label>Valor Venda (R$)</label><input id="ev-v" type="number" step="0.01" value="'+p.venda+'" oninput="calcEV()"></div><div><label>Taxas+Fretes (R$)</label><input id="ev-tx" type="number" step="0.01" value="'+p.taxas+'" oninput="calcEV()"></div><div><label>Impostos (R$)</label><input id="ev-imp" type="number" step="0.01" value="'+(p.imp||0)+'" oninput="calcEV()"></div><div><label>Custos Op. (R$)</label><input id="ev-co" type="number" step="0.01" value="'+(p.co||0)+'" oninput="calcEV()"></div><div><label>Lucro Calculado</label><input id="ev-luc" readonly></div></div>',function(){p.dv=document.getElementById('ev-dv').value;p.de=document.getElementById('ev-de').value;p.plat=document.getElementById('ev-p').value;p.produto=document.getElementById('ev-pr').value;p.pedido=document.getElementById('ev-ped').value;p.qtd=parseInt(document.getElementById('ev-qtd').value)||1;p.cmv=parseFloat(document.getElementById('ev-cmv').value)||0;p.venda=parseFloat(document.getElementById('ev-v').value)||0;p.taxas=parseFloat(document.getElementById('ev-tx').value)||0;p.imp=parseFloat(document.getElementById('ev-imp').value)||0;p.co=parseFloat(document.getElementById('ev-co').value)||0;p.lucro=p.venda-p.cmv-p.taxas-p.imp-p.co;p.margem=p.venda>0?p.lucro/p.venda*100:0;p.roi=p.cmv>0?p.lucro/p.cmv*100:0;save();fecharM();pVND(mes);},true);setTimeout(calcEV,50);}
-function calcEV(){try{var cmv=parseFloat(document.getElementById('ev-cmv').value)||0,v=parseFloat(document.getElementById('ev-v').value)||0,tx=parseFloat(document.getElementById('ev-tx').value)||0,imp=parseFloat(document.getElementById('ev-imp').value)||0,co=parseFloat(document.getElementById('ev-co').value)||0,luc=v-cmv-tx-imp-co;var el=document.getElementById('ev-luc');el.value=N(luc);el.style.color=luc>=0?'var(--grn)':'var(--red)';}catch(e){}}
+function calcV(){try{var cmv=pfR(document.getElementById('nv-cmv').value),v=pfR(document.getElementById('nv-v').value),tx=pfR(document.getElementById('nv-tx').value),imp=pfR(document.getElementById('nv-imp').value),co=pfR(document.getElementById('nv-co').value),luc=v-cmv-tx-imp-co,mg=v>0?luc/v*100:0,roi=cmv>0?luc/cmv*100:0,cmvp=v>0?cmv/v*100:0;var el=document.getElementById('cv-luc');el.textContent=R(luc);el.className='cv '+(luc>=0?'grn':'red');var em=document.getElementById('cv-mg');em.textContent=mg.toFixed(1)+'%';em.className='cv '+(mg>=30?'grn':mg>=15?'amb':'red');document.getElementById('cv-roi').textContent=roi.toFixed(0)+'%';document.getElementById('cv-cmvp').textContent=cmvp.toFixed(1)+'%';}catch(e){}}
+function editVND(id,mes){var p=DB.vnd.find(function(x){return x.id===id;});if(!p)return;abrirM('Editar Pedido','<div class="fg f3"><div><label>Data Venda</label><input id="ev-dv" value="'+p.dv+'"></div><div><label>Data Envio</label><input id="ev-de" value="'+p.de+'"></div><div><label>Plataforma</label><select id="ev-p">'+MPS.map(function(m2){return '<option'+(m2===p.plat?' selected':'')+'>'+m2+'</option>';}).join('')+'</select></div><div style="grid-column:1/-1"><label>Produto</label><input id="ev-pr" value="'+p.produto+'"></div><div style="grid-column:1/-1"><label>Nº Pedido</label><input id="ev-ped" value="'+p.pedido+'"></div><div><label>Quantidade (unid.)</label><input id="ev-qtd" type="number" step="1" min="1" value="'+(p.qtd||1)+'"></div><div><label>CMV (R$)</label><input id="ev-cmv" type="text" inputmode="decimal" value="'+N(p.cmv)+'" oninput="calcEV()"></div><div><label>Valor Venda (R$)</label><input id="ev-v" type="text" inputmode="decimal" value="'+N(p.venda)+'" oninput="calcEV()"></div><div><label>Taxas+Fretes (R$)</label><input id="ev-tx" type="text" inputmode="decimal" value="'+N(p.taxas)+'" oninput="calcEV()"></div><div><label>Impostos (R$)</label><input id="ev-imp" type="text" inputmode="decimal" value="'+N(p.imp||0)+'" oninput="calcEV()"></div><div><label>Custos Op. (R$)</label><input id="ev-co" type="text" inputmode="decimal" value="'+N(p.co||0)+'" oninput="calcEV()"></div><div><label>Lucro Calculado</label><input id="ev-luc" readonly></div></div>',function(){p.dv=document.getElementById('ev-dv').value;p.de=document.getElementById('ev-de').value;p.plat=document.getElementById('ev-p').value;p.produto=document.getElementById('ev-pr').value;p.pedido=document.getElementById('ev-ped').value;p.qtd=parseInt(document.getElementById('ev-qtd').value)||1;p.cmv=pfR(document.getElementById('ev-cmv').value);p.venda=pfR(document.getElementById('ev-v').value);p.taxas=pfR(document.getElementById('ev-tx').value);p.imp=pfR(document.getElementById('ev-imp').value);p.co=pfR(document.getElementById('ev-co').value);p.lucro=p.venda-p.cmv-p.taxas-p.imp-p.co;p.margem=p.venda>0?p.lucro/p.venda*100:0;p.roi=p.cmv>0?p.lucro/p.cmv*100:0;save();fecharM();pVND(mes);},true);setTimeout(calcEV,50);}
+function calcEV(){try{var cmv=pfR(document.getElementById('ev-cmv').value),v=pfR(document.getElementById('ev-v').value),tx=pfR(document.getElementById('ev-tx').value),imp=pfR(document.getElementById('ev-imp').value),co=pfR(document.getElementById('ev-co').value),luc=v-cmv-tx-imp-co;var el=document.getElementById('ev-luc');el.value=N(luc);el.style.color=luc>=0?'var(--grn)':'var(--red)';}catch(e){}}
 function delVND(id,mes){var p=DB.vnd.find(function(x){return x.id===id;});if(!p||!confirm('Excluir pedido '+(p.pedido||p.produto)+'?'))return;DB.vnd=DB.vnd.filter(function(x){return x.id!==id;});save();badges();pVND(mes);}
 function toggleDestaqueVND(id,mes){var p=DB.vnd.find(function(x){return x.id===id;});if(!p)return;p.destaque=!p.destaque;save();pVND(mes);}
 
