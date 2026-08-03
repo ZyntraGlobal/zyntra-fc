@@ -8582,9 +8582,27 @@
       "lucro": 768.04,
       "margem": 98.46919151773122,
       "roi": 0
+    },
+    {
+      "id": 485,
+      "mes": 8,
+      "dv": "03/08/2026",
+      "de": "03/08/2026",
+      "produto": "MOUSEPAD GAMER REDRAGON SUZAKU",
+      "plat": "MERCADO LIVRE",
+      "pedido": "2000017725157118",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 129.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 118.05000000000001,
+      "margem": 90.81467805215786,
+      "roi": 0
     }
   ],
   "nfc": 1013,
-  "nvnd": 485,
-  "_savedAt": 1785770284518
+  "nvnd": 486,
+  "_savedAt": 1785775205396
 }
