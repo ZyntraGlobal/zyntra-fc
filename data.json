@@ -4986,6 +4986,18 @@
       "valor": 224.89,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1006,
+      "mes": 8,
+      "data": "02/08/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS MERCADO LIVRE",
+      "desc": "PAGAMENTOS",
+      "conta": "MERCADO PAGO",
+      "valor": 380.38,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -8428,7 +8440,7 @@
       "roi": 0
     }
   ],
-  "nfc": 1006,
+  "nfc": 1007,
   "nvnd": 481,
-  "_savedAt": 1785716443903
+  "_savedAt": 1785718614373
 }
