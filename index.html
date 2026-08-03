@@ -256,11 +256,12 @@ tfoot td{font-weight:700;border-top:1px solid var(--bdr2);border-bottom:none!imp
     xhr.send();
     if(xhr.status===200){
       var remoto=JSON.parse(xhr.responseText);
-      if(remoto&&remoto.fc&&remoto.fc.length>0){
+      if(remoto&&remoto.fc){
         var local=null;
         try{local=JSON.parse(localStorage.getItem('zyntra_v9'));}catch(e){}
-        var nLocal=(local&&local.fc)?local.fc.length:0;
-        if(remoto.fc.length>=nLocal){
+        var tLocal=(local&&local._savedAt)||0;
+        var tRemoto=remoto._savedAt||0;
+        if(tRemoto>=tLocal){
           localStorage.setItem('zyntra_v9',JSON.stringify(remoto));
         }
       }
@@ -384,7 +385,9 @@ function loadDB(){
     var dadosArq = window.zyntraElectron.dadosIniciais;
     var dadosLS  = null;
     try{ var s=localStorage.getItem('zyntra_v9'); if(s) dadosLS=JSON.parse(s); }catch(e){}
-    var melhor = (dadosLS && dadosLS.fc && dadosLS.fc.length > dadosArq.fc.length) ? dadosLS : dadosArq;
+    var tLS=(dadosLS&&dadosLS._savedAt)||0;
+    var tArq=(dadosArq&&dadosArq._savedAt)||0;
+    var melhor = (dadosLS && tLS > tArq) ? dadosLS : dadosArq;
     try{localStorage.setItem('zyntra_v9',JSON.stringify(melhor));}catch(e){}
     return melhor;
   }
@@ -551,7 +554,7 @@ async function _fsInit(){
     if(perm!=='granted'){_fsStatus('❌ Sem permissão','vermelho');return;}
     // Carrega do arquivo e mescla se tiver mais dados
     var dadosArq=await _fsLerArquivo();
-    if(dadosArq&&dadosArq.fc&&dadosArq.fc.length>DB.fc.length){
+    if(dadosArq&&dadosArq.fc&&(dadosArq._savedAt||0)>(DB._savedAt||0)){
       DB=dadosArq;
       try{localStorage.setItem('zyntra_v9',JSON.stringify(DB));}catch(e){}
       badges();
@@ -1121,8 +1124,8 @@ function pVND(mes,busca,filtPlat){
   h+='<div class="ts tw"><table><thead><tr><th>DATA VENDA</th><th>DATA ENVIO</th><th>PRODUTO</th><th>PLATAFORMA</th><th>Nº PEDIDO</th><th class="tc">QTD</th><th class="tr">CMV (R$)</th><th class="tr">VENDA (R$)</th><th class="tr">TAXAS (R$)</th><th class="tr">IMP.(R$)</th><th class="tr">CUSTOS OP.</th><th class="tr">LUCRO LÍQ. (R$)</th><th class="tr">MARGEM%</th><th class="tr">ROI%</th><th></th></tr></thead><tbody>';
   if(lista.length===0){h+='<tr><td colspan="14" class="empty">Nenhum pedido em '+nm+'.</td></tr>';}
   else{lista.forEach(function(p){
-    h+='<tr><td class="mono tnw" style="font-size:11px">'+p.dv+'</td><td class="mono tnw" style="font-size:11px">'+p.de+'</td>';
-    h+='<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500" title="'+p.produto+'">'+p.produto+'</td>';
+    h+='<tr'+(p.destaque?' style="background:rgba(251,191,36,.08)"':'')+'><td class="mono tnw" style="font-size:11px">'+p.dv+'</td><td class="mono tnw" style="font-size:11px">'+p.de+'</td>';
+    h+='<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500" title="'+p.produto+'">'+(p.destaque?'⭐ ':'')+p.produto+'</td>';
     h+='<td><span class="pill '+mpcls(p.plat)+'">'+p.plat+'</span></td>';
     h+='<td><span class="mono" style="font-size:10px">'+p.pedido+'</span></td>';
     h+='<td class="tc" style="font-weight:700;color:var(--gold)">'+(p.qtd||1)+'</td>';
@@ -1132,7 +1135,7 @@ function pVND(mes,busca,filtPlat){
     h+='<td class="tr '+(p.lucro>=0?'grn':'red')+'" style="font-weight:700">'+R(p.lucro)+'</td>';
     h+='<td class="tr '+(p.margem>=30?'grn':p.margem>=15?'amb':'red')+'">'+p.margem.toFixed(2)+'%</td>';
     h+='<td class="tr" style="font-size:11px">'+p.roi.toFixed(0)+'%</td>';
-    h+='<td class="tnw"><button class="btn bsm" onclick="editVND('+p.id+','+mes+')">✏</button> <button class="btn bsm btnd" onclick="delVND('+p.id+','+mes+')">✕</button></td></tr>';
+    h+='<td class="tnw"><button class="btn bsm" onclick="toggleDestaqueVND('+p.id+','+mes+')" title="'+(p.destaque?'Remover destaque':'Destacar — preciso comprar')+'" style="'+(p.destaque?'color:var(--gold)':'')+'">'+(p.destaque?'★':'☆')+'</button> <button class="btn bsm" onclick="editVND('+p.id+','+mes+')">✏</button> <button class="btn bsm btnd" onclick="delVND('+p.id+','+mes+')">✕</button></td></tr>';
   });}
   h+='</tbody><tfoot><tr><td colspan="5" style="font-weight:700">TOTAL ('+lista.length+' pedidos)</td><td class="tc gld" style="font-weight:700">'+t.qtd+' un.</td><td class="tr red">'+R(t.cmv)+'</td><td class="tr gld" style="font-weight:700">'+R(t.fat)+'</td><td class="tr red">'+R(t.tx)+'</td><td class="tr">'+R(impT)+'</td><td class="tr">'+R(coT)+'</td><td class="tr grn" style="font-weight:700">'+R(t.luc)+'</td><td class="tr">'+t.mg.toFixed(2)+'%</td><td class="tr">'+(t.cmv>0?(t.luc/t.cmv*100).toFixed(0):'—')+'%</td><td></td></tr></tfoot></table></div></div>';
   setPage(h);
@@ -1164,7 +1167,7 @@ function modalVND(mes){
     if(!plat||!prod||venda<=0){document.getElementById('nv-msg').textContent='Preencha plataforma, produto e valor de venda.';return;}
     var cmv=parseFloat(document.getElementById('nv-cmv').value)||0,taxas=parseFloat(document.getElementById('nv-tx').value)||0,imp=parseFloat(document.getElementById('nv-imp').value)||0,co=parseFloat(document.getElementById('nv-co').value)||0,lucro=venda-cmv-taxas-imp-co;
     var qtd=parseInt(document.getElementById('nv-qtd').value)||1;
-    DB.vnd.push({id:DB.nvnd++,mes:mes,dv:document.getElementById('nv-dv').value,de:document.getElementById('nv-de').value,produto:prod,plat:plat,pedido:document.getElementById('nv-ped').value||'',qtd:qtd,cmv:cmv,venda:venda,taxas:taxas,imp:imp,co:co,lucro:lucro,margem:venda>0?lucro/venda*100:0,roi:cmv>0?lucro/cmv*100:0});
+    DB.vnd.push({id:DB.nvnd++,mes:mes,dv:document.getElementById('nv-dv').value,de:document.getElementById('nv-de').value,produto:prod,plat:plat,pedido:document.getElementById('nv-ped').value||'',qtd:qtd,cmv:cmv,venda:venda,taxas:taxas,imp:imp,co:co,lucro:lucro,margem:venda>0?lucro/venda*100:0,roi:cmv>0?lucro/cmv*100:0,destaque:false});
     save();badges();fecharM();pVND(mes);
   },true);
 }
@@ -1172,6 +1175,7 @@ function calcV(){try{var cmv=parseFloat(document.getElementById('nv-cmv').value)
 function editVND(id,mes){var p=DB.vnd.find(function(x){return x.id===id;});if(!p)return;abrirM('Editar Pedido','<div class="fg f3"><div><label>Data Venda</label><input id="ev-dv" value="'+p.dv+'"></div><div><label>Data Envio</label><input id="ev-de" value="'+p.de+'"></div><div><label>Plataforma</label><select id="ev-p">'+MPS.map(function(m2){return '<option'+(m2===p.plat?' selected':'')+'>'+m2+'</option>';}).join('')+'</select></div><div style="grid-column:1/-1"><label>Produto</label><input id="ev-pr" value="'+p.produto+'"></div><div style="grid-column:1/-1"><label>Nº Pedido</label><input id="ev-ped" value="'+p.pedido+'"></div><div><label>Quantidade (unid.)</label><input id="ev-qtd" type="number" step="1" min="1" value="'+(p.qtd||1)+'"></div><div><label>CMV (R$)</label><input id="ev-cmv" type="number" step="0.01" value="'+p.cmv+'" oninput="calcEV()"></div><div><label>Valor Venda (R$)</label><input id="ev-v" type="number" step="0.01" value="'+p.venda+'" oninput="calcEV()"></div><div><label>Taxas+Fretes (R$)</label><input id="ev-tx" type="number" step="0.01" value="'+p.taxas+'" oninput="calcEV()"></div><div><label>Impostos (R$)</label><input id="ev-imp" type="number" step="0.01" value="'+(p.imp||0)+'" oninput="calcEV()"></div><div><label>Custos Op. (R$)</label><input id="ev-co" type="number" step="0.01" value="'+(p.co||0)+'" oninput="calcEV()"></div><div><label>Lucro Calculado</label><input id="ev-luc" readonly></div></div>',function(){p.dv=document.getElementById('ev-dv').value;p.de=document.getElementById('ev-de').value;p.plat=document.getElementById('ev-p').value;p.produto=document.getElementById('ev-pr').value;p.pedido=document.getElementById('ev-ped').value;p.qtd=parseInt(document.getElementById('ev-qtd').value)||1;p.cmv=parseFloat(document.getElementById('ev-cmv').value)||0;p.venda=parseFloat(document.getElementById('ev-v').value)||0;p.taxas=parseFloat(document.getElementById('ev-tx').value)||0;p.imp=parseFloat(document.getElementById('ev-imp').value)||0;p.co=parseFloat(document.getElementById('ev-co').value)||0;p.lucro=p.venda-p.cmv-p.taxas-p.imp-p.co;p.margem=p.venda>0?p.lucro/p.venda*100:0;p.roi=p.cmv>0?p.lucro/p.cmv*100:0;save();fecharM();pVND(mes);},true);setTimeout(calcEV,50);}
 function calcEV(){try{var cmv=parseFloat(document.getElementById('ev-cmv').value)||0,v=parseFloat(document.getElementById('ev-v').value)||0,tx=parseFloat(document.getElementById('ev-tx').value)||0,imp=parseFloat(document.getElementById('ev-imp').value)||0,co=parseFloat(document.getElementById('ev-co').value)||0,luc=v-cmv-tx-imp-co;var el=document.getElementById('ev-luc');el.value=N(luc);el.style.color=luc>=0?'var(--grn)':'var(--red)';}catch(e){}}
 function delVND(id,mes){var p=DB.vnd.find(function(x){return x.id===id;});if(!p||!confirm('Excluir pedido '+(p.pedido||p.produto)+'?'))return;DB.vnd=DB.vnd.filter(function(x){return x.id!==id;});save();badges();pVND(mes);}
+function toggleDestaqueVND(id,mes){var p=DB.vnd.find(function(x){return x.id===id;});if(!p)return;p.destaque=!p.destaque;save();pVND(mes);}
 
 // ── RESUMO FC ──────────────────────────────────────────
 function pResumo(){
