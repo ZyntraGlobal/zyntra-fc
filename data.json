@@ -5082,6 +5082,18 @@
       "valor": 1206.45,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1014,
+      "mes": 8,
+      "data": "03/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETE E LOGÍSTICA",
+      "desc": "FRETE",
+      "conta": "ITAÚ",
+      "valor": 29.8,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -8614,7 +8626,7 @@
       "roi": 0
     }
   ],
-  "nfc": 1014,
+  "nfc": 1015,
   "nvnd": 486,
-  "_savedAt": 1785784371561
+  "_savedAt": 1785784419639
 }
