@@ -5130,6 +5130,18 @@
       "valor": 11.71,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1018,
+      "mes": 8,
+      "data": "03/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "EMPRÉSTIMOS / FINANCIAMENTOS",
+      "desc": "EMPRÉSTIMO",
+      "conta": "MERCADO PAGO",
+      "valor": 312.63,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -8662,7 +8674,7 @@
       "roi": 0
     }
   ],
-  "nfc": 1018,
+  "nfc": 1019,
   "nvnd": 486,
-  "_savedAt": 1785784675031
+  "_savedAt": 1785784692620
 }
