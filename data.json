@@ -5094,6 +5094,18 @@
       "valor": 29.8,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1015,
+      "mes": 8,
+      "data": "03/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "DESPESAS ADMINISTRATIVAS",
+      "desc": "RECARGA CELULAR EMPRESA",
+      "conta": "ITAÚ",
+      "valor": 20,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -8626,7 +8638,7 @@
       "roi": 0
     }
   ],
-  "nfc": 1015,
+  "nfc": 1016,
   "nvnd": 486,
-  "_savedAt": 1785784419639
+  "_savedAt": 1785784446927
 }
