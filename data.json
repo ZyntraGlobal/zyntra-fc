@@ -5010,6 +5010,18 @@
       "valor": 13.66,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1008,
+      "mes": 8,
+      "data": "02/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "EMPRÉSTIMOS / FINANCIAMENTOS",
+      "desc": "PAGAMENTO EMPRESTIMO",
+      "conta": "MERCADO PAGO",
+      "valor": 380.38,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -8452,7 +8464,7 @@
       "roi": 0
     }
   ],
-  "nfc": 1008,
+  "nfc": 1009,
   "nvnd": 481,
-  "_savedAt": 1785718649287
+  "_savedAt": 1785718676680
 }
