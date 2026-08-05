@@ -5190,6 +5190,18 @@
       "valor": 351.17,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1023,
+      "mes": 8,
+      "data": "05/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETES E LOGÍSTICA",
+      "desc": "PAGAMENTOS AZUL",
+      "conta": "CRESOL",
+      "valor": 1023.39,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -8779,7 +8791,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1023,
+  "nfc": 1024,
   "nvnd": 489,
-  "_savedAt": 1785926890357
+  "_savedAt": 1785936271837
 }
