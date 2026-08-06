@@ -5274,6 +5274,30 @@
       "valor": 1.176,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1030,
+      "mes": 8,
+      "data": "06/08/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS MERCADO LIVRE",
+      "desc": "PAGAMENTOS",
+      "conta": "MERCADO PAGO",
+      "valor": 1711.64,
+      "resp": "FELIPE",
+      "obs": ""
+    },
+    {
+      "id": 1031,
+      "mes": 8,
+      "data": "06/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "ANTECIPAÇÃO DE RECEBÍVEIS",
+      "desc": "ANTECIPAÇÃO",
+      "conta": "MERCADO PAGO",
+      "valor": 61.79,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -8939,7 +8963,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1030,
+  "nfc": 1032,
   "nvnd": 493,
-  "_savedAt": 1786029384786
+  "_savedAt": 1786031642732
 }
