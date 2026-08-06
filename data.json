@@ -5271,7 +5271,7 @@
       "cat": "VENDAS SHOPEE",
       "desc": "PAGAMENTOS",
       "conta": "CRESOL",
-      "valor": 1.176,
+      "valor": 1176.65,
       "resp": "FELIPE",
       "obs": ""
     },
@@ -8977,5 +8977,5 @@
   ],
   "nfc": 1033,
   "nvnd": 493,
-  "_savedAt": 1786031740746
+  "_savedAt": 1786031972584
 }
