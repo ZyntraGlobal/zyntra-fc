@@ -9145,9 +9145,28 @@
       "margem": 99.40299701498508,
       "roi": 0,
       "destaque": false
+    },
+    {
+      "id": 497,
+      "mes": 8,
+      "dv": "07/08/2026",
+      "de": "10/08/2026",
+      "produto": "FONE GAMER CORSIR VIRTUOSO - PRETO",
+      "plat": "AMAZON",
+      "pedido": "702-4672595-9064266",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 2899.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 2888.0499999999997,
+      "margem": 99.58827444232567,
+      "roi": 0,
+      "destaque": false
     }
   ],
   "nfc": 1041,
-  "nvnd": 497,
-  "_savedAt": 1786119868623
+  "nvnd": 498,
+  "_savedAt": 1786120047013
 }
