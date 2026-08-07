@@ -9035,9 +9035,28 @@
       "margem": 99.40299701498508,
       "roi": 0,
       "destaque": false
+    },
+    {
+      "id": 495,
+      "mes": 8,
+      "dv": "07/08/2026",
+      "de": "07/08/2026",
+      "produto": "MEMÓRIA RAM CORSAIR DDR5 16GB",
+      "plat": "AMAZON",
+      "pedido": "701-0897503-3377027",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 1999.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 1988.05,
+      "margem": 99.40299701498508,
+      "roi": 0,
+      "destaque": false
     }
   ],
   "nfc": 1035,
-  "nvnd": 495,
-  "_savedAt": 1786102663743
+  "nvnd": 496,
+  "_savedAt": 1786103738475
 }
