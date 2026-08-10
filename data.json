@@ -5454,6 +5454,18 @@
       "valor": 1513.74,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1045,
+      "mes": 8,
+      "data": "10/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "ALUGUEL E CONDOMÍNIO",
+      "desc": "ALUGUEL E CONDOMÍNIO",
+      "conta": "ITAÚ",
+      "valor": 900,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -9214,7 +9226,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1045,
+  "nfc": 1046,
   "nvnd": 498,
-  "_savedAt": 1786375278210
+  "_savedAt": 1786386144056
 }
