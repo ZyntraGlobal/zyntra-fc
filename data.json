@@ -9272,9 +9272,28 @@
       "margem": 29.512515560398473,
       "roi": 49.94106457222214,
       "destaque": false
+    },
+    {
+      "id": 498,
+      "mes": 8,
+      "dv": "10/08/2026",
+      "de": "10/08/2026",
+      "produto": "MEMÓRIA RAM CORSAIR DDR 16GB (CMK16GX5M1E6000Z36)",
+      "plat": "SHOPEE",
+      "pedido": "260808RYJ48T37",
+      "qtd": 1,
+      "cmv": 1216,
+      "venda": 2049.99,
+      "taxas": 313,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 509.0499999999998,
+      "margem": 24.83182844794364,
+      "roi": 41.86266447368419,
+      "destaque": false
     }
   ],
   "nfc": 1050,
-  "nvnd": 498,
-  "_savedAt": 1786386388760
+  "nvnd": 499,
+  "_savedAt": 1786387267971
 }
