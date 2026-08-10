@@ -5550,6 +5550,18 @@
       "valor": 1971.76,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1053,
+      "mes": 8,
+      "data": "10/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "MARKETING E TRÁFEGO PAGO",
+      "desc": "MARKETING",
+      "conta": "MERCADO PAGO",
+      "valor": 800,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -9329,7 +9341,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1053,
+  "nfc": 1054,
   "nvnd": 499,
-  "_savedAt": 1786402210063
+  "_savedAt": 1786403544808
 }
