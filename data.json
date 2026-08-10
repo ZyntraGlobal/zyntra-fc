@@ -5475,7 +5475,7 @@
       "cat": "FRETES E LOGÍSTICA",
       "desc": "FRETE",
       "conta": "ITAÚ",
-      "valor": 26.5,
+      "valor": 36.5,
       "resp": "FELIPE",
       "obs": ""
     },
@@ -9276,5 +9276,5 @@
   ],
   "nfc": 1050,
   "nvnd": 498,
-  "_savedAt": 1786386316414
+  "_savedAt": 1786386329803
 }
