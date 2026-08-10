@@ -5538,6 +5538,18 @@
       "valor": 60,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1052,
+      "mes": 8,
+      "data": "10/08/2026",
+      "tipo": "ENTRADA",
+      "cat": "REEMBOLSO DE MARKETPLACE",
+      "desc": "REEMBOLSO MERCADO LIVRE",
+      "conta": "MERCADO PAGO",
+      "valor": 1971.76,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -9317,7 +9329,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1052,
+  "nfc": 1053,
   "nvnd": 499,
-  "_savedAt": 1786388715687
+  "_savedAt": 1786402210063
 }
