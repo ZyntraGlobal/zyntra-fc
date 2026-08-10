@@ -5526,6 +5526,18 @@
       "valor": 600,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1051,
+      "mes": 8,
+      "data": "10/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "SOFTWARES E ASSINATURAS",
+      "desc": "ERP BLING",
+      "conta": "BTG PACTUAL",
+      "valor": 60,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -9305,7 +9317,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1051,
+  "nfc": 1052,
   "nvnd": 499,
-  "_savedAt": 1786388520355
+  "_savedAt": 1786388715687
 }
