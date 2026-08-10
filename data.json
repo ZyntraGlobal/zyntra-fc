@@ -5514,6 +5514,18 @@
       "valor": 10.2,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1050,
+      "mes": 8,
+      "data": "10/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "HONORÁRIOS CONTÁBEIS",
+      "desc": "CONTADOR",
+      "conta": "BTG PACTUAL",
+      "valor": 600,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -9293,7 +9305,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1050,
+  "nfc": 1051,
   "nvnd": 499,
-  "_savedAt": 1786387267971
+  "_savedAt": 1786388520355
 }
