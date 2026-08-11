@@ -5634,6 +5634,18 @@
       "valor": 206.2,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1060,
+      "mes": 8,
+      "data": "11/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "MATERIAL DE ESCRITÓRIO",
+      "desc": "FILTRO DE LINHA",
+      "conta": "ITAÚ",
+      "valor": 18.5,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -9546,7 +9558,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1060,
+  "nfc": 1061,
   "nvnd": 506,
-  "_savedAt": 1786474269403
+  "_savedAt": 1786474287820
 }
