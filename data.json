@@ -9351,9 +9351,28 @@
       "margem": 24.83182844794364,
       "roi": 41.86266447368419,
       "destaque": false
+    },
+    {
+      "id": 499,
+      "mes": 8,
+      "dv": "11/08/2026",
+      "de": "12/08/2026",
+      "produto": "FAN LIAN LI UNI FAN TL LCD 120 - 12TLLCD1W1B BLACK",
+      "plat": "AMAZON",
+      "pedido": "701-5795718-9285829",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 549.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 538.05,
+      "margem": 97.82905143729886,
+      "roi": 0,
+      "destaque": false
     }
   ],
   "nfc": 1055,
-  "nvnd": 499,
-  "_savedAt": 1786457319522
+  "nvnd": 500,
+  "_savedAt": 1786458252308
 }
