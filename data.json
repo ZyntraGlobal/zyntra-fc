@@ -5598,6 +5598,18 @@
       "valor": 3.13,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1057,
+      "mes": 8,
+      "data": "11/08/2026",
+      "tipo": "ESTOQUE",
+      "cat": "ESTOQUE",
+      "desc": "COMPRA",
+      "conta": "ITAÚ",
+      "valor": 200.5,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -9510,7 +9522,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1057,
+  "nfc": 1058,
   "nvnd": 506,
-  "_savedAt": 1786460677032
+  "_savedAt": 1786462719974
 }
