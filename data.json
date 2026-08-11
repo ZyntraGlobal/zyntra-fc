@@ -5670,6 +5670,18 @@
       "valor": 7.2,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1063,
+      "mes": 8,
+      "data": "11/08/2026",
+      "tipo": "ESTOQUE",
+      "cat": "COMPRA DE MERCADORIA",
+      "desc": "COMPRA",
+      "conta": "BTG PACTUAL",
+      "valor": 1524.84,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -9563,7 +9575,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1063,
+  "nfc": 1064,
   "nvnd": 506,
-  "_savedAt": 1786477513841
+  "_savedAt": 1786477623499
 }
