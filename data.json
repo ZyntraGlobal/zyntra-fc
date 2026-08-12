@@ -9666,9 +9666,28 @@
       "margem": 64.08803406695056,
       "roi": 183.54415274463005,
       "destaque": false
+    },
+    {
+      "id": 509,
+      "mes": 8,
+      "dv": "12/08/2026",
+      "de": "12/08/2026",
+      "produto": "MEMÓRIA CORSAIR RS DDR4 3200",
+      "plat": "TIKTOK SHOP",
+      "pedido": "585503033313626020",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 1594.89,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 1582.95,
+      "margem": 99.25135902789533,
+      "roi": 0,
+      "destaque": false
     }
   ],
   "nfc": 1067,
-  "nvnd": 509,
-  "_savedAt": 1786537096695
+  "nvnd": 510,
+  "_savedAt": 1786537816102
 }
