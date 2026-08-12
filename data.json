@@ -9647,9 +9647,28 @@
       "margem": 99.40299701498508,
       "roi": 0,
       "destaque": false
+    },
+    {
+      "id": 508,
+      "mes": 8,
+      "dv": "12/08/2026",
+      "de": "12/08/2026",
+      "produto": "GABINETE GAMER LIAN LI LANCOOL 216 COM FAN - BRANCO",
+      "plat": "AMAZON",
+      "pedido": "701-4583713-5158640",
+      "qtd": 1,
+      "cmv": 419,
+      "venda": 1199.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 769.05,
+      "margem": 64.08803406695056,
+      "roi": 183.54415274463005,
+      "destaque": false
     }
   ],
   "nfc": 1067,
-  "nvnd": 508,
-  "_savedAt": 1786536898613
+  "nvnd": 509,
+  "_savedAt": 1786537096695
 }
