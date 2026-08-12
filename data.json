@@ -5706,6 +5706,18 @@
       "valor": 302.74,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1066,
+      "mes": 8,
+      "data": "12/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "SERVIÇOS DE TERCEIROS",
+      "desc": "TROCA DE TOMADA",
+      "conta": "BTG PACTUAL",
+      "valor": 50,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -9637,7 +9649,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1066,
+  "nfc": 1067,
   "nvnd": 508,
-  "_savedAt": 1786532578112
+  "_savedAt": 1786536898613
 }
