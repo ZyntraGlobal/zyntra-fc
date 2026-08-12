@@ -9757,9 +9757,28 @@
       "margem": 99.25135902789533,
       "roi": 0,
       "destaque": false
+    },
+    {
+      "id": 510,
+      "mes": 8,
+      "dv": "12/08/2026",
+      "de": "12/08/2026",
+      "produto": "MOUSE GAMER CORSAIR HARPOON PRO - PRETO",
+      "plat": "MERCADO LIVRE",
+      "pedido": "2000014484117165",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 389.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 378.05,
+      "margem": 96.93838303546245,
+      "roi": 0,
+      "destaque": false
     }
   ],
   "nfc": 1073,
-  "nvnd": 510,
-  "_savedAt": 1786551966258
+  "nvnd": 511,
+  "_savedAt": 1786558108009
 }
