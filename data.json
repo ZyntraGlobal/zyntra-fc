@@ -9776,9 +9776,28 @@
       "margem": 96.93838303546245,
       "roi": 0,
       "destaque": false
+    },
+    {
+      "id": 511,
+      "mes": 8,
+      "dv": "12/08/2026",
+      "de": "12/08/2026",
+      "produto": "GABINETE GAMER LIAN LI O11 DYNAMIC EVO - PRETO",
+      "plat": "MERCADO LIVRE",
+      "pedido": "2000014496037257",
+      "qtd": 1,
+      "cmv": 827,
+      "venda": 1699.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 861.05,
+      "margem": 50.650297942929065,
+      "roi": 104.1172914147521,
+      "destaque": false
     }
   ],
   "nfc": 1073,
-  "nvnd": 511,
-  "_savedAt": 1786558108009
+  "nvnd": 512,
+  "_savedAt": 1786558145868
 }
