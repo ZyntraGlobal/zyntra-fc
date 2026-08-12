@@ -5778,6 +5778,18 @@
       "valor": 7.7,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1072,
+      "mes": 8,
+      "data": "12/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "OUTRAS SAÍDAS",
+      "desc": "FATURA MERCADO LIVRE",
+      "conta": "MERCADO PAGO",
+      "valor": 99,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -9747,7 +9759,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1072,
+  "nfc": 1073,
   "nvnd": 510,
-  "_savedAt": 1786550004244
+  "_savedAt": 1786551961931
 }
