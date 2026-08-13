@@ -5814,6 +5814,18 @@
       "valor": 19.7,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1075,
+      "mes": 8,
+      "data": "13/08/2026",
+      "tipo": "ESTOQUE",
+      "cat": "COMPRA DE MERCADORIA",
+      "desc": "COMPRA",
+      "conta": "ITAÚ",
+      "valor": 403,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -9840,7 +9852,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1075,
+  "nfc": 1076,
   "nvnd": 513,
-  "_savedAt": 1786576838719
+  "_savedAt": 1786622819669
 }
