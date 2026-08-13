@@ -5850,6 +5850,18 @@
       "valor": 1045.43,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1078,
+      "mes": 8,
+      "data": "13/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "DESPESAS ADMINISTRATIVAS",
+      "desc": "ALIMENTAÇÃO",
+      "conta": "ITAÚ",
+      "valor": 33,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -9895,7 +9907,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1078,
+  "nfc": 1079,
   "nvnd": 516,
-  "_savedAt": 1786641541467
+  "_savedAt": 1786641614304
 }
