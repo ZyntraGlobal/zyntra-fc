@@ -9850,9 +9850,28 @@
       "margem": 96.93838303546245,
       "roi": 0,
       "destaque": false
+    },
+    {
+      "id": 513,
+      "mes": 8,
+      "dv": "13/08/2026",
+      "de": "13/08/2026",
+      "produto": "GABINETE GAMER LIAN LI A3-MATX-WDG WOOD GLASS EDITION – PRETO",
+      "plat": "SHOPEE",
+      "pedido": "26081380SQ96HY",
+      "qtd": 1,
+      "cmv": 403,
+      "venda": 899.99,
+      "taxas": 152,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 333.05,
+      "margem": 37.0059667329637,
+      "roi": 82.64267990074443,
+      "destaque": false
     }
   ],
   "nfc": 1076,
-  "nvnd": 513,
-  "_savedAt": 1786622819669
+  "nvnd": 514,
+  "_savedAt": 1786623896772
 }
