@@ -5946,6 +5946,18 @@
       "valor": 337.54,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1086,
+      "mes": 8,
+      "data": "15/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "OUTRAS SAÍDAS",
+      "desc": "REEMBOLSO MEMÓRIA",
+      "conta": "MERCADO PAGO",
+      "valor": 1749.99,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -9991,7 +10003,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1086,
+  "nfc": 1087,
   "nvnd": 516,
-  "_savedAt": 1786800257414
+  "_savedAt": 1786807329038
 }
