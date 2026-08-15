@@ -5958,6 +5958,18 @@
       "valor": 1749.99,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1087,
+      "mes": 8,
+      "data": "17/08/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS",
+      "desc": "VENDAS SITE ZYNTRA",
+      "conta": "OUTRA CONTA",
+      "valor": 2507.75,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -10079,7 +10091,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1087,
+  "nfc": 1088,
   "nvnd": 520,
-  "_savedAt": 1786810059891
+  "_savedAt": 1786810332483
 }
