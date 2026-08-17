@@ -6066,6 +6066,30 @@
       "valor": 3169.59,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1096,
+      "mes": 8,
+      "data": "17/08/2026",
+      "tipo": "INVESTIMENTO",
+      "cat": "JUROS/RENDIMENTOS",
+      "desc": "CAPITAL SOCIAL",
+      "conta": "SICOOB",
+      "valor": 100,
+      "resp": "FELIPE",
+      "obs": ""
+    },
+    {
+      "id": 1097,
+      "mes": 8,
+      "data": "17/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "INTERNET E TELEFONIA",
+      "desc": "INTERNET",
+      "conta": "OUTRA CONTA",
+      "valor": 109.9,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -10206,7 +10230,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1096,
+  "nfc": 1098,
   "nvnd": 523,
-  "_savedAt": 1786983917843
+  "_savedAt": 1786987053266
 }
