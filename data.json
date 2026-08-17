@@ -10147,9 +10147,28 @@
       "margem": 96.68324120114448,
       "roi": 0,
       "destaque": false
+    },
+    {
+      "id": 520,
+      "mes": 8,
+      "dv": "16/08/2026",
+      "de": "17/08/2026",
+      "produto": "MOUSE GAMER REDRAGON M908 IMPACT - PRETO",
+      "plat": "TIKTOK SHOP",
+      "pedido": "585581527170253875",
+      "qtd": 1,
+      "cmv": 110,
+      "venda": 271.52,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 149.57999999999998,
+      "margem": 55.089864466705954,
+      "roi": 135.98181818181817,
+      "destaque": false
     }
   ],
   "nfc": 1096,
-  "nvnd": 520,
-  "_savedAt": 1786981835460
+  "nvnd": 521,
+  "_savedAt": 1786982114066
 }
