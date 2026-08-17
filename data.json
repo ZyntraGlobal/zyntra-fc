@@ -6018,6 +6018,18 @@
       "valor": 48.74,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1092,
+      "mes": 8,
+      "data": "17/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "OUTRAS SAÍDAS",
+      "desc": "TAXA DE LIXO 5/5",
+      "conta": "ITAÚ",
+      "valor": 122.18,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -10101,7 +10113,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1092,
+  "nfc": 1093,
   "nvnd": 520,
-  "_savedAt": 1786976259862
+  "_savedAt": 1786977312084
 }
