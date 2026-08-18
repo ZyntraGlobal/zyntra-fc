@@ -6090,6 +6090,18 @@
       "valor": 109.9,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1098,
+      "mes": 8,
+      "data": "17/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETES E LOGÍSTICA",
+      "desc": "ETIQUETA AZUL",
+      "conta": "CRESOL",
+      "valor": 47,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -10230,7 +10242,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1098,
+  "nfc": 1099,
   "nvnd": 523,
-  "_savedAt": 1786987053266
+  "_savedAt": 1787016963084
 }
