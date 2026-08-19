@@ -10255,9 +10255,28 @@
       "margem": 97.1570751684564,
       "roi": 0,
       "destaque": false
+    },
+    {
+      "id": 526,
+      "mes": 8,
+      "dv": "19/08/2026",
+      "de": "25/08/2026",
+      "produto": "GABINETE GAMER LIAN LI O11 VISION COMPACT - PRETO",
+      "plat": "AMAZON",
+      "pedido": "701-1100261-7723454",
+      "qtd": 1,
+      "cmv": 810,
+      "venda": 1799.99,
+      "taxas": 96,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 882.05,
+      "margem": 49.00305001694454,
+      "roi": 108.89506172839505,
+      "destaque": false
     }
   ],
   "nfc": 1103,
-  "nvnd": 526,
-  "_savedAt": 1787164433331
+  "nvnd": 527,
+  "_savedAt": 1787166677841
 }
