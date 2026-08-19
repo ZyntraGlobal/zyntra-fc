@@ -6186,6 +6186,18 @@
       "valor": 178.31,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1106,
+      "mes": 8,
+      "data": "19/08/2026",
+      "tipo": "ENTRADA",
+      "cat": "REEMBOLSO DE MARKETPLACE",
+      "desc": "REEMBOLSO",
+      "conta": "MERCADO PAGO",
+      "valor": 429.99,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -10312,7 +10324,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1106,
+  "nfc": 1107,
   "nvnd": 527,
-  "_savedAt": 1787168286993
+  "_savedAt": 1787168418687
 }
