@@ -1037,12 +1037,15 @@ function pFC(mes,busca,filtTipo,filtConta){
   if(_filtAtFC){h+='<span style="background:rgba(201,168,76,.15);color:var(--gold);border:1px solid var(--glb);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700">'+lista.length+' de '+total.length+' lançamentos</span>';}
   if(_filtAtFC){h+='<button class="btn bsm" onclick="pFC('+mes+',\'\',\'\',\'\')" title="Limpar filtros">✕ Limpar</button>';}
   h+='<button class="btn btnp" style="margin-left:auto" onclick="modalFC('+mes+')">+ Novo Lançamento</button></div>';
-  h+='<div class="g4" style="margin-bottom:12px">';
-  h+=card('Total Entradas',R(t.e),'grn','');h+=card('Saídas Operacionais',R(t.s),'red','');h+=card('Compras Estoque',R(t.est),'amb','');h+=card('Saldo do Mês',R(t.saldo),t.saldo>=0?'grn':'red','');
-  h+='</div>';
-  h+='<div class="panel"><div class="ph"><div class="pt">FLUXO DE CAIXA — '+nm.toUpperCase()+' 2026</div><span style="font-size:10px;color:var(--t3)">'+lista.length+' lançamentos · Retiradas: '+R(t.ret)+' · Impostos: '+R(t.imp)+'</span></div>';
-  h+='<div class="ts tw"><table><thead><tr><th>DATA</th><th>TIPO</th><th>CATEGORIA</th><th>DESCRIÇÃO</th><th>CONTA</th><th class="tr">VALOR (R$)</th><th>RESP.</th><th>OBS.</th><th class="tr">SALDO (R$)</th><th></th></tr></thead><tbody>';
-  if(lista.length===0){h+='<tr><td colspan="10" class="empty">Nenhum lançamento em '+nm+'. Clique em + Novo Lançamento.</td></tr>';}
+  var _func=_isFuncionario();
+  if(!_func){
+    h+='<div class="g4" style="margin-bottom:12px">';
+    h+=card('Total Entradas',R(t.e),'grn','');h+=card('Saídas Operacionais',R(t.s),'red','');h+=card('Compras Estoque',R(t.est),'amb','');h+=card('Saldo do Mês',R(t.saldo),t.saldo>=0?'grn':'red','');
+    h+='</div>';
+  }
+  h+='<div class="panel"><div class="ph"><div class="pt">FLUXO DE CAIXA — '+nm.toUpperCase()+' 2026</div>'+(_func?'':'<span style="font-size:10px;color:var(--t3)">'+lista.length+' lançamentos · Retiradas: '+R(t.ret)+' · Impostos: '+R(t.imp)+'</span>')+'</div>';
+  h+='<div class="ts tw"><table><thead><tr><th>DATA</th><th>TIPO</th><th>CATEGORIA</th><th>DESCRIÇÃO</th><th>CONTA</th><th class="tr">VALOR (R$)</th><th>RESP.</th><th>OBS.</th>'+(_func?'':'<th class="tr">SALDO (R$)</th>')+'<th></th></tr></thead><tbody>';
+  if(lista.length===0){h+='<tr><td colspan="'+(_func?9:10)+'" class="empty">Nenhum lançamento em '+nm+'. Clique em + Novo Lançamento.</td></tr>';}
   else{
     lista.forEach(function(l){
       saldo+=l.tipo==='ENTRADA'?l.valor:-l.valor;
@@ -1055,19 +1058,23 @@ function pFC(mes,busca,filtTipo,filtConta){
       h+='<td class="tr tnw" style="font-weight:600;color:'+(l.tipo==='ENTRADA'?'var(--grn)':'var(--red)')+'">'+( l.tipo==='ENTRADA'?'+':'−')+' '+N(l.valor)+'</td>';
       h+='<td style="font-size:11px;color:var(--t2)">'+(l.resp||'')+'</td>';
       h+='<td style="font-size:11px;color:var(--t3);max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(l.obs||'')+'</td>';
-      h+='<td class="tr tnw" style="font-size:11px;font-weight:600;color:'+(sa>=0?'var(--grn)':'var(--red)')+'">'+N(sa)+'</td>';
+      if(!_func)h+='<td class="tr tnw" style="font-size:11px;font-weight:600;color:'+(sa>=0?'var(--grn)':'var(--red)')+'">'+N(sa)+'</td>';
       h+='<td class="tnw"><button class="btn bsm" onclick="editFC('+l.id+','+mes+')">✏</button> <button class="btn bsm btnd" onclick="delFC('+l.id+','+mes+')">✕</button></td></tr>';
     });
   }
-  h+='</tbody><tfoot>';
-  h+='<tr style="background:var(--rdbg)"><td colspan="5">TOTAL DESPESAS OPERACIONAIS</td><td class="tr red">'+R(t.s)+'</td><td colspan="4"></td></tr>';
-  h+='<tr style="background:var(--ambg)"><td colspan="5">TOTAL COMPRAS DE ESTOQUE</td><td class="tr amb">'+R(t.est)+'</td><td colspan="4"></td></tr>';
-  h+='<tr style="background:var(--blubg)"><td colspan="5">TOTAL RETIRADAS</td><td class="tr blu">'+R(t.ret)+'</td><td colspan="4"></td></tr>';
-  h+='<tr><td colspan="5">TOTAL IMPOSTOS</td><td class="tr pur">'+R(t.imp)+'</td><td colspan="4"></td></tr>';
-  h+='<tr style="background:var(--s3)"><td colspan="5">TOTAL SAÍDAS DE CAIXA</td><td class="tr" style="font-weight:700">'+R(t.s+t.est+t.ret+t.imp)+'</td><td colspan="4"></td></tr>';
-  h+='<tr style="background:var(--gnbg)"><td colspan="5">TOTAL ENTRADAS</td><td class="tr grn" style="font-weight:700">'+R(t.e)+'</td><td colspan="4"></td></tr>';
-  h+='<tr style="background:'+(t.saldo>=0?'var(--gnbg)':'var(--rdbg)')+'"><td colspan="5" style="font-weight:700">SALDO DO MÊS</td><td class="tr '+(t.saldo>=0?'grn':'red')+'" style="font-weight:700;font-size:13px">'+R(t.saldo)+'</td><td colspan="4"></td></tr>';
-  h+='</tfoot></table></div></div>';
+  if(_func){
+    h+='</tbody></table></div></div>';
+  } else {
+    h+='</tbody><tfoot>';
+    h+='<tr style="background:var(--rdbg)"><td colspan="5">TOTAL DESPESAS OPERACIONAIS</td><td class="tr red">'+R(t.s)+'</td><td colspan="4"></td></tr>';
+    h+='<tr style="background:var(--ambg)"><td colspan="5">TOTAL COMPRAS DE ESTOQUE</td><td class="tr amb">'+R(t.est)+'</td><td colspan="4"></td></tr>';
+    h+='<tr style="background:var(--blubg)"><td colspan="5">TOTAL RETIRADAS</td><td class="tr blu">'+R(t.ret)+'</td><td colspan="4"></td></tr>';
+    h+='<tr><td colspan="5">TOTAL IMPOSTOS</td><td class="tr pur">'+R(t.imp)+'</td><td colspan="4"></td></tr>';
+    h+='<tr style="background:var(--s3)"><td colspan="5">TOTAL SAÍDAS DE CAIXA</td><td class="tr" style="font-weight:700">'+R(t.s+t.est+t.ret+t.imp)+'</td><td colspan="4"></td></tr>';
+    h+='<tr style="background:var(--gnbg)"><td colspan="5">TOTAL ENTRADAS</td><td class="tr grn" style="font-weight:700">'+R(t.e)+'</td><td colspan="4"></td></tr>';
+    h+='<tr style="background:'+(t.saldo>=0?'var(--gnbg)':'var(--rdbg)')+'"><td colspan="5" style="font-weight:700">SALDO DO MÊS</td><td class="tr '+(t.saldo>=0?'grn':'red')+'" style="font-weight:700;font-size:13px">'+R(t.saldo)+'</td><td colspan="4"></td></tr>';
+    h+='</tfoot></table></div></div>';
+  }
   setPage(h);
 }
 
@@ -1140,28 +1147,38 @@ function pVND(mes,busca,filtPlat,filtPend){
   if(filtAtivo){h+='<span style="background:rgba(201,168,76,.15);color:var(--gold);border:1px solid var(--glb);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700">'+lista.length+' de '+total.length+' pedidos</span>';}
   if(filtAtivo){h+='<button class="btn bsm" onclick="pVND('+mes+',\'\',\'\',false)" title="Limpar filtros">✕ Limpar</button>';}
   h+='<button class="btn btnp" style="margin-left:auto" onclick="modalVND('+mes+')">+ Novo Pedido</button></div>';
-  h+='<div class="g5" style="margin-bottom:12px">';
-  h+=card('Pedidos',''+t.n,'',''+t.qtd+' unid. vendidas');h+=card('Faturamento',R(t.fat),'gld','');h+=card('CMV Total',R(t.cmv),'red','');h+=card('Lucro Líquido',R(t.luc),'grn','Já descontado CMV + taxas + custos');h+=card('Margem Média',t.mg.toFixed(1)+'%',t.mg>=30?'grn':t.mg>=15?'amb':'red','');
-  h+='</div>';
-  h+='<div class="panel"><div class="ph"><div class="pt">VENDAS — '+nm.toUpperCase()+' 2026</div><span style="font-size:10px;color:var(--t3)">Taxas: '+R(t.tx)+' · Custos op.: '+R(coT)+' · Impostos: '+R(impT)+'</span></div>';
-  h+='<div class="ts tw"><table><thead><tr><th>DATA VENDA</th><th>DATA ENVIO</th><th>PRODUTO</th><th>PLATAFORMA</th><th>Nº PEDIDO</th><th class="tc">QTD</th><th class="tr">CMV (R$)</th><th class="tr">VENDA (R$)</th><th class="tr">TAXAS (R$)</th><th class="tr">IMP.(R$)</th><th class="tr">CUSTOS OP.</th><th class="tr">LUCRO LÍQ. (R$)</th><th class="tr">MARGEM%</th><th class="tr">ROI%</th><th></th></tr></thead><tbody>';
-  if(lista.length===0){h+='<tr><td colspan="14" class="empty">Nenhum pedido em '+nm+'.</td></tr>';}
+  var _func=_isFuncionario();
+  if(!_func){
+    h+='<div class="g5" style="margin-bottom:12px">';
+    h+=card('Pedidos',''+t.n,'',''+t.qtd+' unid. vendidas');h+=card('Faturamento',R(t.fat),'gld','');h+=card('CMV Total',R(t.cmv),'red','');h+=card('Lucro Líquido',R(t.luc),'grn','Já descontado CMV + taxas + custos');h+=card('Margem Média',t.mg.toFixed(1)+'%',t.mg>=30?'grn':t.mg>=15?'amb':'red','');
+    h+='</div>';
+  }
+  h+='<div class="panel"><div class="ph"><div class="pt">VENDAS — '+nm.toUpperCase()+' 2026</div>'+(_func?'':'<span style="font-size:10px;color:var(--t3)">Taxas: '+R(t.tx)+' · Custos op.: '+R(coT)+' · Impostos: '+R(impT)+'</span>')+'</div>';
+  h+='<div class="ts tw"><table><thead><tr><th>DATA VENDA</th><th>DATA ENVIO</th><th>PRODUTO</th><th>PLATAFORMA</th><th>Nº PEDIDO</th><th class="tc">QTD</th><th class="tr">VENDA (R$)</th>'+(_func?'':'<th class="tr">CMV (R$)</th><th class="tr">TAXAS (R$)</th><th class="tr">IMP.(R$)</th><th class="tr">CUSTOS OP.</th><th class="tr">LUCRO LÍQ. (R$)</th><th class="tr">MARGEM%</th><th class="tr">ROI%</th>')+'<th></th></tr></thead><tbody>';
+  if(lista.length===0){h+='<tr><td colspan="'+(_func?8:14)+'" class="empty">Nenhum pedido em '+nm+'.</td></tr>';}
   else{lista.forEach(function(p){
     var pend=_pedidoPendente(p);
-    h+='<tr'+(p.destaque||pend?' style="background:'+(pend?'var(--ambg)':'rgba(251,191,36,.08)')+'"':'')+'><td class="mono tnw" style="font-size:11px">'+p.dv+'</td><td class="mono tnw" style="font-size:11px">'+p.de+'</td>';
-    h+='<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500" title="'+p.produto+(pend?' — dados pendentes (CMV e/ou taxas)':'')+'">'+(p.destaque?'⭐ ':'')+(pend?'<span class="pill" style="background:var(--ambg);color:var(--amb);border:1px solid rgba(251,191,36,.35);margin-right:5px" title="Faltam dados: CMV e/ou taxas">⚠ Pendente</span>':'')+p.produto+'</td>';
+    h+='<tr'+(p.destaque||(!_func&&pend)?' style="background:'+(pend&&!_func?'var(--ambg)':'rgba(251,191,36,.08)')+'"':'')+'><td class="mono tnw" style="font-size:11px">'+p.dv+'</td><td class="mono tnw" style="font-size:11px">'+p.de+'</td>';
+    h+='<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500" title="'+p.produto+'">'+(p.destaque?'⭐ ':'')+p.produto+'</td>';
     h+='<td><span class="pill '+mpcls(p.plat)+'">'+p.plat+'</span></td>';
     h+='<td><span class="mono" style="font-size:10px">'+p.pedido+'</span></td>';
     h+='<td class="tc" style="font-weight:700;color:var(--gold)">'+(p.qtd||1)+'</td>';
-    h+='<td class="tr">'+(p.cmv>0?R(p.cmv):'<span style="color:var(--amb);font-weight:700" title="CMV não preenchido">⚠ 0,00</span>')+'</td><td class="tr" style="font-weight:700">'+R(p.venda)+'</td>';
-    h+='<td class="tr red">'+(p.taxas>0?R(p.taxas):'<span style="color:var(--amb);font-weight:700" title="Taxas não preenchidas">⚠ —</span>')+'</td><td class="tr">'+(p.imp>0?R(p.imp):'—')+'</td>';
-    h+='<td class="tr">'+R(p.co||0)+'</td>';
-    h+='<td class="tr '+(p.lucro>=0?'grn':'red')+'" style="font-weight:700">'+R(p.lucro)+'</td>';
-    h+='<td class="tr '+(p.margem>=30?'grn':p.margem>=15?'amb':'red')+'">'+p.margem.toFixed(2)+'%</td>';
-    h+='<td class="tr" style="font-size:11px">'+p.roi.toFixed(0)+'%</td>';
+    h+='<td class="tr" style="font-weight:700">'+R(p.venda)+'</td>';
+    if(!_func){
+      h+='<td class="tr">'+(p.cmv>0?R(p.cmv):'<span style="color:var(--amb);font-weight:700" title="CMV não preenchido">⚠ 0,00</span>')+'</td>';
+      h+='<td class="tr red">'+(p.taxas>0?R(p.taxas):'<span style="color:var(--amb);font-weight:700" title="Taxas não preenchidas">⚠ —</span>')+'</td><td class="tr">'+(p.imp>0?R(p.imp):'—')+'</td>';
+      h+='<td class="tr">'+R(p.co||0)+'</td>';
+      h+='<td class="tr '+(p.lucro>=0?'grn':'red')+'" style="font-weight:700">'+R(p.lucro)+'</td>';
+      h+='<td class="tr '+(p.margem>=30?'grn':p.margem>=15?'amb':'red')+'">'+p.margem.toFixed(2)+'%</td>';
+      h+='<td class="tr" style="font-size:11px">'+p.roi.toFixed(0)+'%</td>';
+    }
     h+='<td class="tnw"><button class="btn bsm" onclick="toggleDestaqueVND('+p.id+','+mes+')" title="'+(p.destaque?'Remover destaque':'Destacar — preciso comprar')+'" style="'+(p.destaque?'color:var(--gold)':'')+'">'+(p.destaque?'★':'☆')+'</button> <button class="btn bsm" onclick="editVND('+p.id+','+mes+')">✏</button> <button class="btn bsm btnd" onclick="delVND('+p.id+','+mes+')">✕</button></td></tr>';
   });}
-  h+='</tbody><tfoot><tr><td colspan="5" style="font-weight:700">TOTAL ('+lista.length+' pedidos)</td><td class="tc gld" style="font-weight:700">'+t.qtd+' un.</td><td class="tr red">'+R(t.cmv)+'</td><td class="tr gld" style="font-weight:700">'+R(t.fat)+'</td><td class="tr red">'+R(t.tx)+'</td><td class="tr">'+R(impT)+'</td><td class="tr">'+R(coT)+'</td><td class="tr grn" style="font-weight:700">'+R(t.luc)+'</td><td class="tr">'+t.mg.toFixed(2)+'%</td><td class="tr">'+(t.cmv>0?(t.luc/t.cmv*100).toFixed(0):'—')+'%</td><td></td></tr></tfoot></table></div></div>';
+  if(_func){
+    h+='</tbody></table></div></div>';
+  } else {
+    h+='</tbody><tfoot><tr><td colspan="5" style="font-weight:700">TOTAL ('+lista.length+' pedidos)</td><td class="tc gld" style="font-weight:700">'+t.qtd+' un.</td><td class="tr gld" style="font-weight:700">'+R(t.fat)+'</td><td class="tr red">'+R(t.cmv)+'</td><td class="tr red">'+R(t.tx)+'</td><td class="tr">'+R(impT)+'</td><td class="tr">'+R(coT)+'</td><td class="tr grn" style="font-weight:700">'+R(t.luc)+'</td><td class="tr">'+t.mg.toFixed(2)+'%</td><td class="tr">'+(t.cmv>0?(t.luc/t.cmv*100).toFixed(0):'—')+'%</td><td></td></tr></tfoot></table></div></div>';
+  }
   setPage(h);
 }
 
