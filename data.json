@@ -6174,6 +6174,18 @@
       "valor": 10.7,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1105,
+      "mes": 8,
+      "data": "19/08/2026",
+      "tipo": "IMPOSTOS",
+      "cat": "INSS SÓCIO ADM",
+      "desc": "PRO LABORE",
+      "conta": "MERCADO PAGO",
+      "valor": 178.31,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -10300,7 +10312,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1105,
+  "nfc": 1106,
   "nvnd": 527,
-  "_savedAt": 1787167376590
+  "_savedAt": 1787167793796
 }
