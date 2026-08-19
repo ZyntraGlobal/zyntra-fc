@@ -6198,6 +6198,18 @@
       "valor": 429.99,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1107,
+      "mes": 8,
+      "data": "19/08/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS MERCADO LIVRE",
+      "desc": "PAGAMENTOS",
+      "conta": "MERCADO PAGO",
+      "valor": 289.54,
+      "resp": "CARLOS",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -10324,9 +10336,9 @@
       "destaque": false
     }
   ],
-  "nfc": 1107,
+  "nfc": 1108,
   "nvnd": 527,
-  "_savedAt": 1787171899426,
+  "_savedAt": 1787179650572,
   "usuarios": [
     {
       "id": 1,
