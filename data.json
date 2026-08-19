@@ -6210,6 +6210,18 @@
       "valor": 289.54,
       "resp": "CARLOS",
       "obs": ""
+    },
+    {
+      "id": 1108,
+      "mes": 8,
+      "data": "19/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "ANTECIPAÇÃO DE RECEBÍVEIS",
+      "desc": "ANTECIPAÇÃO",
+      "conta": "MERCADO PAGO",
+      "valor": 10.45,
+      "resp": "CARLOS",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -10336,9 +10348,9 @@
       "destaque": false
     }
   ],
-  "nfc": 1108,
+  "nfc": 1109,
   "nvnd": 527,
-  "_savedAt": 1787179650572,
+  "_savedAt": 1787179713493,
   "usuarios": [
     {
       "id": 1,
