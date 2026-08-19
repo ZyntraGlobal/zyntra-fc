@@ -6126,6 +6126,18 @@
       "valor": 1513.74,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1101,
+      "mes": 8,
+      "data": "19/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETES E LOGÍSTICA",
+      "desc": "FATURA AZUL",
+      "conta": "MERCADO PAGO",
+      "valor": 430.19,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -10323,7 +10335,7 @@
       "destaque": false
     }
   ],
-  "nfc": 1101,
+  "nfc": 1102,
   "nvnd": 526,
-  "_savedAt": 1787153561138
+  "_savedAt": 1787159644495
 }
