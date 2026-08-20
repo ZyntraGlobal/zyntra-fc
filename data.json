@@ -6351,7 +6351,7 @@
       "cat": "VENDAS AMAZON",
       "desc": "PAGAMENTOS",
       "conta": "BTG PACTUAL",
-      "valor": 463.48,
+      "valor": 463.43,
       "resp": "FELIPE",
       "obs": ""
     }
@@ -10463,7 +10463,7 @@
   ],
   "nfc": 1120,
   "nvnd": 527,
-  "_savedAt": 1787248333574,
+  "_savedAt": 1787248385255,
   "usuarios": [
     {
       "id": 1,
