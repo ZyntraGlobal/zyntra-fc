@@ -6330,6 +6330,18 @@
       "valor": 50,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1118,
+      "mes": 8,
+      "data": "20/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETE E LOGÍSTICA",
+      "desc": "FRETE",
+      "conta": "C6 EMPRESAS",
+      "valor": 8.4,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -10456,9 +10468,9 @@
       "destaque": false
     }
   ],
-  "nfc": 1118,
+  "nfc": 1119,
   "nvnd": 527,
-  "_savedAt": 1787247986890,
+  "_savedAt": 1787248017282,
   "usuarios": [
     {
       "id": 1,
