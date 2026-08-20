@@ -6318,6 +6318,18 @@
       "valor": 260,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1117,
+      "mes": 8,
+      "data": "20/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "FRETES E LOGÍSTICA",
+      "desc": "FRETE",
+      "conta": "ESPÉCIE",
+      "valor": 50,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -10444,9 +10456,9 @@
       "destaque": false
     }
   ],
-  "nfc": 1117,
+  "nfc": 1118,
   "nvnd": 527,
-  "_savedAt": 1787247967276,
+  "_savedAt": 1787247986890,
   "usuarios": [
     {
       "id": 1,
