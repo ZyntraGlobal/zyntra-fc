@@ -6294,6 +6294,18 @@
       "valor": 1332,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1115,
+      "mes": 8,
+      "data": "20/08/2026",
+      "tipo": "ESTOQUE",
+      "cat": "COMPRA DE MERCADORIA",
+      "desc": "COMPRA",
+      "conta": "C6 EMPRESAS",
+      "valor": 139.91,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -10420,9 +10432,9 @@
       "destaque": false
     }
   ],
-  "nfc": 1115,
+  "nfc": 1116,
   "nvnd": 527,
-  "_savedAt": 1787247854006,
+  "_savedAt": 1787247904564,
   "usuarios": [
     {
       "id": 1,
