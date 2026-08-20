@@ -6306,6 +6306,18 @@
       "valor": 139.91,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1116,
+      "mes": 8,
+      "data": "20/08/2026",
+      "tipo": "ESTOQUE",
+      "cat": "COMPRA DE MERCADORIA",
+      "desc": "COMPRA",
+      "conta": "ESPÉCIE",
+      "valor": 260,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -10432,9 +10444,9 @@
       "destaque": false
     }
   ],
-  "nfc": 1116,
+  "nfc": 1117,
   "nvnd": 527,
-  "_savedAt": 1787247904564,
+  "_savedAt": 1787247967276,
   "usuarios": [
     {
       "id": 1,
