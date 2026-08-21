@@ -6399,7 +6399,7 @@
       "cat": "FRETES E LOGÍSTICA",
       "desc": "FRETE",
       "conta": "C6 EMPRESAS",
-      "valor": 9.3,
+      "valor": 8.1,
       "resp": "FELIPE",
       "obs": ""
     }
@@ -10568,7 +10568,7 @@
   ],
   "nfc": 1124,
   "nvnd": 530,
-  "_savedAt": 1787323537696,
+  "_savedAt": 1787329979391,
   "usuarios": [
     {
       "id": 1,
