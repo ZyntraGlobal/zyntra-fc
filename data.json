@@ -6426,6 +6426,18 @@
       "valor": 2653.91,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1126,
+      "mes": 8,
+      "data": "21/08/2026",
+      "tipo": "SAÍDA",
+      "cat": "EMPRÉSTIMOS / FINANCIAMENTOS",
+      "desc": "CAPITAL DE GIRO",
+      "conta": "CRESOL",
+      "valor": 1779,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -10590,9 +10602,9 @@
       "destaque": false
     }
   ],
-  "nfc": 1126,
+  "nfc": 1127,
   "nvnd": 530,
-  "_savedAt": 1787334698344,
+  "_savedAt": 1787334925993,
   "usuarios": [
     {
       "id": 1,
