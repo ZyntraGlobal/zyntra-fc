@@ -6387,7 +6387,7 @@
       "cat": "COMPRA DE MERCADORIA",
       "desc": "COMPRA",
       "conta": "ESPÉCIE",
-      "valor": 1750.33,
+      "valor": 1.777,
       "resp": "FELIPE",
       "obs": ""
     },
@@ -10580,7 +10580,7 @@
   ],
   "nfc": 1125,
   "nvnd": 530,
-  "_savedAt": 1787330046872,
+  "_savedAt": 1787330064334,
   "usuarios": [
     {
       "id": 1,
