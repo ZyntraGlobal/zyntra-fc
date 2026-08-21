@@ -217,4 +217,20 @@
       .then(function() { _renewPushFC(); })
       .catch(function(e) { console.warn('SW:', e); });
   }
+
+  // Exposto pro botão "🔄 Renovar Push" do index.html — _renewPushFC/_salvarSubGitHubFC
+  // vivem fechados dentro desta IIFE, então precisam de uma ponte explícita pra fora.
+  // Ignora os dois throttles (20min do _renewPushFC, 1x/dia do _salvarSubGitHubFC) —
+  // é um pedido manual e direto do usuário, sempre publica na hora.
+  window._forcarRenovarPushFC = function() {
+    if (!('serviceWorker' in navigator) || !('Notification' in window) || Notification.permission !== 'granted') return Promise.resolve(false);
+    function urlB64(b){var p='='.repeat((4-b.length%4)%4);var s=(b+p).replace(/-/g,'+').replace(/_/g,'/');var r=window.atob(s);var o=new Uint8Array(r.length);for(var i=0;i<r.length;i++)o[i]=r.charCodeAt(i);return o;}
+    return navigator.serviceWorker.ready.then(function(reg) {
+      return reg.pushManager.getSubscription().then(function(sub) {
+        if (sub) { _salvarSubGitHubFC(sub, true); return true; }
+        return reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlB64('BBhENPjxNvUjD-1ug7UJMdfnWJU3AvpBunQKj8dR_JNlr0J3_RFKCpRVEBbrmKIK6J_E9aCSv4y3thL_R0xMONE') })
+          .then(function(sub2) { _salvarSubGitHubFC(sub2, true); return true; }).catch(function() { return false; });
+      });
+    }).catch(function() { return false; });
+  };
 })();
