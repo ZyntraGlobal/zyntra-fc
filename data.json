@@ -10521,11 +10521,30 @@
       "margem": 95.7355619843566,
       "roi": 0,
       "destaque": false
+    },
+    {
+      "id": 529,
+      "mes": 8,
+      "dv": "21/08/2026",
+      "de": "21/08/2026",
+      "produto": "HEADSET GAMER LOGITECH G335 - BRANCO-AZUL",
+      "plat": "AMAZON",
+      "pedido": "702-7776198-3778641",
+      "qtd": 1,
+      "cmv": 0,
+      "venda": 419.99,
+      "taxas": 0,
+      "imp": 0,
+      "co": 11.94,
+      "lucro": 408.05,
+      "margem": 97.1570751684564,
+      "roi": 0,
+      "destaque": false
     }
   ],
   "nfc": 1122,
-  "nvnd": 529,
-  "_savedAt": 1787315742779,
+  "nvnd": 530,
+  "_savedAt": 1787321133997,
   "usuarios": [
     {
       "id": 1,
