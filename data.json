@@ -6474,6 +6474,18 @@
       "valor": 1908.5,
       "resp": "FELIPE",
       "obs": ""
+    },
+    {
+      "id": 1130,
+      "mes": 8,
+      "data": "22/08/2026",
+      "tipo": "ENTRADA",
+      "cat": "VENDAS AMAZON",
+      "desc": "PAGAMENTOS",
+      "conta": "BTG PACTUAL",
+      "valor": 2604.99,
+      "resp": "FELIPE",
+      "obs": ""
     }
   ],
   "vnd": [
@@ -10657,9 +10669,9 @@
       "destaque": false
     }
   ],
-  "nfc": 1130,
+  "nfc": 1131,
   "nvnd": 531,
-  "_savedAt": 1787395180211,
+  "_savedAt": 1787397757838,
   "usuarios": [
     {
       "id": 1,
