@@ -1,13 +1,13 @@
 const CACHE = 'zyntra-fc-v33';
 // index.html e web-sync.js FORA do cache — sempre baixa o mais recente da internet
 const ASSETS = [
-  '/zyntra-fc/mobile.css',
-  '/zyntra-fc/manifest.json',
-  '/zyntra-fc/icon-192.png',
-  '/zyntra-fc/icon-512.png',
-  '/zyntra-fc/_files/css2',
-  '/zyntra-fc/_files/zyntra-logo.png',
-  '/zyntra-fc/_files/zyntra-logo.jpg',
+  'mobile.css',
+  'manifest.json',
+  'icon-192.png',
+  'icon-512.png',
+  '_files/css2',
+  '_files/zyntra-logo.png',
+  '_files/zyntra-logo.jpg',
 ];
 
 self.addEventListener('install', e => {
@@ -40,10 +40,10 @@ self.addEventListener('fetch', e => {
   }
 
   // index.html e web-sync.js: SEMPRE da rede — nunca do cache
-  if (url.endsWith('/zyntra-fc/') || url.includes('/zyntra-fc/index.html') || url.includes('/zyntra-fc/web-sync.js')) {
+  if (url.endsWith('/') || url.includes('/index.html') || url.includes('/web-sync.js')) {
     e.respondWith(
       fetch(e.request, { cache: 'no-store' })
-        .catch(() => caches.match('/zyntra-fc/index.html'))
+        .catch(() => caches.match('index.html'))
     );
     return;
   }
@@ -142,8 +142,8 @@ self.addEventListener('push', e => {
     Promise.all([
       self.registration.showNotification(data.title || 'Zyntra FC', {
         body: data.body || 'Dados atualizados',
-        icon: '/zyntra-fc/icon-192.png',
-        badge: '/zyntra-fc/icon-192.png',
+        icon: 'icon-192.png',
+        badge: 'icon-192.png',
         tag: 'zyntra-fc-' + Date.now(),
         renotify: true
       }),
@@ -159,9 +159,9 @@ self.addEventListener('notificationclick', e => {
   e.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true }).then(cls => {
       for (const c of cls) {
-        if (c.url.includes('/zyntra-fc/') && 'focus' in c) return c.focus();
+        if (c.url.includes('/') && 'focus' in c) return c.focus();
       }
-      return clients.openWindow('/zyntra-fc/');
+      return clients.openWindow('./');
     })
   );
 });

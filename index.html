@@ -407,7 +407,7 @@ function _pushSWNotifFC(titulo, corpo){
   if(!('serviceWorker' in navigator))return;
   navigator.serviceWorker.ready.then(function(reg){
     if(!reg.showNotification)return;
-    reg.showNotification(titulo,{body:corpo,icon:'/zyntra-fc/icon-192.png',badge:'/zyntra-fc/icon-192.png',tag:'zyntra-fc-save',vibrate:[200,100,200]});
+    reg.showNotification(titulo,{body:corpo,icon:'icon-192.png',badge:'icon-192.png',tag:'zyntra-fc-save',vibrate:[200,100,200]});
   }).catch(function(){});
 }
 function _resumoSalvoFC(antes, depois){
@@ -1889,12 +1889,12 @@ function notifAtivar(){
           applicationServerKey:_urlB64('BBhENPjxNvUjD-1ug7UJMdfnWJU3AvpBunQKj8dR_JNlr0J3_RFKCpRVEBbrmKIK6J_E9aCSv4y3thL_R0xMONE')
         }).then(function(sub){
           fetch('https://ntfy.sh/zyntra-sub-fc-zg2026x',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(sub)}).catch(function(){});
-          reg.showNotification('Zyntra FC ✅',{body:'Notificações ativadas! Cada alteração chegará aqui.',icon:'/zyntra-fc/icon-192.png',tag:'zyntra-ativado'});
+          reg.showNotification('Zyntra FC ✅',{body:'Notificações ativadas! Cada alteração chegará aqui.',icon:'icon-192.png',tag:'zyntra-ativado'});
           _mostrarNotif('✅ Pronto!','Cada alteração vai chegar como notificação','grn');
           pNotif();
         }).catch(function(){
           // Fallback: só permissão local
-          reg.showNotification('Zyntra FC ✅',{body:'Notificações locais ativadas.',icon:'/zyntra-fc/icon-192.png',tag:'zyntra-ativado'});
+          reg.showNotification('Zyntra FC ✅',{body:'Notificações locais ativadas.',icon:'icon-192.png',tag:'zyntra-ativado'});
           _mostrarNotif('✅ Notificações locais ativadas','Push direto indisponível neste dispositivo','grn');
           pNotif();
         });
@@ -1911,8 +1911,8 @@ function notifTestarDireto(){
   navigator.serviceWorker.ready.then(function(reg){
     reg.showNotification('🧪 Zyntra FC — Teste',{
       body:'Notificação funcionando! '+new Date().toLocaleTimeString('pt-BR'),
-      icon:'/zyntra-fc/icon-192.png',
-      badge:'/zyntra-fc/icon-192.png',
+      icon:'icon-192.png',
+      badge:'icon-192.png',
       tag:'zyntra-teste-'+Date.now()
     }).then(function(){
       _mostrarNotif('✅ Disparado!','Verifique a central de notificações','grn');
@@ -1928,9 +1928,9 @@ function notifTestar(){
   navigator.serviceWorker.ready.then(function(reg){
     var alertas=_calcAlertasFC();
     if(alertas.length>0){
-      reg.showNotification('Zyntra FC — '+alertas[0].titulo,{body:alertas[0].msg,icon:'/zyntra-fc/icon-192.png',tag:'zyntra-alerta'});
+      reg.showNotification('Zyntra FC — '+alertas[0].titulo,{body:alertas[0].msg,icon:'icon-192.png',tag:'zyntra-alerta'});
     } else {
-      reg.showNotification('Zyntra FC ✅',{body:'Nenhum alerta ativo. Tudo certo!',icon:'/zyntra-fc/icon-192.png',tag:'zyntra-ok'});
+      reg.showNotification('Zyntra FC ✅',{body:'Nenhum alerta ativo. Tudo certo!',icon:'icon-192.png',tag:'zyntra-ok'});
     }
     _mostrarNotif('📤 Notificação enviada!','Veja a central de notificações','grn');
   });
@@ -1942,7 +1942,7 @@ function notifChecar(){
   navigator.serviceWorker.ready.then(function(reg){
     alertas.forEach(function(a,i){
       setTimeout(function(){
-        reg.showNotification('Zyntra FC — '+a.titulo,{body:a.msg,icon:'/zyntra-fc/icon-192.png',tag:'zyntra-alerta-'+i});
+        reg.showNotification('Zyntra FC — '+a.titulo,{body:a.msg,icon:'icon-192.png',tag:'zyntra-alerta-'+i});
       },i*500);
     });
     _mostrarNotif('⚠️ '+alertas.length+' alerta(s) enviados','Veja a central de notificações','grn');
@@ -2037,7 +2037,7 @@ if('serviceWorker' in navigator){
     }
   });
   // Registra SW e verifica atualização a cada vez que abre
-  navigator.serviceWorker.register('/zyntra-fc/sw.js').then(function(reg){
+  navigator.serviceWorker.register('sw.js').then(function(reg){
     reg.update(); // força verificação imediata de nova versão
   }).catch(function(){});
 }
