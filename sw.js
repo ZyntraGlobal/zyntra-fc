@@ -86,6 +86,16 @@ self.addEventListener('fetch', e => {
 const VAPID_PUBLIC_SW = 'BITLfwTQwUU_BYIbbdEXYoUAEp7sy6iiL52Cn-GmnuljgI4F0cPgiT5xgjSM-uV33AIP9LvWf3QrsLR1CRvE-FQ';
 const PUSH_RELAY_URL = 'https://zyntra-push-relay.nameless-bonus-004f.workers.dev/subscribe';
 
+// O Service Worker não tem acesso a localStorage, então não enxerga o token de
+// sessão sozinho — a página manda por postMessage a cada login/renovação. Sem
+// token em memória (ex: SW acabou de acordar do zero), a autocorreção só fica
+// pendente até a página reabrir e mandar de novo — não é crítico, é só um
+// reforço a mais em cima da renovação normal que já roda na página.
+let _sessionTokenSW = null;
+self.addEventListener('message', e => {
+  if (e.data && e.data.type === 'SESSION_TOKEN') _sessionTokenSW = e.data.token;
+});
+
 function _urlB64ToUint8SW(b) {
   const p = '='.repeat((4 - b.length % 4) % 4);
   const s = (b + p).replace(/-/g, '+').replace(/_/g, '/');
@@ -99,10 +109,11 @@ function _urlB64ToUint8SW(b) {
 // direto no GitHub — o token de escrita fica só no relay, nunca aqui no código que
 // o navegador baixa. Ver /Users/felipehorbatey/zyntra/push-relay.
 function _publicarSubGitHubSW(sub) {
+  if (!_sessionTokenSW) return Promise.resolve();
   const subJson = sub.toJSON ? sub.toJSON() : sub; // .keys só existe via toJSON()
   return fetch(PUSH_RELAY_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + _sessionTokenSW },
     body: JSON.stringify({ app: 'fc', subscription: { endpoint: subJson.endpoint, keys: subJson.keys } })
   }).catch(() => {});
 }
