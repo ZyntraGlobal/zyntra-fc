@@ -1623,7 +1623,9 @@ async function doLogin(){
       // Primeira carga de dados ANTES de esconder a tela de login — evita
       // mostrar por um instante o que estava desenhado por baixo (dado antigo
       // do cache local ou padrão) antes dos dados reais chegarem.
-      try{if(typeof window.forcarSincronizarFC==='function')await window.forcarSincronizarFC();}catch(e){}
+      // Nunca deixa uma sincronização lenta travar a tela de login pra sempre —
+      // no pior caso segue sem esperar, e o polling normal (10s) resolve depois.
+      try{if(typeof window.forcarSincronizarFC==='function')await Promise.race([window.forcarSincronizarFC(),new Promise(function(r){setTimeout(r,6000);})]);}catch(e){}
       try{
         if(res.role==='funcionario'){ir('inicio');}
         else{pDash();verificarBackup();}
@@ -1651,6 +1653,9 @@ async function doLogin(){
 
 function _expirarSessao(){
   localStorage.removeItem('zyntra_sess');
+  // Uma atualização de código ficou esperando o usuário sair — agora que a sessão
+  // caiu (não tem mais nada em uso pra perder), recarrega pra pegar a versão nova.
+  if(window._zyntraAtualizacaoPendente){window.location.reload();return;}
   document.getElementById('login-bg').classList.remove('hidden');
   document.body.classList.add('login-open');
   document.getElementById('li-pass').value='';
@@ -2075,8 +2080,17 @@ if(_isElectron){
 if('serviceWorker' in navigator){
   navigator.serviceWorker.addEventListener('message', function(e){
     if(e.data && e.data.type === 'SW_UPDATED'){
-      // Recarrega silenciosamente para pegar o novo código
-      window.location.reload();
+      // Recarregar na hora derrubaria uma sessão ativa (checkSessao() sempre exige
+      // login de novo ao abrir a página) e no PWA instalado do iOS um reload no meio
+      // do uso pode até tirar do modo app. Só recarrega imediatamente se a tela de
+      // login já está visível (ninguém no meio de nada); com sessão ativa, adia pro
+      // próximo momento seguro (expiração da sessão em _expirarSessao()).
+      var bgSW = document.getElementById('login-bg');
+      if(bgSW && !bgSW.classList.contains('hidden')){
+        window.location.reload();
+      } else {
+        window._zyntraAtualizacaoPendente = true;
+      }
     }
     if(e.data && e.data.type === 'REFRESH_NOW'){
       // Chegou um push (alguém salvou algo) — sincroniza na hora, sem esperar
