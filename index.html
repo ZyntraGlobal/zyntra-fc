@@ -753,7 +753,8 @@ var FN_MAP={
   estoque:function(){pEstoque();},est:function(){pEstoque();},
   invest:function(){pInvest();},
   notif:function(){pNotif();},
-  usuarios:function(){pUsuarios();}
+  usuarios:function(){pUsuarios();},
+  inicio:function(){pInicioFunc();}
 };
 var _curMes=0,_curTipo='';
 function ir(tipo,mes,el){
@@ -1063,10 +1064,13 @@ function pFC(mes,busca,filtTipo,filtConta){
 function modalFC(mes){
   var d=new Date(),dia=String(d.getDate()).padStart(2,'0'),m=String(mes).padStart(2,'0');
   var dd=dia+'/'+m+'/'+d.getFullYear();
+  // Funcionário não vê nem consegue gravar ENTRADA (receita) — nem mostra a opção,
+  // pra não preencher um lançamento que o servidor vai descartar sem avisar.
+  var _tiposDisp=_isFuncionario()?TIPOS.filter(function(t){return t!=='ENTRADA';}):TIPOS;
   abrirM('Novo Lançamento — '+MFULL[mes-1]+' 2026',
   '<div class="fg f3">'+
   '<div><label>Data *</label><input id="nl-d" value="'+dd+'"></div>'+
-  '<div><label>Tipo *</label><select id="nl-t" onchange="mudaCats()"><option value="">Selecione...</option>'+TIPOS.map(function(t){return '<option>'+t+'</option>';}).join('')+'</select></div>'+
+  '<div><label>Tipo *</label><select id="nl-t" onchange="mudaCats()"><option value="">Selecione...</option>'+_tiposDisp.map(function(t){return '<option>'+t+'</option>';}).join('')+'</select></div>'+
   '<div><label>Conta *</label><select id="nl-co"><option value="">Selecione...</option>'+CONTAS.map(function(c){return '<option>'+c+'</option>';}).join('')+'</select></div>'+
   '<div style="grid-column:1/-1"><label>Categoria</label><select id="nl-cat"><option value="">Selecione o tipo primeiro...</option></select></div>'+
   '<div style="grid-column:1/-1"><label>Descrição *</label><input id="nl-ds" placeholder="Detalhe o lançamento..."></div>'+
@@ -1503,6 +1507,34 @@ function _paginaPermitida(tipo){
 }
 function _bloqueadoFunc(){setPage('<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:60vh;gap:16px"><div style="font-size:48px">🔒</div><div style="font-size:16px;font-weight:700;color:var(--t)">Acesso Restrito</div><div style="font-size:13px;color:var(--t3);text-align:center">Esta seção é exclusiva do proprietário.</div></div>');}
 
+// ── INÍCIO DO FUNCIONÁRIO — atalhos pro que ele tem liberado ──
+function pInicioFunc(){
+  var s=_sessaoAtual();
+  var nome=s.nome||'Colaborador';
+  var mesAtual=new Date().getMonth()+1;
+  var basicos=[
+    {tipo:'fc',label:'Fluxo de Caixa',ico:'💵',onclick:"ir('fc',"+mesAtual+")"},
+    {tipo:'vnd',label:'Vendas',ico:'🛒',onclick:"ir('vnd',"+mesAtual+")"}
+  ];
+  var extras=((s&&s.paginas)||[]).map(function(t){
+    var p=PAGINAS_RESTRITAS.find(function(x){return x.tipo===t;});
+    return p?{tipo:p.tipo,label:p.label,ico:'🔓',onclick:"ir('"+p.tipo+"')"}:null;
+  }).filter(Boolean);
+  var todos=basicos.concat(extras);
+  var h='<div class="sec">👋 Bem-vindo(a), '+nome+'</div>';
+  h+='<div class="panel" style="margin-bottom:14px"><div style="padding:10px 16px;font-size:11px;color:var(--t3)">Escolha uma área abaixo pra começar. Se precisar de acesso a algo que não está aqui, fale com o responsável.</div></div>';
+  h+='<div class="g3">';
+  todos.forEach(function(m){
+    h+='<div class="card hl" style="cursor:pointer;text-align:center;padding:26px 14px" onclick="'+m.onclick+'">';
+    h+='<div style="font-size:30px;margin-bottom:10px">'+m.ico+'</div>';
+    h+='<div style="font-weight:700;color:var(--t)">'+m.label+'</div>';
+    h+='</div>';
+  });
+  h+='</div>';
+  document.getElementById('ptitle').textContent='Início';
+  setPage(h);
+}
+
 var _MAX_TENTATIVAS = 3;
 var _LOCK_MS = 5 * 60 * 1000; // 5 minutos
 
@@ -1549,7 +1581,7 @@ async function doLogin(){
       // do cache local ou padrão) antes dos dados reais chegarem.
       try{if(typeof window.forcarSincronizarFC==='function')await window.forcarSincronizarFC();}catch(e){}
       try{
-        if(res.role==='funcionario'){ir('fc',new Date().getMonth()+1);}
+        if(res.role==='funcionario'){ir('inicio');}
         else{pDash();verificarBackup();}
       }catch(e){console.error('pDash error',e);}
       document.getElementById('login-bg').classList.add('hidden');
