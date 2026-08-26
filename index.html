@@ -1540,18 +1540,20 @@ async function doLogin(){
       btn.textContent='✓ Entrando...';
       await new Promise(function(r){setTimeout(r,350);});
       localStorage.setItem('zyntra_sess', JSON.stringify({user:user, role:res.role, paginas:res.paginas||[], token:res.token, until:Date.now()+4*60*60*1000}));
-      document.getElementById('login-bg').classList.add('hidden');
-      document.body.classList.remove('login-open');
       _iniciarWatchSessao();
       // Renova push subscription ao fazer login
       try{_assinarPushFC();}catch(e){}
       try{badges();}catch(e){}
-      // Primeira carga de dados agora que já temos um token válido
+      // Primeira carga de dados ANTES de esconder a tela de login — evita
+      // mostrar por um instante o que estava desenhado por baixo (dado antigo
+      // do cache local ou padrão) antes dos dados reais chegarem.
       try{if(typeof window.forcarSincronizarFC==='function')await window.forcarSincronizarFC();}catch(e){}
       try{
         if(res.role==='funcionario'){ir('fc',new Date().getMonth()+1);}
         else{pDash();verificarBackup();}
       }catch(e){console.error('pDash error',e);}
+      document.getElementById('login-bg').classList.add('hidden');
+      document.body.classList.remove('login-open');
     }else{
       btn.disabled=false; btn.textContent='ENTRAR NO SISTEMA';
       document.getElementById('li-pass').value='';
