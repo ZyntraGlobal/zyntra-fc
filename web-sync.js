@@ -117,24 +117,22 @@
     } catch(e) { return false; }
   }
 
-  const atualizou = await sincronizar();
-  if (atualizou) {
+  // 'zyntra-sync' é ouvido pelo index.html, que redesenha a tela em memória
+  // (nunca usar location.reload() aqui — no PWA instalado do iOS isso é
+  // tratado como navegação e chega a tirar o usuário do modo de app)
+  function _aplicarSeMudou(mudou) {
+    if (!mudou) return;
     const jaLogado = localStorage.getItem('zyntra_sess');
-    // 'zyntra-sync' é ouvido pelo index.html, que redesenha a tela em memória
-    // (nunca usar location.reload() aqui — no PWA instalado do iOS isso é
-    // tratado como navegação e chega a tirar o usuário do modo de app)
     if (jaLogado && typeof carregarDados === 'function') carregarDados();
     else if (jaLogado) window.dispatchEvent(new CustomEvent('zyntra-sync'));
   }
 
+  _aplicarSeMudou(await sincronizar());
+
   // Exposto para o botão "🔄 Atualizar" da topbar — sincroniza sob demanda, sem esperar o polling
   window.forcarSincronizarFC = async function() {
     const mudou = await sincronizar();
-    if (mudou) {
-      const jaLogado = localStorage.getItem('zyntra_sess');
-      if (jaLogado && typeof carregarDados === 'function') carregarDados();
-      else if (jaLogado) window.dispatchEvent(new CustomEvent('zyntra-sync'));
-    }
+    _aplicarSeMudou(mudou);
     return mudou;
   };
 
@@ -210,7 +208,7 @@
     let timer;
     function agendar() {
       clearTimeout(timer);
-      timer = setTimeout(async function() { await sincronizar(); _renewPushFC(); agendar(); },
+      timer = setTimeout(async function() { _aplicarSeMudou(await sincronizar()); _renewPushFC(); agendar(); },
         document.hidden ? 60000 : 10000);
     }
     document.addEventListener('visibilitychange', function() { _renewPushFC(); agendar(); });
