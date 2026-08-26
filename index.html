@@ -1108,7 +1108,16 @@ function editFC(id,mes){
   '</div>',
   function(){l.data=document.getElementById('ef-d').value;l.tipo=document.getElementById('ef-t').value;l.conta=document.getElementById('ef-co').value;l.cat=document.getElementById('ef-cat').value;l.desc=document.getElementById('ef-ds').value;l.valor=pfR(document.getElementById('ef-v').value);l.resp=document.getElementById('ef-r').value;l.obs=document.getElementById('ef-ob').value;save();fecharM();pFC(mes);});
 }
-function delFC(id,mes){var l=DB.fc.find(function(x){return x.id===id;});if(!l||!confirm('Excluir "'+l.desc+'" — '+R(l.valor)+'?'))return;DB.fc=DB.fc.filter(function(x){return x.id!==id;});save();badges();pFC(mes);}
+// window.confirm() não funciona em app instalado (PWA standalone) no iOS — usa
+// o modal próprio do sistema em vez do diálogo nativo do navegador.
+function delFC(id,mes){
+  var l=DB.fc.find(function(x){return x.id===id;});
+  if(!l)return;
+  abrirM('Confirmar exclusão','<div style="font-size:14px;color:var(--t2)">Excluir "'+l.desc+'" — '+R(l.valor)+'?</div>',function(){
+    DB.fc=DB.fc.filter(function(x){return x.id!==id;});
+    save();badges();fecharM();pFC(mes);
+  });
+}
 
 // ── VENDAS ─────────────────────────────────────────────
 function _pedidoPendente(p){return (Number(p.cmv)||0)<=0||(Number(p.taxas)||0)<=0;}
@@ -1203,7 +1212,14 @@ function modalVND(mes){
 function calcV(){try{var cmv=pfR(document.getElementById('nv-cmv').value),v=pfR(document.getElementById('nv-v').value),tx=pfR(document.getElementById('nv-tx').value),imp=pfR(document.getElementById('nv-imp').value),co=pfR(document.getElementById('nv-co').value),luc=v-cmv-tx-imp-co,mg=v>0?luc/v*100:0,roi=cmv>0?luc/cmv*100:0,cmvp=v>0?cmv/v*100:0;var el=document.getElementById('cv-luc');el.textContent=R(luc);el.className='cv '+(luc>=0?'grn':'red');var em=document.getElementById('cv-mg');em.textContent=mg.toFixed(1)+'%';em.className='cv '+(mg>=30?'grn':mg>=15?'amb':'red');document.getElementById('cv-roi').textContent=roi.toFixed(0)+'%';document.getElementById('cv-cmvp').textContent=cmvp.toFixed(1)+'%';}catch(e){}}
 function editVND(id,mes){var p=DB.vnd.find(function(x){return x.id===id;});if(!p)return;abrirM('Editar Pedido','<div class="fg f3"><div><label>Data Venda</label><input id="ev-dv" value="'+p.dv+'"></div><div><label>Data Envio</label><input id="ev-de" value="'+p.de+'"></div><div><label>Plataforma</label><select id="ev-p">'+MPS.map(function(m2){return '<option'+(m2===p.plat?' selected':'')+'>'+m2+'</option>';}).join('')+'</select></div><div style="grid-column:1/-1"><label>Produto</label><input id="ev-pr" value="'+p.produto+'"></div><div style="grid-column:1/-1"><label>Nº Pedido</label><input id="ev-ped" value="'+p.pedido+'"></div><div><label>Quantidade (unid.)</label><input id="ev-qtd" type="number" step="1" min="1" value="'+(p.qtd||1)+'"></div><div><label>CMV (R$)</label><input id="ev-cmv" type="text" inputmode="decimal" value="'+N(p.cmv)+'" oninput="calcEV()"></div><div><label>Valor Venda (R$)</label><input id="ev-v" type="text" inputmode="decimal" value="'+N(p.venda)+'" oninput="calcEV()"></div><div><label>Taxas+Fretes (R$)</label><input id="ev-tx" type="text" inputmode="decimal" value="'+N(p.taxas)+'" oninput="calcEV()"></div><div><label>Impostos (R$)</label><input id="ev-imp" type="text" inputmode="decimal" value="'+N(p.imp||0)+'" oninput="calcEV()"></div><div><label>Custos Op. (R$)</label><input id="ev-co" type="text" inputmode="decimal" value="'+N(p.co||0)+'" oninput="calcEV()"></div><div><label>Lucro Calculado</label><input id="ev-luc" readonly></div></div>',function(){p.dv=document.getElementById('ev-dv').value;p.de=document.getElementById('ev-de').value;p.plat=document.getElementById('ev-p').value;p.produto=document.getElementById('ev-pr').value;p.pedido=document.getElementById('ev-ped').value;p.qtd=parseInt(document.getElementById('ev-qtd').value)||1;p.cmv=pfR(document.getElementById('ev-cmv').value);p.venda=pfR(document.getElementById('ev-v').value);p.taxas=pfR(document.getElementById('ev-tx').value);p.imp=pfR(document.getElementById('ev-imp').value);p.co=pfR(document.getElementById('ev-co').value);p.lucro=p.venda-p.cmv-p.taxas-p.imp-p.co;p.margem=p.venda>0?p.lucro/p.venda*100:0;p.roi=p.cmv>0?p.lucro/p.cmv*100:0;save();fecharM();pVND(mes);},true);setTimeout(calcEV,50);}
 function calcEV(){try{var cmv=pfR(document.getElementById('ev-cmv').value),v=pfR(document.getElementById('ev-v').value),tx=pfR(document.getElementById('ev-tx').value),imp=pfR(document.getElementById('ev-imp').value),co=pfR(document.getElementById('ev-co').value),luc=v-cmv-tx-imp-co;var el=document.getElementById('ev-luc');el.value=N(luc);el.style.color=luc>=0?'var(--grn)':'var(--red)';}catch(e){}}
-function delVND(id,mes){var p=DB.vnd.find(function(x){return x.id===id;});if(!p||!confirm('Excluir pedido '+(p.pedido||p.produto)+'?'))return;DB.vnd=DB.vnd.filter(function(x){return x.id!==id;});save();badges();pVND(mes);}
+function delVND(id,mes){
+  var p=DB.vnd.find(function(x){return x.id===id;});
+  if(!p)return;
+  abrirM('Confirmar exclusão','<div style="font-size:14px;color:var(--t2)">Excluir pedido '+(p.pedido||p.produto)+'?</div>',function(){
+    DB.vnd=DB.vnd.filter(function(x){return x.id!==id;});
+    save();badges();fecharM();pVND(mes);
+  });
+}
 function toggleDestaqueVND(id,mes){var p=DB.vnd.find(function(x){return x.id===id;});if(!p)return;p.destaque=!p.destaque;save();pVND(mes);}
 
 // ── RESUMO FC ──────────────────────────────────────────
@@ -1768,9 +1784,10 @@ function toggleAtivoUsuario(id){
 }
 function delUsuario(id){
   var u=(DB.usuarios||[]).find(function(x){return x.id===id;});if(!u)return;
-  if(!confirm('Excluir o usuário "'+u.nome+'" ('+u.login+')?\n\nEsta ação não pode ser desfeita.'))return;
-  DB.usuarios=DB.usuarios.filter(function(x){return x.id!==id;});
-  save();pUsuarios();
+  abrirM('Confirmar exclusão','<div style="font-size:14px;color:var(--t2)">Excluir o usuário "'+u.nome+'" ('+u.login+')?<br><br>Esta ação não pode ser desfeita.</div>',function(){
+    DB.usuarios=DB.usuarios.filter(function(x){return x.id!==id;});
+    save();fecharM();pUsuarios();
+  });
 }
 
 // ── BACKUP ───────────────────────────────────────────────
