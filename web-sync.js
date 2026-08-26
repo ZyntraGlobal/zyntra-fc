@@ -92,10 +92,15 @@
       let local = null;
       try { local = JSON.parse(localStorage.getItem(CHAVE)); } catch(e) {}
 
-      // Compara por _savedAt — mais confiável que contar itens
+      // Compara por _savedAt — mais confiável que contar itens. MAS: filtrar pra
+      // funcionário não muda o _savedAt (é o mesmo dado, só com campos a menos) —
+      // então trocar de usuário no mesmo aparelho (ex: colab → felipe) sem o papel
+      // mudar o timestamp fazia o dono continuar vendo a versão filtrada presa no
+      // aparelho. Por isso o papel da sessão também invalida o cache, não só a hora.
       const tRemoto = remoto._savedAt || 0;
       const tLocal  = local ? (local._savedAt || 0) : 0;
-      if (tRemoto <= tLocal) {
+      const papelMudou = local && local._papel && local._papel !== sess.role;
+      if (tRemoto <= tLocal && !papelMudou) {
         // Local é mais recente que GitHub — push automático (dados ficaram presos por falha anterior)
         if (tLocal > tRemoto && typeof _ghSalvarFC === 'function' && typeof DB !== 'undefined' && DB && DB.fc) {
           console.log('[ZyntraFC] Auto-push: local mais recente que GitHub — enviando...');
@@ -104,9 +109,9 @@
         return false;
       }
 
-      // Remoto é mais recente — calcula diff e notifica
+      // Remoto é mais recente (ou o papel mudou) — calcula diff e notifica
       const linhas = _diffFC(local, remoto);
-      localStorage.setItem(CHAVE, JSON.stringify(remoto));
+      localStorage.setItem(CHAVE, JSON.stringify(Object.assign({}, remoto, { _papel: sess.role })));
 
       if (linhas && linhas.length > 0) {
         _notifSync('Zyntra FC — ' + linhas.length + ' alteração(ões)', linhas);
