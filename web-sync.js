@@ -2,7 +2,10 @@
   if (typeof process !== 'undefined' && process.versions && process.versions.electron) return;
 
   const CHAVE    = 'zyntra_v9';
-  const GH_TOKEN = 'gho_pxYKZ3' + 'ODVXqH70zN9V0dIsBkqjMlUs2ID4k2';
+  // Só leitura — seguro exposto, o repositório é público (só evita o limite de 60 req/hora sem token).
+  const GH_TOKEN = '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';
+  // Escrita: sempre pelo relay (Cloudflare Worker) — nunca com token direto no navegador.
+  const PUSH_RELAY_URL = 'https://zyntra-push-relay.nameless-bonus-004f.workers.dev';
   // API do GitHub = sem cache CDN (mais confiável que raw.githubusercontent.com ou GitHub Pages)
   const API_URL  = 'https://api.github.com/repos/ZyntraGlobal/zyntra-fc/contents/data.json';
   const R = v => 'R$ ' + Number(v || 0).toFixed(2).replace('.', ',');
@@ -14,7 +17,7 @@
       const reg = await navigator.serviceWorker.ready;
       const body = linhas.slice(0, 6).join('\n') + (linhas.length > 6 ? '\n…+' + (linhas.length - 6) + ' mais' : '');
       await reg.showNotification(titulo, {
-        body, icon: '/zyntra-fc/icon-192.png', badge: '/zyntra-fc/icon-192.png',
+        body, icon: 'icon-192.png', badge: 'icon-192.png',
         tag: 'zyntra-fc-sync', requireInteraction: false
       });
     } catch(e) {}
@@ -135,12 +138,7 @@
   // instalado em vários iPhones ao mesmo tempo (ex: pessoal + da empresa), cada um
   // identificado por um deviceId próprio e aleatório gerado uma vez e guardado local.
   var _lastPushRenew = 0;
-  var PUSH_SUB_API_FC = 'https://api.github.com/repos/ZyntraGlobal/zyntra-fc/contents/push-sub.json';
-  function _getDeviceIdFC() {
-    var id = localStorage.getItem('fc_device_id');
-    if (!id) { id = 'dev-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8); localStorage.setItem('fc_device_id', id); }
-    return id;
-  }
+  // Publica através do relay — dedupe por endpoint já acontece do lado do servidor.
   function _salvarSubGitHubFC(sub, forcar) {
     try {
       var mudou = localStorage.getItem('fc_push_ep') !== sub.endpoint;
@@ -148,40 +146,21 @@
       // Sem mudança de endpoint, republica mesmo assim 1x/dia — autocorreção caso o
       // arquivo remoto tenha ficado dessincronizado sem o endpoint em si ter mudado.
       if (!mudou && !forcar && (Date.now() - ultimaPub) < 86400000) return;
-      var deviceId = _getDeviceIdFC();
-      var hh = { 'Authorization': 'Bearer ' + GH_TOKEN, 'Accept': 'application/vnd.github+json', 'User-Agent': 'ZyntraFC-PWA', 'Content-Type': 'application/json' };
-      fetch(PUSH_SUB_API_FC, { headers: hh, cache: 'no-store' })
-        .then(function(r) { return r.status === 404 ? null : r.json(); })
-        .then(function(info) {
-          var lista = [];
-          try {
-            if (info && info.content) {
-              var atual = JSON.parse(decodeURIComponent(escape(atob(info.content.replace(/\n/g, '')))));
-              lista = Array.isArray(atual) ? atual : (atual && atual.endpoint ? [Object.assign({ deviceId: 'legacy' }, atual)] : []);
-            }
-          } catch(e) { lista = []; }
-          lista = lista.filter(function(s) { return s.deviceId !== deviceId; });
-          // sub é um PushSubscription nativo — .keys não existe como propriedade direta
-          // (só endpoint tem getter), as chaves só saem via .toJSON(). Sem isso, a
-          // subscription salva ficava sem "keys" e o push falhava silenciosamente.
-          var subJson = sub.toJSON ? sub.toJSON() : sub;
-          lista.push({ deviceId: deviceId, endpoint: sub.endpoint, keys: subJson.keys, ua: (navigator.userAgent || '').slice(0, 80), updatedAt: Date.now() });
-          var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(lista))));
-          var payload = { message: 'update push subscription', content: b64 };
-          if (info && info.sha) payload.sha = info.sha;
-          return fetch(PUSH_SUB_API_FC, { method: 'PUT', headers: hh, cache: 'no-store', body: JSON.stringify(payload) });
-        })
-        .then(function(r) {
-          if (r && r.ok) {
-            localStorage.setItem('fc_push_ep', sub.endpoint);
-            localStorage.setItem('fc_push_pub_ts', String(Date.now()));
-          } else {
-            // Falha no PUT (ex: SHA desatualizado por outro aparelho salvando ao mesmo
-            // tempo) — tenta de novo em 30s, refazendo o merge com o estado mais recente
-            setTimeout(function() { _salvarSubGitHubFC(sub, true); }, 30000);
-          }
-        })
-        .catch(function() { setTimeout(function() { _salvarSubGitHubFC(sub, true); }, 30000); });
+      // sub é um PushSubscription nativo — .keys não existe como propriedade direta
+      // (só endpoint tem getter), as chaves só saem via .toJSON(). Sem isso, a
+      // subscription salva ficava sem "keys" e o push falhava silenciosamente.
+      var subJson = sub.toJSON ? sub.toJSON() : sub;
+      fetch(PUSH_RELAY_URL + '/subscribe', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ app: 'fc', subscription: { endpoint: sub.endpoint, keys: subJson.keys } })
+      }).then(function(r) {
+        if (r && r.ok) {
+          localStorage.setItem('fc_push_ep', sub.endpoint);
+          localStorage.setItem('fc_push_pub_ts', String(Date.now()));
+        } else {
+          setTimeout(function() { _salvarSubGitHubFC(sub, true); }, 30000);
+        }
+      }).catch(function() { setTimeout(function() { _salvarSubGitHubFC(sub, true); }, 30000); });
     } catch(e) {}
   }
   function _renewPushFC() {
@@ -217,7 +196,7 @@
   iniciarPolling();
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/zyntra-fc/sw.js', { scope: '/zyntra-fc/' })
+    navigator.serviceWorker.register('sw.js')
       .then(function() { _renewPushFC(); })
       .catch(function(e) { console.warn('SW:', e); });
   }
