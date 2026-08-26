@@ -277,8 +277,10 @@ tfoot td{font-weight:700;border-top:1px solid var(--bdr2);border-bottom:none!imp
     <div class="t2">Sistema Financeiro 2026</div>
   </div>
 
-  <div class="sb-sec">Dashboard</div>
-  <div class="ni" onclick="ir(&#39;dash&#39;,this)"><span class="ico">📊</span><span class="lbl">Dashboard Geral</span></div>
+  <div class="ni" onclick="ir(&#39;inicio&#39;,0,this)"><span class="ico">🏠</span><span class="lbl">Início</span></div>
+
+  <div class="sb-sec" id="sec-dash" data-restrita="dash">Dashboard</div>
+  <div class="ni" data-tipo="dash" onclick="ir(&#39;dash&#39;,this)"><span class="ico">📊</span><span class="lbl">Dashboard Geral</span></div>
 
   <div class="sb-sec">Fluxo de Caixa</div>
   <div class="ni" onclick="ir(&#39;fc&#39;,1,this)"><span class="ico">📋</span><span class="lbl">Janeiro</span><span class="bdg" id="b1" style="display:none">0</span></div>
@@ -308,19 +310,19 @@ tfoot td{font-weight:700;border-top:1px solid var(--bdr2);border-bottom:none!imp
   <div class="ni" onclick="ir(&#39;vnd&#39;,11,this)"><span class="ico">🛒</span><span class="lbl">Novembro</span><span class="bdg" id="v11" style="display:none">0</span></div>
   <div class="ni" onclick="ir(&#39;vnd&#39;,12,this)"><span class="ico">🛒</span><span class="lbl">Dezembro</span><span class="bdg" id="v12" style="display:none">0</span></div>
 
-  <div class="sb-sec">Relatórios</div>
-  <div class="ni" onclick="ir(&#39;resumo_fc&#39;,0,this)"><span class="ico">💰</span><span class="lbl">Resumo FC</span></div>
-  <div class="ni" onclick="ir(&#39;ctrl_caixa&#39;,0,this)"><span class="ico">🏦</span><span class="lbl">Controle Caixa</span></div>
-  <div class="ni" onclick="ir(&#39;dre&#39;,0,this)"><span class="ico">📈</span><span class="lbl">DRE</span></div>
-  <div class="ni" onclick="ir(&#39;mkt&#39;,0,this)"><span class="ico">🌐</span><span class="lbl">Marketplaces</span></div>
-  <div class="ni" onclick="ir(&#39;socios&#39;,0,this)"><span class="ico">👥</span><span class="lbl">Sócios</span></div>
-  <div class="ni" onclick="ir(&#39;cats&#39;,0,this)"><span class="ico">📂</span><span class="lbl">Categorias</span></div>
-  <div class="ni" onclick="ir(&#39;imp&#39;,0,this)"><span class="ico">🏛️</span><span class="lbl">Impostos</span></div>
-  <div class="ni" onclick="ir(&#39;est&#39;,0,this)"><span class="ico">📦</span><span class="lbl">Estoque</span></div>
-  <div class="ni" onclick="ir(&#39;invest&#39;,0,this)"><span class="ico">💼</span><span class="lbl">Investimentos</span></div>
+  <div class="sb-sec" id="sec-relatorios">Relatórios</div>
+  <div class="ni" data-tipo="resumo" onclick="ir(&#39;resumo_fc&#39;,0,this)"><span class="ico">💰</span><span class="lbl">Resumo FC</span></div>
+  <div class="ni" data-tipo="caixa" onclick="ir(&#39;ctrl_caixa&#39;,0,this)"><span class="ico">🏦</span><span class="lbl">Controle Caixa</span></div>
+  <div class="ni" data-tipo="dre" onclick="ir(&#39;dre&#39;,0,this)"><span class="ico">📈</span><span class="lbl">DRE</span></div>
+  <div class="ni" data-tipo="mkt" onclick="ir(&#39;mkt&#39;,0,this)"><span class="ico">🌐</span><span class="lbl">Marketplaces</span></div>
+  <div class="ni" data-tipo="socios" onclick="ir(&#39;socios&#39;,0,this)"><span class="ico">👥</span><span class="lbl">Sócios</span></div>
+  <div class="ni" data-tipo="cats" onclick="ir(&#39;cats&#39;,0,this)"><span class="ico">📂</span><span class="lbl">Categorias</span></div>
+  <div class="ni" data-tipo="impostos" onclick="ir(&#39;imp&#39;,0,this)"><span class="ico">🏛️</span><span class="lbl">Impostos</span></div>
+  <div class="ni" data-tipo="estoque" onclick="ir(&#39;est&#39;,0,this)"><span class="ico">📦</span><span class="lbl">Estoque</span></div>
+  <div class="ni" data-tipo="invest" onclick="ir(&#39;invest&#39;,0,this)"><span class="ico">💼</span><span class="lbl">Investimentos</span></div>
 
-  <div class="sb-sec">Sistema</div>
-  <div class="ni" id="ni-usuarios" onclick="ir('usuarios',0,this)"><span class="ico">👥</span><span class="lbl">Usuários</span></div>
+  <div class="sb-sec" id="sec-sistema">Sistema</div>
+  <div class="ni" id="ni-usuarios" data-tipo="usuarios" onclick="ir('usuarios',0,this)"><span class="ico">👥</span><span class="lbl">Usuários</span></div>
   <div class="ni" onclick="fazerBackup()" id="ni-backup"><span class="ico">💾</span><span class="lbl">Backup Completo</span></div>
 </nav>
 
@@ -1507,6 +1509,31 @@ function _paginaPermitida(tipo){
 }
 function _bloqueadoFunc(){setPage('<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:60vh;gap:16px"><div style="font-size:48px">🔒</div><div style="font-size:16px;font-weight:700;color:var(--t)">Acesso Restrito</div><div style="font-size:13px;color:var(--t3);text-align:center">Esta seção é exclusiva do proprietário.</div></div>');}
 
+// Esconde de verdade (não só bloqueia o clique) os itens da barra lateral que o
+// funcionário não pode acessar — sem isso ele via "Dashboard" e outras seções
+// de admin na lista, clicava e caía numa tela de "Acesso Restrito" em vez de
+// simplesmente não ver aquilo. 'usuarios' fica sempre oculto pro funcionário,
+// independente de PAGINAS_RESTRITAS (gestão de usuários é sempre do dono).
+function _ajustarSidebarFunc(){
+  if(!_isFuncionario())return;
+  document.querySelectorAll('.ni[data-tipo]').forEach(function(el){
+    var tipo=el.getAttribute('data-tipo');
+    var permitido = tipo!=='usuarios' && _paginaPermitida(tipo);
+    el.style.display = permitido ? '' : 'none';
+  });
+  var backup=document.getElementById('ni-backup');
+  if(backup)backup.style.display='none';
+  // Some com o cabeçalho de cada seção se todos os itens dela ficaram ocultos.
+  document.querySelectorAll('.sb-sec').forEach(function(sec){
+    var next=sec.nextElementSibling, temVisivel=false;
+    while(next && !next.classList.contains('sb-sec')){
+      if(next.classList.contains('ni') && next.style.display!=='none') temVisivel=true;
+      next=next.nextElementSibling;
+    }
+    sec.style.display=temVisivel?'':'none';
+  });
+}
+
 // ── INÍCIO DO FUNCIONÁRIO — atalhos pro que ele tem liberado ──
 function pInicioFunc(){
   var s=_sessaoAtual();
@@ -1572,6 +1599,7 @@ async function doLogin(){
       btn.textContent='✓ Entrando...';
       await new Promise(function(r){setTimeout(r,350);});
       localStorage.setItem('zyntra_sess', JSON.stringify({user:user, role:res.role, paginas:res.paginas||[], token:res.token, until:Date.now()+4*60*60*1000}));
+      try{_ajustarSidebarFunc();}catch(e){}
       _iniciarWatchSessao();
       // Renova push subscription ao fazer login
       try{_assinarPushFC();}catch(e){}
