@@ -434,7 +434,9 @@ function _ghSalvarFC(){
   if(el){el.textContent='💾 Salvando...';el.style.color='var(--amb)';el.style.background='';el.style.borderColor='rgba(251,191,36,.3)';}
   // Escreve através do relay — o retry em caso de conflito de SHA (dois dispositivos
   // salvando ao mesmo tempo) agora acontece do lado do servidor, dentro do relay.
-  fetch(_PUSH_RELAY_URL+'/save-data',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({app:'fc',data:DB})})
+  // resumo: enviado junto pra virar o corpo do push instantâneo pros outros aparelhos.
+  var _resumoParaPush=_resumoSalvoFC(_antes||{},DB);
+  fetch(_PUSH_RELAY_URL+'/save-data',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({app:'fc',data:DB,resumo:{titulo:'Zyntra FC — atualizado',corpo:_resumoParaPush}})})
     .then(function(r){return r.json().then(function(j){return{status:r.status,ok:r.ok,j:j};});})
     .then(function(res){
       if(!res.ok||!res.j||!res.j.ok)throw new Error((res.j&&res.j.error)||('HTTP_'+res.status));
@@ -443,7 +445,7 @@ function _ghSalvarFC(){
       var ts=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
       if(el){el.textContent='✅ Salvo às '+ts;el.style.color='var(--grn)';el.style.background='rgba(74,222,128,.15)';el.style.borderColor='rgba(74,222,128,.3)';}
       _mostrarNotif('✅ Salvo e sincronizado!','Notebook vai atualizar em instantes','grn');
-      _pushSWNotifFC('Zyntra FC — salvo ✅',_resumoSalvoFC(_antes||{},DB));
+      _pushSWNotifFC('Zyntra FC — salvo ✅',_resumoParaPush);
       // Trigger instantâneo: notifica o desktop sem esperar o poll de 30s
       fetch('https://ntfy.sh/zyntra-trigger-fc-zg2026',{method:'POST',headers:{'Content-Type':'text/plain'},body:'sync',cache:'no-store'}).catch(function(){});
     })
@@ -1798,7 +1800,7 @@ function _assinarPushFC(){
     reg.pushManager.getSubscription().then(function(sub){
       var salvar=function(s){fetch('https://ntfy.sh/zyntra-sub-fc-zg2026x',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(s)}).catch(function(){});};
       if(sub){salvar(sub);return;}
-      reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:_urlB64('BBhENPjxNvUjD-1ug7UJMdfnWJU3AvpBunQKj8dR_JNlr0J3_RFKCpRVEBbrmKIK6J_E9aCSv4y3thL_R0xMONE')}).then(salvar).catch(function(){});
+      reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:_urlB64('BITLfwTQwUU_BYIbbdEXYoUAEp7sy6iiL52Cn-GmnuljgI4F0cPgiT5xgjSM-uV33AIP9LvWf3QrsLR1CRvE-FQ')}).then(salvar).catch(function(){});
     });
   });
 }
@@ -1867,7 +1869,7 @@ function notifAtivar(){
         // Assina push VAPID e salva subscription no relay ntfy (só relay, não manda notif ntfy)
         reg.pushManager.subscribe({
           userVisibleOnly:true,
-          applicationServerKey:_urlB64('BBhENPjxNvUjD-1ug7UJMdfnWJU3AvpBunQKj8dR_JNlr0J3_RFKCpRVEBbrmKIK6J_E9aCSv4y3thL_R0xMONE')
+          applicationServerKey:_urlB64('BITLfwTQwUU_BYIbbdEXYoUAEp7sy6iiL52Cn-GmnuljgI4F0cPgiT5xgjSM-uV33AIP9LvWf3QrsLR1CRvE-FQ')
         }).then(function(sub){
           fetch('https://ntfy.sh/zyntra-sub-fc-zg2026x',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(sub)}).catch(function(){});
           reg.showNotification('Zyntra FC ✅',{body:'Notificações ativadas! Cada alteração chegará aqui.',icon:'icon-192.png',tag:'zyntra-ativado'});
