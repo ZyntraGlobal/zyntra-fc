@@ -277,7 +277,7 @@ tfoot td{font-weight:700;border-top:1px solid var(--bdr2);border-bottom:none!imp
     <div class="t2">Sistema Financeiro 2026</div>
   </div>
 
-  <div class="ni" onclick="ir(&#39;inicio&#39;,0,this)"><span class="ico">🏠</span><span class="lbl">Início</span></div>
+  <div class="ni" id="ni-inicio" onclick="ir(&#39;inicio&#39;,0,this)"><span class="ico">🏠</span><span class="lbl">Início</span></div>
 
   <div class="sb-sec" id="sec-dash" data-restrita="dash">Dashboard</div>
   <div class="ni" data-tipo="dash" onclick="ir(&#39;dash&#39;,this)"><span class="ico">📊</span><span class="lbl">Dashboard Geral</span></div>
@@ -1531,6 +1531,10 @@ function _bloqueadoFunc(){setPage('<div style="display:flex;flex-direction:colum
 // simplesmente não ver aquilo. 'usuarios' fica sempre oculto pro funcionário,
 // independente de PAGINAS_RESTRITAS (gestão de usuários é sempre do dono).
 function _ajustarSidebarFunc(){
+  // "Início" é a tela de atalhos do funcionário — nunca deve aparecer pro
+  // dono (que já cai direto no Dashboard).
+  var ini=document.getElementById('ni-inicio');
+  if(ini)ini.style.display=_isFuncionario()?'':'none';
   if(!_isFuncionario())return;
   document.querySelectorAll('.ni[data-tipo]').forEach(function(el){
     var tipo=el.getAttribute('data-tipo');
@@ -2018,6 +2022,7 @@ function _atualizarTelaComDadosNovos(){
     // "Início" é a tela do funcionário — não existe pro dono). Manda pra tela
     // padrão de cada papel em vez de insistir na página de antes da troca.
     if(papelMudouTela){
+      try{ _ajustarSidebarFunc(); }catch(e){}
       try{ ir(novo._papel==='funcionario'?'inicio':'dash'); }catch(e){}
     } else if(_curTipo && typeof ir==='function') ir(_curTipo,_curMes);
   }catch(e){}
