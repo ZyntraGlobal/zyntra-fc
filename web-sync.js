@@ -150,9 +150,13 @@
   // Publica através do relay — dedupe por endpoint já acontece do lado do servidor.
   function _salvarSubGitHubFC(sub, forcar) {
     try {
-      var mudou = localStorage.getItem('fc_push_ep') !== sub.endpoint;
+      var papelAtual = _sessaoWS().role || '';
+      // Endpoint é do aparelho/navegador, não muda ao trocar de usuário — sem checar o
+      // papel aqui, um login como "dono" depois de ter usado como "funcionario" (mesmo
+      // endpoint, já publicado hoje) ficava preso com o papel antigo salvo no servidor.
+      var mudou = localStorage.getItem('fc_push_ep') !== sub.endpoint || localStorage.getItem('fc_push_role') !== papelAtual;
       var ultimaPub = Number(localStorage.getItem('fc_push_pub_ts') || 0);
-      // Sem mudança de endpoint, republica mesmo assim 1x/dia — autocorreção caso o
+      // Sem mudança de endpoint/papel, republica mesmo assim 1x/dia — autocorreção caso o
       // arquivo remoto tenha ficado dessincronizado sem o endpoint em si ter mudado.
       if (!mudou && !forcar && (Date.now() - ultimaPub) < 86400000) return;
       // sub é um PushSubscription nativo — .keys não existe como propriedade direta
@@ -167,6 +171,7 @@
       }).then(function(r) {
         if (r && r.ok) {
           localStorage.setItem('fc_push_ep', sub.endpoint);
+          localStorage.setItem('fc_push_role', papelAtual);
           localStorage.setItem('fc_push_pub_ts', String(Date.now()));
         } else {
           setTimeout(function() { _salvarSubGitHubFC(sub, true); }, 30000);
