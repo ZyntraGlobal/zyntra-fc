@@ -435,9 +435,7 @@ function _resumoSalvoFC(antes, depois){
   if(!L.length)L.push('Dados sincronizados com sucesso');
   return L.slice(0,5).join('\n')+(L.length>5?'\n…+'+(L.length-5)+' mais':'');
 }
-function _ghSalvarFC(){
-  var _antes=null;
-  try{_antes=JSON.parse(localStorage.getItem('zyntra_v9'));}catch(e){}
+function _ghSalvarFC(_antes){
   var el=document.getElementById('fs-status');
   if(el){el.textContent='💾 Salvando...';el.style.color='var(--amb)';el.style.background='';el.style.borderColor='rgba(251,191,36,.3)';}
   // Escreve através do relay — o retry em caso de conflito de SHA (dois dispositivos
@@ -482,10 +480,15 @@ function save(){
       }
     });
   } else {
+    // Captura o estado ANTES de sobrescrever o localStorage — precisa vir antes do
+    // setItem abaixo, senão "antes" e "depois" viram o mesmo objeto e a mensagem de
+    // notificação nunca detecta o que mudou (sempre cai no fallback genérico).
+    var _antes=null;
+    try{_antes=JSON.parse(localStorage.getItem('zyntra_v9'));}catch(e){}
     // Persiste os dados no localStorage imediatamente (sem avançar _savedAt)
     // _savedAt só avança após o PUT no GitHub ser confirmado (evita phantom timestamp)
     try{localStorage.setItem('zyntra_v9',JSON.stringify(DB));}catch(e){}
-    _ghSalvarFC();
+    _ghSalvarFC(_antes);
   }
 }
 
