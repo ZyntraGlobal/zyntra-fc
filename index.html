@@ -424,14 +424,15 @@ function _resumoSalvoFC(antes, depois){
     else if(mA[x.id].valor!==x.valor)L.push('✏️ '+(x.desc||x.cat||'Lançamento')+': '+R(mA[x.id].valor)+' → '+R(x.valor));
   });
   (antes.fc||[]).forEach(function(x){if(!idsD.has(x.id))L.push('🗑️ Excluído: '+(x.desc||x.cat||'Lançamento'));});
-  // Vendas/Pedidos
+  // Vendas/Pedidos — mostra sempre o lucro, não só o valor da venda
   var mAV={}; (antes.vnd||[]).forEach(function(p){mAV[p.id]=p;});
   var idsDV=new Set((depois.vnd||[]).map(function(p){return p.id;}));
   (depois.vnd||[]).forEach(function(p){
-    if(!mAV[p.id])L.push('➕ Venda: '+(p.produto||'')+' · '+R(p.venda));
-    else if(mAV[p.id].venda!==p.venda)L.push('✏️ Venda '+(p.produto||'')+': '+R(mAV[p.id].venda)+' → '+R(p.venda));
+    var a=mAV[p.id];
+    if(!a)L.push('➕ Venda: '+(p.produto||'')+' · '+R(p.venda)+' · Lucro '+R(p.lucro));
+    else if(a.venda!==p.venda||a.lucro!==p.lucro)L.push('✏️ Venda '+(p.produto||'')+': '+R(a.venda)+' → '+R(p.venda)+' · Lucro '+R(a.lucro)+' → '+R(p.lucro));
   });
-  (antes.vnd||[]).forEach(function(p){if(!idsDV.has(p.id))L.push('🗑️ Venda excluída: '+(p.produto||''));});
+  (antes.vnd||[]).forEach(function(p){if(!idsDV.has(p.id))L.push('🗑️ Venda excluída: '+(p.produto||'')+' · Lucro '+R(p.lucro));});
   if(!L.length)L.push('Dados sincronizados com sucesso');
   return L.slice(0,5).join('\n')+(L.length>5?'\n…+'+(L.length-5)+' mais':'');
 }
