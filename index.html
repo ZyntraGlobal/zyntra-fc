@@ -391,6 +391,10 @@ function loadDB(){
     var tLS=(dadosLS&&dadosLS._savedAt)||0;
     var tArq=(dadosArq&&dadosArq._savedAt)||0;
     var melhor = (dadosLS && tLS > tArq) ? dadosLS : dadosArq;
+    // dadosIniciais vem do contextBridge, que entrega o objeto CONGELADO (somente
+    // leitura) — usar direto fazia DB.fc.push() falhar e o botão Salvar não fazia
+    // nada. Sempre devolve uma cópia editável.
+    melhor = JSON.parse(JSON.stringify(melhor));
     try{localStorage.setItem('zyntra_v9',JSON.stringify(melhor));}catch(e){}
     return melhor;
   }
