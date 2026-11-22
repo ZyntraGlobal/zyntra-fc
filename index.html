@@ -2146,7 +2146,7 @@ window.addEventListener('zyntra-sync', _atualizarTelaComDadosNovos);
 
 function _mostrarNotif(titulo, msg, tipo){
   var n=document.createElement('div');
-  var cor=tipo==='grn'?'var(--grn)':tipo==='red'?'var(--red)':'var(--gold)';
+  var cor=tipo==='grn'?'var(--grn)':tipo==='red'?'var(--red)':'var(--ouro)';
   n.style.cssText='position:fixed;bottom:20px;right:20px;background:#13111a;border:1px solid #272235;border-left:4px solid '+cor+';border-radius:10px;padding:14px 18px;max-width:300px;box-shadow:0 8px 32px rgba(0,0,0,.6);z-index:9000;animation:slideIn .3s ease';
   n.innerHTML='<div style="font-size:13px;font-weight:700;color:#ece9f3;margin-bottom:3px">'+titulo+'</div><div style="font-size:11px;color:#9690a8">'+msg+'</div>';
   document.body.appendChild(n);
