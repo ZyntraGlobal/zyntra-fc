@@ -425,6 +425,7 @@ tbody tr:hover td{background:rgba(139,92,246,.06)}
   <div class="sb-sec" id="sec-sistema">Sistema</div>
   <div class="ni" id="ni-usuarios" data-tipo="usuarios" onclick="ir('usuarios',0,this)"><span class="ico">👥</span><span class="lbl">Usuários</span></div>
   <div class="ni" onclick="fazerBackup()" id="ni-backup"><span class="ico">💾</span><span class="lbl">Backup Completo</span></div>
+  <div class="ni" onclick="sairSistema()" id="ni-sair"><span class="ico">🚪</span><span class="lbl">Sair</span></div>
 </nav>
 
 <div class="main">
@@ -1770,6 +1771,13 @@ async function doLogin(){
   }
 }
 
+// Botão "Sair": encerra a sessão na hora (antes só caía sozinha após 4h)
+function sairSistema(){
+  if(!confirm("Sair do sistema agora?"))return;
+  try{_cofre.key=null;_cofre.ate=0;}catch(e){}
+  localStorage.removeItem('zyntra_sess');
+  window.location.reload();
+}
 function _expirarSessao(){
   localStorage.removeItem('zyntra_sess');
   // Uma atualização de código ficou esperando o usuário sair — agora que a sessão
