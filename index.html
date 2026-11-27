@@ -1026,10 +1026,12 @@ function initFrases(){
 
 // Modal
 var _mfn=null;
-function abrirM(t,b,fn,lg){
+function abrirM(t,b,fn,lg,okTxt){
   document.getElementById('mtit').textContent=t;
   document.getElementById('mbody').innerHTML=b;
   _mfn=fn||null;
+  var ok=document.querySelector('#macts .btn-p, #macts .btnp');if(ok&&ok.dataset.txtPadrao===undefined)ok.dataset.txtPadrao=ok.textContent;
+  if(ok)ok.textContent=okTxt||ok.dataset.txtPadrao;
   document.getElementById('macts').style.display=fn?'flex':'none';
   document.getElementById('mbox').className='modal'+(lg?' lg':'');
   document.getElementById('mbg').classList.add('open');
@@ -2023,11 +2025,16 @@ async function doLogin(){
 }
 
 // Botão "Sair": encerra a sessão na hora (antes só caía sozinha após 4h)
+// Usa a janela do próprio sistema, não o confirm() nativo: no app de computador
+// (Electron/Windows) o confirm() deixa a página sem foco de teclado e, depois de
+// recarregar, os campos de usuário e senha não aceitam digitação; no iPhone (app
+// instalado) o confirm() nem aparece.
 function sairSistema(){
-  if(!confirm("Sair do sistema agora?"))return;
-  try{_cofre.key=null;_cofre.ate=0;}catch(e){}
-  localStorage.removeItem('zyntra_sess');
-  window.location.reload();
+  abrirM('Sair do sistema','<div style="font-size:14px;color:var(--t2)">Sair do sistema agora? Para entrar de novo (ou com outro usuário) é só fazer login.</div>',function(){
+    try{_cofre.key=null;_cofre.ate=0;}catch(e){}
+    localStorage.removeItem('zyntra_sess');
+    window.location.reload();
+  },false,'Sair');
 }
 function _expirarSessao(){
   localStorage.removeItem('zyntra_sess');
