@@ -1330,7 +1330,7 @@ function pFC(mes,busca,filtTipo,filtConta){
   var h='<div class="brow">';
   h+='<input class="inp" id="fcs" style="width:200px" placeholder="Buscar..." oninput="_rfcF()" value="'+busca+'">';
   h+='<select class="sel" id="ft" onchange="_rfcF()"><option value="">Todos os tipos</option>';
-  TIPOS.forEach(function(t2){h+='<option value="'+t2+'"'+(filtTipo===t2?' selected':'')+'>'+t2+'</option>';});
+  _tiposFuncFC().forEach(function(t2){h+='<option value="'+t2+'"'+(filtTipo===t2?' selected':'')+'>'+t2+'</option>';});
   h+='</select><select class="sel" id="fc2" onchange="_rfcF()"><option value="">Todas as contas</option>';
   CONTAS.forEach(function(c){h+='<option value="'+c+'"'+(filtConta===c?' selected':'')+'>'+c+'</option>';});
   h+='</select>';
@@ -1385,7 +1385,7 @@ function modalFC(mes){
   var dd=dia+'/'+m+'/'+d.getFullYear();
   // Funcionário não vê nem consegue gravar ENTRADA (receita) — nem mostra a opção,
   // pra não preencher um lançamento que o servidor vai descartar sem avisar.
-  var _tiposDisp=!_lancaEntradas()?TIPOS.filter(function(t){return t!=='ENTRADA';}):TIPOS;
+  var _tiposDisp=_tiposFuncFC();
   abrirM('Novo Lançamento — '+MFULL[mes-1]+' 2026',
   '<div class="fg f3">'+
   '<div><label>Data *</label><input id="nl-d" value="'+dd+'"></div>'+
@@ -1400,6 +1400,7 @@ function modalFC(mes){
   function(){
     var tipo=document.getElementById('nl-t').value,desc=document.getElementById('nl-ds').value.trim(),valor=pfR(document.getElementById('nl-v').value),conta=document.getElementById('nl-co').value;
     if(!tipo||!desc||valor<=0){document.getElementById('nl-msg').textContent='Preencha tipo, descrição e valor.';return;}
+    if(!_lancaEntradas()&&_ehRestritoFC({tipo:tipo,cat:document.getElementById('nl-cat').value})){document.getElementById('nl-msg').textContent='Esse tipo/categoria é só do dono.';return;}
     DB.fc.push({id:DB.nfc++,mes:mes,data:document.getElementById('nl-d').value,tipo:tipo,cat:document.getElementById('nl-cat').value||tipo,desc:desc,conta:conta||'SICOOB',valor:valor,resp:document.getElementById('nl-r').value||'FELIPE',obs:document.getElementById('nl-ob').value||''});
     save();badges();fecharM();pFC(mes);
   });
@@ -1407,7 +1408,7 @@ function modalFC(mes){
 function mudaCats(){
   var t=document.getElementById('nl-t').value;
   // normKey remove acentos: SAÍDA→SAIDA, TRANSFERÊNCIA→TRANSFERENCIA, etc.
-  var cats=CATS_T[normKey(t)]||CATS_T[t]||[];
+  var cats=_catsFuncFC(t,CATS_T[normKey(t)]||CATS_T[t]||[]);
   document.getElementById('nl-cat').innerHTML='<option value="">Selecione...</option>'+cats.map(function(c){return '<option>'+c+'</option>';}).join('');
 }
 function editFC(id,mes){
@@ -1415,15 +1416,15 @@ function editFC(id,mes){
   abrirM('Editar Lançamento',
   '<div class="fg f3">'+
   '<div><label>Data</label><input id="ef-d" value="'+l.data+'"></div>'+
-  '<div><label>Tipo</label><select id="ef-t">'+(_lancaEntradas()?TIPOS:TIPOS.filter(function(t){return t!=='ENTRADA';})).map(function(t){return '<option'+(t===l.tipo?' selected':'')+'>'+t+'</option>';}).join('')+'</select></div>'+
+  '<div><label>Tipo</label><select id="ef-t">'+_tiposFuncFC().map(function(t){return '<option'+(t===l.tipo?' selected':'')+'>'+t+'</option>';}).join('')+'</select></div>'+
   '<div><label>Conta</label><select id="ef-co">'+CONTAS.map(function(c){return '<option'+(c===l.conta?' selected':'')+'>'+c+'</option>';}).join('')+'</select></div>'+
   '<div style="grid-column:1/-1"><label>Categoria</label><input id="ef-cat" value="'+l.cat+'"></div>'+
   '<div style="grid-column:1/-1"><label>Descrição</label><input id="ef-ds" value="'+l.desc+'"></div>'+
   '<div><label>Valor (R$)</label><input id="ef-v" type="text" inputmode="decimal" value="'+N(l.valor)+'"></div>'+
   '<div><label>Responsável</label><input id="ef-r" value="'+(l.resp||'')+'"></div>'+
   '<div><label>Observações</label><input id="ef-ob" value="'+(l.obs||'')+'"></div>'+
-  '</div>',
-  function(){l.data=document.getElementById('ef-d').value;l.tipo=document.getElementById('ef-t').value;l.conta=document.getElementById('ef-co').value;l.cat=document.getElementById('ef-cat').value;l.desc=document.getElementById('ef-ds').value;l.valor=pfR(document.getElementById('ef-v').value);l.resp=document.getElementById('ef-r').value;l.obs=document.getElementById('ef-ob').value;save();fecharM();pFC(mes);});
+  '</div><div id="ef-msg" style="font-size:11px;margin-top:6px;color:var(--red)"></div>',
+  function(){if(!_lancaEntradas()&&_ehRestritoFC({tipo:document.getElementById('ef-t').value,cat:document.getElementById('ef-cat').value})){document.getElementById('ef-msg').textContent='Esse tipo/categoria é só do dono.';return;}l.data=document.getElementById('ef-d').value;l.tipo=document.getElementById('ef-t').value;l.conta=document.getElementById('ef-co').value;l.cat=document.getElementById('ef-cat').value;l.desc=document.getElementById('ef-ds').value;l.valor=pfR(document.getElementById('ef-v').value);l.resp=document.getElementById('ef-r').value;l.obs=document.getElementById('ef-ob').value;save();fecharM();pFC(mes);});
 }
 // window.confirm() não funciona em app instalado (PWA standalone) no iOS — usa
 // o modal próprio do sistema em vez do diálogo nativo do navegador.
@@ -1825,8 +1826,8 @@ function _isFuncionario(){try{var s=JSON.parse(localStorage.getItem('zyntra_sess
 // não saem as ENTRADAS nem o saldo; sem "custos e lucro" as vendas vão sem custo,
 // taxas, impostos, custos op., lucro, margem e ROI. Usuários é sempre só do dono.
 var PAGINAS_RESTRITAS=[
-  {tipo:'fc',label:'Fluxo de Caixa — lançamentos (sem as entradas e sem saldo)',grupo:'Lançamentos',ico:'💵'},
-  {tipo:'fc_entradas',label:'Fluxo de Caixa — também ver e lançar ENTRADAS e saldo',grupo:'Lançamentos',ico:'💰'},
+  {tipo:'fc',label:'Fluxo de Caixa — saídas, estoque e impostos (sem entradas, saldo, retiradas/pró-labore, investimentos e INSS do sócio)',grupo:'Lançamentos',ico:'💵'},
+  {tipo:'fc_entradas',label:'Fluxo de Caixa — também ver e lançar ENTRADAS, saldo, retiradas, investimentos e INSS do sócio',grupo:'Lançamentos',ico:'💰'},
   {tipo:'vnd',label:'Vendas — pedidos (sem custo, taxas e lucro)',grupo:'Lançamentos',ico:'🛒'},
   {tipo:'vnd_lucro',label:'Vendas — também ver e lançar custo, taxas, impostos e lucro',grupo:'Lançamentos',ico:'📈'},
   {tipo:'dash',label:'Dashboard Geral',grupo:'Relatórios (mostram todos os valores)',ico:'📊'},
@@ -1856,6 +1857,17 @@ function _veEntradas(){return !_isFuncionario()||_temArea('fc_entradas')||_temRe
 function _lancaEntradas(){return !_isFuncionario()||_temArea('fc_entradas');}
 function _veLucro(){return !_isFuncionario()||_temArea('vnd_lucro')||_temRelatorio();}
 function _lancaLucro(){return !_isFuncionario()||_temArea('vnd_lucro');}
+// Lançamentos que só o dono vê: ENTRADA, RETIRADA (pró-labore), INVESTIMENTO,
+// TRANSFERÊNCIA e IMPOSTOS do sócio (INSS SÓCIO). Mesma regra do relay (ehEntradaFC).
+function _ehRestritoFC(l){
+  var t=String((l&&l.tipo)||'').toUpperCase();
+  return t==='ENTRADA'||t==='RETIRADA'||t==='INVESTIMENTO'||t.indexOf('TRANSFER')===0||(t==='IMPOSTOS'&&/S.CIO/i.test(String((l&&l.cat)||'')));
+}
+function _tiposFuncFC(){return _lancaEntradas()?TIPOS:['SAÍDA','ESTOQUE','IMPOSTOS'];}
+function _catsFuncFC(tipo,cats){return _lancaEntradas()?cats:cats.filter(function(c){return !_ehRestritoFC({tipo:tipo,cat:c});});}
+// Tira da memória do aparelho o que o funcionário não pode ver (cópia antiga em cache).
+function _limparRestritosFC(){try{if(DB&&Array.isArray(DB.fc)&&!_veEntradas())DB.fc=DB.fc.filter(function(l){return !_ehRestritoFC(l);});}catch(e){}}
+_limparRestritosFC();
 var ALIAS_PAGINA={'resumo_fc':'resumo','imp':'impostos','est':'estoque','ctrl_caixa':'caixa'};
 function _paginaCanon(tipo){return ALIAS_PAGINA[tipo]||tipo;}
 function _sessaoAtual(){
@@ -2505,7 +2517,7 @@ function _atualizarTelaComDadosNovos(){
     var papelMudouTela=novo._papel&&DB&&DB._papel&&novo._papel!==DB._papel;
     var forcar=!!window._zgForcarRedesenho;window._zgForcarRedesenho=false;
     if(!forcar&&!papelMudouTela&&DB&&DB._savedAt&&novo._savedAt&&novo._savedAt<=DB._savedAt)return;
-    DB=novo;
+    DB=novo;_limparRestritosFC();
     if(typeof badges==='function')badges();
     if(forcar){try{ _ajustarSidebarFunc(); }catch(e){}}
     // Trocou de papel: a página atual pode não fazer sentido pro papel novo (ex:
