@@ -1464,26 +1464,30 @@ function pVND(mes,busca,filtPlat,filtPend){
   h+='<button class="btn btnp" style="margin-left:auto" onclick="modalVND('+mes+')">+ Novo Pedido</button></div>';
   // Custo, taxas, lucro, margem e ROI só pra quem pode ver (dono sempre)
   var _func=!_veLucro();
+  var _custos=_func&&_veCustosVnd(); // funcionário que lança custos: vê CMV/taxas/impostos/custos op., nunca lucro/margem/ROI
+  var _verPend=!_func||_custos;
   if(!_func){
     h+='<div class="g5" style="margin-bottom:12px">';
     h+=card('Pedidos',''+t.n,'',''+t.qtd+' unid. vendidas');h+=card('Faturamento',R(t.fat),'gld','');h+=card('CMV Total',R(t.cmv),'red','');h+=card('Lucro Líquido',R(t.luc),'grn','Já descontado CMV + taxas + custos');h+=card('Margem Média',t.mg.toFixed(1)+'%',t.mg>=30?'grn':t.mg>=15?'amb':'red','');
     h+='</div>';
   }
   h+='<div class="panel"><div class="ph"><div class="pt">VENDAS — '+nm.toUpperCase()+' 2026</div>'+(_func?'':'<span style="font-size:10px;color:var(--t3)">Taxas: '+R(t.tx)+' · Custos op.: '+R(coT)+' · Impostos: '+R(impT)+'</span>')+'</div>';
-  h+='<div class="ts tw"><table><thead><tr><th>DATA VENDA</th><th>DATA ENVIO</th><th>PRODUTO</th><th>PLATAFORMA</th><th>Nº PEDIDO</th><th class="tc">QTD</th><th class="tr">VENDA (R$)</th>'+(_func?'':'<th class="tr">CMV (R$)</th><th class="tr">TAXAS (R$)</th><th class="tr">IMP.(R$)</th><th class="tr">CUSTOS OP.</th><th class="tr">LUCRO LÍQ. (R$)</th><th class="tr">MARGEM%</th><th class="tr">ROI%</th>')+'<th></th></tr></thead><tbody>';
-  if(lista.length===0){h+='<tr><td colspan="'+(_func?8:14)+'" class="empty">Nenhum pedido em '+nm+'.</td></tr>';}
+  h+='<div class="ts tw"><table><thead><tr><th>DATA VENDA</th><th>DATA ENVIO</th><th>PRODUTO</th><th>PLATAFORMA</th><th>Nº PEDIDO</th><th class="tc">QTD</th><th class="tr">VENDA (R$)</th>'+(_func&&!_custos?'':'<th class="tr">CMV (R$)</th><th class="tr">TAXAS (R$)</th><th class="tr">IMP.(R$)</th><th class="tr">CUSTOS OP.</th>')+(_func?'':'<th class="tr">LUCRO LÍQ. (R$)</th><th class="tr">MARGEM%</th><th class="tr">ROI%</th>')+'<th></th></tr></thead><tbody>';
+  if(lista.length===0){h+='<tr><td colspan="'+(_func?(_custos?12:8):14)+'" class="empty">Nenhum pedido em '+nm+'.</td></tr>';}
   else{lista.forEach(function(p){
     var pend=_pedidoPendente(p);
-    h+='<tr'+(p.destaque||(!_func&&pend)?' style="background:'+(pend&&!_func?'var(--ambg)':'rgba(251,191,36,.08)')+'"':'')+'><td class="mono tnw" style="font-size:11px">'+p.dv+'</td><td class="mono tnw" style="font-size:11px">'+p.de+'</td>';
+    h+='<tr'+(p.destaque||(_verPend&&pend)?' style="background:'+(pend&&_verPend?'var(--ambg)':'rgba(251,191,36,.08)')+'"':'')+'><td class="mono tnw" style="font-size:11px">'+p.dv+'</td><td class="mono tnw" style="font-size:11px">'+p.de+'</td>';
     h+='<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500" title="'+p.produto+'">'+(p.destaque?'⭐ ':'')+p.produto+'</td>';
     h+='<td><span class="pill '+mpcls(p.plat)+'">'+p.plat+'</span></td>';
     h+='<td><span class="mono" style="font-size:10px">'+p.pedido+'</span></td>';
     h+='<td class="tc" style="font-weight:700;color:var(--ouro)">'+(p.qtd||1)+'</td>';
     h+='<td class="tr" style="font-weight:700">'+R(p.venda)+'</td>';
-    if(!_func){
+    if(_verPend){
       h+='<td class="tr">'+(p.cmv>0?R(p.cmv):'<span style="color:var(--amb);font-weight:700" title="CMV não preenchido">⚠ 0,00</span>')+'</td>';
       h+='<td class="tr red">'+(p.taxas>0?R(p.taxas):'<span style="color:var(--amb);font-weight:700" title="Taxas não preenchidas">⚠ —</span>')+'</td><td class="tr">'+(p.imp>0?R(p.imp):'—')+'</td>';
       h+='<td class="tr">'+R(p.co||0)+'</td>';
+    }
+    if(!_func){
       h+='<td class="tr '+(p.lucro>=0?'grn':'red')+'" style="font-weight:700">'+R(p.lucro)+'</td>';
       h+='<td class="tr '+(p.margem>=30?'grn':p.margem>=15?'amb':'red')+'">'+p.margem.toFixed(2)+'%</td>';
       h+='<td class="tr" style="font-size:11px">'+p.roi.toFixed(0)+'%</td>';
@@ -1535,6 +1539,8 @@ function editVND(id,mes){var p=DB.vnd.find(function(x){return x.id===id;});if(!p
 // valor: os campos de custo/lucro somem do formulário (o servidor também não aceita).
 function _escondeCustosVenda(pref){
   if(_lancaLucro())return;
+  var cb=document.querySelector('#mbg .calc-box');if(cb)cb.style.display='none';
+  if(_lancaCustosVnd()){var il=document.getElementById(pref+'-luc');if(il&&il.parentNode)il.parentNode.style.display='none';return;}
   ['cmv','tx','imp','co','luc'].forEach(function(k){var i=document.getElementById(pref+'-'+k);if(i&&i.parentNode)i.parentNode.style.display='none';});
   var cb=document.querySelector('#mbg .calc-box');if(cb)cb.style.display='none';
 }
@@ -1829,6 +1835,7 @@ var PAGINAS_RESTRITAS=[
   {tipo:'fc',label:'Fluxo de Caixa — saídas, estoque e impostos (sem entradas, saldo, retiradas/pró-labore, investimentos e INSS do sócio)',grupo:'Lançamentos',ico:'💵'},
   {tipo:'fc_entradas',label:'Fluxo de Caixa — também ver e lançar ENTRADAS, saldo, retiradas, investimentos e INSS do sócio',grupo:'Lançamentos',ico:'💰'},
   {tipo:'vnd',label:'Vendas — pedidos (sem custo, taxas e lucro)',grupo:'Lançamentos',ico:'🛒'},
+  {tipo:'vnd_custos',label:'Vendas — também ver e lançar custo, taxas e impostos (sem lucro e margem)',grupo:'Lançamentos',ico:'🧾'},
   {tipo:'vnd_lucro',label:'Vendas — também ver e lançar custo, taxas, impostos e lucro',grupo:'Lançamentos',ico:'📈'},
   {tipo:'dash',label:'Dashboard Geral',grupo:'Relatórios (mostram todos os valores)',ico:'📊'},
   {tipo:'resumo',label:'Resumo Consolidado — FC',grupo:'Relatórios (mostram todos os valores)',ico:'💰'},
@@ -1857,6 +1864,10 @@ function _veEntradas(){return !_isFuncionario()||_temArea('fc_entradas')||_temRe
 function _lancaEntradas(){return !_isFuncionario()||_temArea('fc_entradas');}
 function _veLucro(){return !_isFuncionario()||_temArea('vnd_lucro')||_temRelatorio();}
 function _lancaLucro(){return !_isFuncionario()||_temArea('vnd_lucro');}
+// Área "vnd_custos": o funcionário vê e lança custo, taxas, impostos e custos op. dos
+// pedidos, mas nunca o lucro, a margem e o ROI (o servidor também não manda esses três).
+function _veCustosVnd(){return _veLucro()||_temArea('vnd_custos');}
+function _lancaCustosVnd(){return _lancaLucro()||_temArea('vnd_custos');}
 // Lançamentos que só o dono vê: ENTRADA, RETIRADA (pró-labore), INVESTIMENTO,
 // TRANSFERÊNCIA e IMPOSTOS do sócio (INSS SÓCIO). Mesma regra do relay (ehEntradaFC).
 function _ehRestritoFC(l){
@@ -1879,7 +1890,7 @@ function _paginaPermitida(tipo){
   if(canon==='inicio')return true;
   // Fluxo de Caixa abre com "fc" ou "fc_entradas"; Vendas com "vnd" ou "vnd_lucro"
   if(canon==='fc'&&_temArea('fc_entradas'))return true;
-  if(canon==='vnd'&&_temArea('vnd_lucro'))return true;
+  if(canon==='vnd'&&(_temArea('vnd_lucro')||_temArea('vnd_custos')))return true;
   // paginas vem do relay no momento do login — a verificação de verdade
   // (o que esse usuário pode LER/ESCREVER) acontece no servidor; isso aqui
   // é só pra não desenhar uma tela que o usuário nem tem permissão de ver.
